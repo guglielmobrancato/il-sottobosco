@@ -1,17 +1,17 @@
 const newsData = [
     {
         "category": "cronaca",
+        "title": "++ 19enne ucciso a Napoli non era l'obiettivo dell'agguato ++",
+        "excerpt": "Killer 15enne voleva colpire un amico. Ha agito da solo a piedi...",
+        "imageIcon": "fa-user-secret",
+        "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/-19enne-ucciso-a-napoli-non-era-lobiettivo-dellagguato-_272237bf-d194-4533-bf12-02d65406ff37.html"
+    },
+    {
+        "category": "cronaca",
         "title": "Casa nel bosco: Ministero, rispettato l'obbligo scolastico",
         "excerpt": "'Attraverso l'educazione domiciliare'...",
         "imageIcon": "fa-user-secret",
         "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/casa-nel-bosco-ministero-rispettato-lobbligo-scolastico_5c3393ac-5b28-44c9-bbe3-0d422bd7c6b2.html"
-    },
-    {
-        "category": "cronaca",
-        "title": "Chiesta al Csm pratica a tutela Tribunale minori l'Aquila",
-        "excerpt": "In riferimento alla vicenda della famiglia nel bosco a Chieti...",
-        "imageIcon": "fa-user-secret",
-        "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/chiesta-al-csm-pratica-a-tutela-tribunale-minori-laquila_335b49f9-9683-4728-92ee-f713eff9e4d8.html"
     },
     {
         "category": "geopolitica",
