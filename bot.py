@@ -28,46 +28,47 @@ ICONS = {
     "difesa": "fa-shield-alt"
 }
 
-# --- FUNZIONE: GENERAZIONE ACCADEMICA ---
+# --- FUNZIONE: GENERAZIONE ROBUSTA ---
 def generate_academic_paper(title, description):
     if not API_KEY: return title, description, description 
     
     prompt = f"""
     Agisci come un Ricercatore Senior del centro studi 'Il Sottobosco'.
-    Scrivi un REPORT DI ANALISI (circa 300 parole) partendo da questa notizia.
+    Scrivi un REPORT DI ANALISI (circa 250 parole) partendo da questa notizia.
     
     Linee Guida:
-    1. Tono: Accademico, distaccato, analitico. Usa terminologia specifica.
-    2. Obiettivo: Non fare cronaca. Analizza le cause profonde, gli impatti sociologici o geopolitici a lungo termine.
-    3. Analogia: Inserisci obbligatoriamente un parallelo storico, filosofico o scientifico per contestualizzare l'evento.
-    4. Struttura: Titolo saggistico -> Abstract (3 righe) -> Analisi dettagliata.
+    1. Tono: Accademico, distaccato, analitico.
+    2. Struttura: Titolo saggistico -> Abstract -> Corpo.
+    3. Inserisci un'analogia storica o filosofica.
     
     Notizia Fonte: {title} - {description}
     
     Output richiesto: 
-    Prima riga: Titolo Saggistico (es. "La dialettica della crisi...")
-    Seconda riga: vuota
-    Dalla terza riga: Il corpo del testo.
+    Titolo: [Il Tuo Titolo Qui]
+    Corpo: [Il Testo Qui]
     """
     try:
         response = model.generate_content(prompt)
-        full_text = response.text.strip()
+        text = response.text.strip()
         
-        # Separiamo Titolo dal Corpo
-        parts = full_text.split('\n', 2)
-        if len(parts) >= 3:
-            new_title = parts[0].replace("Titolo:", "").strip()
-            body = parts[2].strip()
-        else:
-            new_title = title
-            body = full_text
+        # LOGICA BLINDATA: Se l'IA non usa il formato giusto, non rompiamo tutto.
+        new_title = title
+        body = text
 
-        # Creiamo un estratto (Abstract) per la home
-        excerpt = " ".join(body.split()[:35]) + "..."
+        # Proviamo a estrarre il titolo se l'IA ha seguito le istruzioni
+        lines = text.split('\n')
+        if len(lines) > 0 and "Titolo:" in lines[0]:
+            new_title = lines[0].replace("Titolo:", "").replace("*", "").strip()
+            # Uniamo il resto come corpo, saltando la prima riga
+            body = "\n".join(lines[1:]).replace("Corpo:", "").strip()
+        
+        # Creiamo estratto
+        excerpt = " ".join(body.split()[:30]) + "..."
         
         return new_title, body, excerpt
-    except:
-        return title, "Analisi momentaneamente non disponibile.", "..."
+    except Exception as e:
+        print(f"⚠️ Errore IA su {title}: {e}")
+        return title, description, "..."
 
 # --- STEP 1: CARICA ARCHIVIO ---
 try:
@@ -85,14 +86,13 @@ new_articles = []
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
-# Header generico per non essere bloccati
 HEADERS = {'User-Agent': "Mozilla/5.0"}
 
-print("--- INIZIO SCANSIONE ACCADEMICA ---")
+print("--- INIZIO SCANSIONE ---")
 
 for cat, url in SOURCES.items():
     try:
-        print(f"📡 Analisi Fonte: {cat}...")
+        print(f"📡 {cat}...", end=" ")
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, context=ctx) as response:
             tree = ET.fromstring(response.read())
@@ -103,41 +103,40 @@ for cat, url in SOURCES.items():
                 link = item.find("link").text
                 
                 if link in existing_links:
-                    print("   -> Già presente in archivio.")
+                    print("-> Già presente.")
                     continue
 
                 title = item.find("title").text
                 desc_obj = item.find("description")
                 raw_desc = desc_obj.text.split('<')[0].strip() if desc_obj is not None else ""
 
-                # --- ESTRAZIONE IMMAGINE (Nuova Feature) ---
+                # Estrazione Immagine
                 image_url = ""
-                # Cerchiamo nel tag <enclosure> (standard RSS per le immagini)
                 enclosure = item.find("enclosure")
                 if enclosure is not None and "image" in enclosure.get("type", ""):
                     image_url = enclosure.get("url")
                 
-                print("   -> 🧠 Generazione Analisi Accademica...")
+                print("-> Genero Analisi...")
                 new_title, body, excerpt = generate_academic_paper(title, raw_desc)
                 
                 new_article = {
                     "id": int(time.time()), 
                     "date": datetime.now().strftime("%d/%m/%Y"),
                     "category": cat,
-                    "author": "La Redazione", # Autore fisso
+                    "author": "La Redazione",
                     "title": new_title,
                     "excerpt": excerpt,
                     "body": body,
                     "imageIcon": ICONS.get(cat, "fa-newspaper"),
-                    "imageReal": image_url, # Salviamo l'URL della foto vera
+                    "imageReal": image_url,
                     "link": link
                 }
                 
                 new_articles.append(new_article)
-                time.sleep(4) # Pausa relax per Gemini
+                time.sleep(3) # Pausa anti-ban
 
     except Exception as e:
-        print(f"Errore su {cat}: {e}")
+        print(f"Errore: {e}")
 
 # --- STEP 3: SALVA ---
 if new_articles:
@@ -146,6 +145,6 @@ if new_articles:
     json_data = json.dumps(updated_archive, indent=4)
     with open("news.js", "w", encoding="utf-8") as f:
         f.write(f"const newsData = {json_data};")
-    print(f"✅ Pubblicati {len(new_articles)} nuovi report di ricerca.")
+    print(f"✅ Fatto. {len(new_articles)} nuovi articoli.")
 else:
-    print("💤 Nessun nuovo report da generare.")
+    print("💤 Nessuna novità.")
