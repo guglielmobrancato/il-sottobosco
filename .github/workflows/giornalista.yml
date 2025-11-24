@@ -3,6 +3,7 @@ name: Bot Giornalista AI
 on:
   schedule:
     - cron: '0 8 * * *'
+  # QUESTA RIGA SOTTO È QUELLA CHE FA APPARIRE IL BOTTONE
   workflow_dispatch:
 
 permissions:
@@ -21,11 +22,10 @@ jobs:
       with:
         python-version: '3.9'
 
-   - name: Installa Librerie AI
-      # Aggiungiamo -U per forzare l'aggiornamento all'ultima versione
+    # VERSIONE AGGIORNATA CON -U PER I NUOVI MODELLI
+    - name: Installa Librerie AI
       run: pip install -U google-generativeai
 
-    # QUI È LA MAGIA: Passiamo la chiave allo script
     - name: Esegui lo script Bot
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
