@@ -3,178 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Sottobosco | Podcast & News Hub</title>
-    <meta name="description" content="Il Sottobosco: Media Hub automatizzato.">
+    <title>Il Sottobosco | Think Tank</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- STILI BASE (DARK THEME) --- */
-        :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #141414;
-            --primary: #2e8b57;
-            --accent: #4caf50;
-            --text-main: #e0e0e0;
-            --text-muted: #a0a0a0;
-            --border-color: #222;
-        }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; line-height: 1.6; scroll-behavior: smooth; }
+        :root { --bg-color: #0a0a0a; --card-bg: #141414; --primary: #2e8b57; --text-main: #e0e0e0; }
+        body { font-family: 'Georgia', serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; padding: 0; }
-
+        
         /* HEADER */
-        header { background-color: rgba(10, 10, 10, 0.95); padding: 1.2rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; backdrop-filter: blur(5px); }
-        .logo { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        header { background: rgba(10, 10, 10, 0.95); padding: 1rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        .logo { font-family: 'Helvetica', sans-serif; font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         .logo span { color: var(--primary); }
-        nav ul { display: flex; gap: 25px; }
-        nav a { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        nav a:hover { color: var(--primary); }
-
+        
         /* HERO */
-        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px 40px; background: radial-gradient(circle at center, #1b1b1b 0%, #000000 100%); }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; font-weight: 800; }
-        .hero h1 span { color: var(--primary); }
-        .btn { padding: 12px 30px; border-radius: 4px; font-weight: bold; text-transform: uppercase; border: 1px solid transparent; letter-spacing: 1px; font-size: 0.8rem; cursor: pointer; display: inline-block; }
-        .btn-primary { background-color: var(--primary); color: white; }
-        .btn-outline { border-color: var(--text-main); background: transparent; }
+        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px 40px; background: radial-gradient(circle at center, #1b1b1b 0%, #000000 100%); }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.1rem; color: #888; max-width: 700px; font-style: italic; }
 
-        /* SEZIONI */
+        /* GRID */
         .section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
-        .section-header { display: flex; justify-content: space-between; align-items: end; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
-        .section-title { font-size: 2rem; margin: 0; text-transform: uppercase; }
-        .section-title span { color: var(--primary); }
-
-        /* PODCAST */
-        .episodes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .episode-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; transition: 0.3s; }
-        .video-placeholder { width: 100%; height: 180px; background: #000; display: flex; align-items: center; justify-content: center; color: #333; font-size: 3rem; }
-        .card-content { padding: 1.5rem; }
-        .ep-tag { background: #222; color: #fff; padding: 3px 8px; font-size: 0.7rem; text-transform: uppercase; border-radius: 3px; margin-bottom: 10px; display: inline-block; }
-
-        /* NEWS DYNAMIC */
-        .category-nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 2rem; white-space: nowrap; scrollbar-width: thin; scrollbar-color: var(--primary) #111; }
-        .cat-btn { background: transparent; border: 1px solid #333; color: #888; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
-        .cat-btn:hover, .cat-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .news-card { display: flex; flex-direction: column; background: transparent; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; transition: 0.3s; }
-        .news-card.hidden { display: none; }
-        .news-img { width: 100%; height: 200px; background-color: #1a1a1a; margin-bottom: 15px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #444; }
-        .news-meta { font-size: 0.75rem; color: var(--primary); text-transform: uppercase; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px; }
-        .news-title { font-size: 1.3rem; font-weight: bold; margin: 5px 0 10px; line-height: 1.3; color: #fff; }
-        .news-excerpt { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+        
+        /* CARD */
+        .news-card { background: var(--card-bg); border: 1px solid #222; padding: 20px; border-radius: 4px; transition: 0.3s; display: flex; flex-direction: column; }
+        .news-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        
+        .news-img { width: 100%; height: 200px; background-color: #000; margin-bottom: 15px; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #333; overflow: hidden; }
+        .news-meta { font-family: 'Helvetica', sans-serif; font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 10px; }
+        .news-title { font-size: 1.4rem; font-weight: bold; margin: 0 0 10px 0; line-height: 1.3; }
+        .news-excerpt { font-size: 0.95rem; color: #aaa; margin-bottom: 20px; flex-grow: 1; }
 
-        /* PARTNER */
-        .collab-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 2rem; }
-        .partner-box { width: 220px; height: 130px; background: #111; border: 1px solid var(--border-color); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #666; transition: 0.3s; }
-        .partner-box:hover { border-color: var(--primary); background: #1a1a1a; color: white; }
+        /* READER (L'ARTICOLO APERTO) */
+        #article-reader { display: none; background: var(--bg-color); min-height: 100vh; padding: 120px 20px; max-width: 800px; margin: auto; position: relative; z-index: 2000; }
+        .reader-content { animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 
         /* FOOTER */
-        footer { background-color: black; padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--border-color); margin-top: 4rem; }
-        .social-icons a { font-size: 1.5rem; margin: 0 15px; color: var(--text-main); }
-        .footer-text { font-size: 0.8rem; color: #555; margin-top: 2rem; }
-
-        @media (max-width: 768px) { nav { display: none; } .hero h1 { font-size: 2.5rem; } }
+        footer { text-align: center; padding: 4rem; border-top: 1px solid #222; color: #555; font-size: 0.8rem; font-family: sans-serif; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">Il <span>Sottobosco</span></div>
-        <nav>
-            <ul>
-                <li><a href="#podcast">Podcast</a></li>
-                <li><a href="#news">News Hub</a></li>
-                <li><a href="#partners">Partner</a></li>
-                <li><a href="#social">Contatti</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <section class="hero">
-        <h1>Storie dal<br><span>Mondo Reale</span></h1>
-        <p>Media Hub indipendente. Podcast, Geopolitica, Difesa, Tech e Arte.</p>
-        <div style="margin-top: 20px;">
-            <a href="#podcast" class="btn btn-primary">Ascolta</a>
-            <a href="#news" class="btn btn-outline">Leggi News</a>
-        </div>
-    </section>
+    <div id="main-content">
+        <section class="hero">
+            <h1>Osservatorio <br><span style="color:var(--primary)">Indipendente</span></h1>
+            <p>"Analisi profonde su un mondo superficiale."</p>
+        </section>
 
-    <section id="podcast" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Podcast <span>Episodes</span></h2>
-            <a href="https://www.youtube.com/@IL_SOTTOBOSCO/videos" target="_blank" style="color:#888; font-size:0.9rem;">Vedi tutti &rarr;</a>
-        </div>
-        <div class="episodes-grid">
-            <div class="episode-card">
-                <a href="https://www.youtube.com/@IL_SOTTOBOSCO" target="_blank"><div class="video-placeholder"><i class="fab fa-youtube"></i></div></a>
-                <div class="card-content"><span class="ep-tag">Arte</span><h3>Luca Lo Sapio</h3></div>
+        <section class="section">
+            <div class="news-grid" id="news-container">
+                </div>
+        </section>
+        
+        <footer>
+            &copy; 2025 Il Sottobosco Research Unit.
+        </footer>
+    </div>
+
+    <section id="article-reader">
+        <button onclick="closeArticle()" style="background:transparent; border:1px solid #444; color:#fff; padding:8px 20px; cursor:pointer; margin-bottom:30px; font-family:sans-serif; text-transform:uppercase; font-size:0.8rem;">
+            &larr; Torna all'Indice
+        </button>
+        
+        <div class="reader-content">
+            <div id="reader-meta" style="color:var(--primary); text-transform:uppercase; font-size:0.8rem; font-weight:bold; margin-bottom:15px; font-family:sans-serif;">CATEGORIA</div>
+            <h1 id="reader-title" style="font-size:2.8rem; line-height:1.1; margin-bottom:20px;">Titolo</h1>
+            <div style="border-bottom:1px solid #333; padding-bottom:20px; margin-bottom:30px; color:#666; font-style:italic;">
+                Analisi a cura di <span style="color:#eee;">La Redazione</span> • <span id="reader-date">Data</span>
             </div>
-            <div class="episode-card">
-                <a href="https://www.youtube.com/@IL_SOTTOBOSCO" target="_blank"><div class="video-placeholder"><i class="fab fa-youtube"></i></div></a>
-                <div class="card-content"><span class="ep-tag">Cinema</span><h3>Ciro De Caro</h3></div>
+            
+            <div id="reader-image" style="width:100%; height:300px; background:#111; margin-bottom:30px; background-size:cover; background-position:center; display:none;"></div>
+
+            <div id="reader-body" style="font-size:1.2rem; line-height:1.8; color:#ccc; white-space: pre-line;">
+                Testo...
             </div>
-            <div class="episode-card">
-                <a href="https://www.youtube.com/@IL_SOTTOBOSCO" target="_blank"><div class="video-placeholder"><i class="fab fa-youtube"></i></div></a>
-                <div class="card-content"><span class="ep-tag">Recitazione</span><h3>Emma Nitti</h3></div>
+            
+            <div style="margin-top:50px; padding-top:20px; border-top:1px solid #222; font-size:0.8rem; color:#555; text-align:center;">
+                Report generato automaticamente da Sottobosco AI Unit. <br>
+                <a id="reader-link" href="#" target="_blank" style="color:#777; text-decoration:underline;">Verifica fonte originale</a>
             </div>
         </div>
     </section>
-
-    <section id="news" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Sottobosco <span>News</span></h2>
-        </div>
-
-        <div class="category-nav">
-            <button class="cat-btn active" onclick="filterNews('all')">Tutte</button>
-            <button class="cat-btn" onclick="filterNews('geopolitica')">Geopolitica</button>
-            <button class="cat-btn" onclick="filterNews('difesa')">Difesa</button>
-            <button class="cat-btn" onclick="filterNews('cronaca')">Cronaca Nera</button>
-            <button class="cat-btn" onclick="filterNews('tech')">Tech & AI</button>
-            <button class="cat-btn" onclick="filterNews('sport')">Sport</button>
-            <button class="cat-btn" onclick="filterNews('arte')">Arte</button>
-        </div>
-
-        <div class="news-grid" id="news-container"></div>
-
-    </section>
-
-    <section id="partners" class="section" style="background: #0e0e0e;">
-        <h2 class="section-title" style="text-align: center;">Partner & <span>Sponsor</span></h2>
-        <div class="collab-grid">
-            <a href="https://www.mff.martestudios.com" target="_blank">
-                <div class="partner-box"><i class="fas fa-ticket-alt fa-2x" style="color:var(--primary); margin-bottom:10px;"></i><span>Marte Film Festival</span></div>
-            </a>
-            <a href="https://www.martestudios.com" target="_blank">
-                <div class="partner-box"><i class="fas fa-video fa-2x" style="color:var(--primary); margin-bottom:10px;"></i><span>Marte Studios</span></div>
-            </a>
-        </div>
-    </section>
-
-    <footer id="social">
-        <div class="social-icons">
-            <a href="https://www.instagram.com/il_sottobosco_podcast_/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@IL_SOTTOBOSCO" target="_blank"><i class="fab fa-youtube"></i></a>
-        </div>
-        <p class="footer-text">&copy; 2025 Il Sottobosco Media Hub.</p>
-    </footer>
 
     <script src="news.js"></script>
     <script>
-        // Funzione che "disegna" le news leggendo la variabile newsData dal file news.js
-   function loadNews() {
+        function loadNews() {
             const container = document.getElementById('news-container');
+            if(!container) return;
             container.innerHTML = ""; 
+
+            // Se il database è vuoto (abbiamo appena resettato)
+            if (typeof newsData === 'undefined' || newsData.length === 0) {
+                container.innerHTML = "<p style='text-align:center; color:#666; grid-column:1/-1;'>In attesa del prossimo bollettino (Esegui il Bot)...</p>";
+                return;
+            }
 
             const latestNews = newsData.slice(0, 12);
 
             latestNews.forEach(item => {
-                const author = item.author || "La Redazione";
                 const date = item.date || "";
                 
-                // LOGICA IMMAGINI:
-                // Se c'è l'immagine vera scaricata dall'RSS, crea un tag <img>
-                // Altrimenti crea il box colorato con l'icona
+                // GESTIONE IMMAGINE (Vera o Icona)
                 let visualContent = '';
                 if (item.imageReal && item.imageReal !== "") {
                     visualContent = `<div class="news-img" style="background-image: url('${item.imageReal}'); background-size: cover; background-position: center;"></div>`;
@@ -183,19 +116,15 @@
                 }
 
                 const html = `
-                    <article class="news-card" data-category="${item.category}">
+                    <article class="news-card">
                         ${visualContent}
                         <div class="news-meta">${item.category} • ${date}</div>
                         <h3 class="news-title">${item.title}</h3>
-                        <p class="news-excerpt" style="font-family: 'Georgia', serif; font-style: italic; color:#bbb;">
-                            ${item.excerpt}
-                        </p>
-                        <div style="margin-top:15px; display:flex; justify-content:space-between; align-items:center; border-top: 1px solid #222; padding-top:10px;">
-                            <div style="font-size:0.75rem; color:#888; font-weight:bold; text-transform:uppercase;">
-                                ${author}
-                            </div>
-                            <button onclick="openArticle(${item.id})" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:bold; text-transform:uppercase; font-size:0.75rem; letter-spacing:1px;">
-                                Leggi Paper <i class="fas fa-arrow-right"></i>
+                        <p class="news-excerpt">${item.excerpt}</p>
+                        <div style="margin-top:auto; padding-top:15px; border-top:1px solid #222; display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:0.75rem; color:#666; text-transform:uppercase;">La Redazione</span>
+                            <button onclick="openArticle(${item.id})" style="background:var(--primary); border:none; color:#fff; padding:5px 15px; cursor:pointer; font-weight:bold; font-size:0.7rem; border-radius:2px; text-transform:uppercase;">
+                                Leggi Paper
                             </button>
                         </div>
                     </article>
@@ -204,27 +133,41 @@
             });
         }
 
-        // Funzione filtro (quella di prima)
-        function filterNews(category) {
-            const cards = document.querySelectorAll('.news-card');
-            const buttons = document.querySelectorAll('.cat-btn');
+        function openArticle(id) {
+            const article = newsData.find(n => n.id === id);
+            if (!article) return;
 
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            document.getElementById('reader-title').innerText = article.title;
+            document.getElementById('reader-meta').innerText = article.category;
+            document.getElementById('reader-date').innerText = article.date;
+            
+            // Gestione Immagine nel Reader
+            const imgDiv = document.getElementById('reader-image');
+            if (article.imageReal) {
+                imgDiv.style.display = 'block';
+                imgDiv.style.backgroundImage = `url('${article.imageReal}')`;
+            } else {
+                imgDiv.style.display = 'none';
+            }
 
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
+            // Fallback se il body non esiste ancora (vecchie news)
+            document.getElementById('reader-body').innerText = article.body ? article.body : "Testo completo non disponibile. Riprova con i prossimi articoli.";
+            
+            document.getElementById('reader-link').href = article.link;
+
+            // Switch visuale
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('article-reader').style.display = 'block';
+            window.scrollTo(0, 0);
         }
 
-        // Avvia tutto appena la pagina è pronta
+        function closeArticle() {
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('article-reader').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+
         window.onload = loadNews;
     </script>
 </body>
-
 </html>
-
