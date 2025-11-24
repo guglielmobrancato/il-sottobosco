@@ -1,5 +1,17 @@
 const newsData = [
     {
+        "id": 1764017680,
+        "date": "24/11/2025",
+        "category": "geopolitica",
+        "author": "La Redazione",
+        "title": "Brasile, Lula in Mozambico riceve una laurea honoris causa",
+        "excerpt": "...",
+        "body": "Analisi momentaneamente non disponibile.",
+        "imageIcon": "fa-globe-europe",
+        "imageReal": "",
+        "link": "https://www.ansa.it/sito/notizie/mondo/americalatina/2025/11/24/brasile-lula-in-mozambico-riceve-una-laurea-honoris-causa_9fb057b6-584c-4457-aa0c-aced12990738.html"
+    },
+    {
         "id": 1764016998,
         "date": "24/11/2025",
         "category": "cronaca",
