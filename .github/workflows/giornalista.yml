@@ -21,12 +21,12 @@ jobs:
       with:
         python-version: '3.9'
 
-    # NESSUNA INSTALLAZIONE EXTRA. SOLO PYTHON PURO.
-    
+    # Nessuna installazione necessaria, usiamo Python standard
+
     - name: Esegui lo script Bot
       env:
-        # Assicurati che su GitHub il secret si chiami GEMINI_API_KEY
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        # Passiamo la chiave di XAI
+        XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
       run: python bot.py
 
     - name: Salva le modifiche
@@ -34,4 +34,4 @@ jobs:
         git config --global user.name 'Sottobosco Bot'
         git config --global user.email 'bot@sottobosco.com'
         git add news.js
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Aggiornamento Indistruttibile" && git pull --rebase origin main && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Grok News Update" && git pull --rebase origin main && git push)
