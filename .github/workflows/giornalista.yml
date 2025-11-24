@@ -3,7 +3,6 @@ name: Bot Giornalista AI
 on:
   schedule:
     - cron: '0 8 * * *'
-  # QUESTA RIGA SOTTO È QUELLA CHE FA APPARIRE IL BOTTONE
   workflow_dispatch:
 
 permissions:
@@ -22,9 +21,7 @@ jobs:
       with:
         python-version: '3.9'
 
-    # VERSIONE AGGIORNATA CON -U PER I NUOVI MODELLI
-    - name: Installa Librerie AI
-      run: pip install -U google-generativeai
+    # NOTA: Abbiamo rimosso "Installa Librerie AI" perché il nuovo bot fa tutto da solo!
 
     - name: Esegui lo script Bot
       env:
@@ -36,4 +33,4 @@ jobs:
         git config --global user.name 'Sottobosco Bot'
         git config --global user.email 'bot@sottobosco.com'
         git add news.js
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Aggiornamento News" && git pull --rebase origin main && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "News aggiornate via REST" && git pull --rebase origin main && git push)
