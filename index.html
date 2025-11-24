@@ -166,28 +166,37 @@
             const container = document.getElementById('news-container');
             container.innerHTML = ""; 
 
-            // Prende i primi 12 articoli (così il sito non diventa infinito)
             const latestNews = newsData.slice(0, 12);
 
             latestNews.forEach(item => {
-                // Se è una news vecchia senza autore, mettiamo un default
-                const author = item.author || "Redazione Sottobosco";
-                const date = item.date || "Oggi";
+                const author = item.author || "La Redazione";
+                const date = item.date || "";
+                
+                // LOGICA IMMAGINI:
+                // Se c'è l'immagine vera scaricata dall'RSS, crea un tag <img>
+                // Altrimenti crea il box colorato con l'icona
+                let visualContent = '';
+                if (item.imageReal && item.imageReal !== "") {
+                    visualContent = `<div class="news-img" style="background-image: url('${item.imageReal}'); background-size: cover; background-position: center;"></div>`;
+                } else {
+                    visualContent = `<div class="news-img"><i class="fas ${item.imageIcon} fa-2x"></i></div>`;
+                }
 
                 const html = `
                     <article class="news-card" data-category="${item.category}">
-                        <div class="news-img"><i class="fas ${item.imageIcon} fa-2x"></i></div>
-                        <div class="news-meta">
-                            ${item.category} <span style="color:#666; font-size:0.75rem; font-weight:normal; margin-left:5px;">• ${date}</span>
-                        </div>
+                        ${visualContent}
+                        <div class="news-meta">${item.category} • ${date}</div>
                         <h3 class="news-title">${item.title}</h3>
-                        <p class="news-excerpt">${item.excerpt}</p>
-                        
-                        <div style="margin-top:15px; border-top:1px solid #222; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-                            <div style="font-size:0.75rem; color:#888; font-style:italic;">
-                                <i class="fas fa-pen-nib" style="margin-right:5px; color:var(--primary);"></i> ${author}
+                        <p class="news-excerpt" style="font-family: 'Georgia', serif; font-style: italic; color:#bbb;">
+                            ${item.excerpt}
+                        </p>
+                        <div style="margin-top:15px; display:flex; justify-content:space-between; align-items:center; border-top: 1px solid #222; padding-top:10px;">
+                            <div style="font-size:0.75rem; color:#888; font-weight:bold; text-transform:uppercase;">
+                                ${author}
                             </div>
-                            <a href="${item.link}" target="_blank" style="font-size:1.2rem; color:#444;"><i class="fas fa-external-link-alt"></i></a>
+                            <button onclick="openArticle(${item.id})" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:bold; text-transform:uppercase; font-size:0.75rem; letter-spacing:1px;">
+                                Leggi Paper <i class="fas fa-arrow-right"></i>
+                            </button>
                         </div>
                     </article>
                 `;
@@ -218,3 +227,4 @@
 </body>
 
 </html>
+
