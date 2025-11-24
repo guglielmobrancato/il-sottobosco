@@ -162,18 +162,33 @@
     <script src="news.js"></script>
     <script>
         // Funzione che "disegna" le news leggendo la variabile newsData dal file news.js
-        function loadNews() {
+   function loadNews() {
             const container = document.getElementById('news-container');
-            container.innerHTML = ""; // Pulisce tutto
+            container.innerHTML = ""; 
 
-            newsData.forEach(item => {
+            // Prende i primi 12 articoli (così il sito non diventa infinito)
+            const latestNews = newsData.slice(0, 12);
+
+            latestNews.forEach(item => {
+                // Se è una news vecchia senza autore, mettiamo un default
+                const author = item.author || "Redazione Sottobosco";
+                const date = item.date || "Oggi";
+
                 const html = `
                     <article class="news-card" data-category="${item.category}">
                         <div class="news-img"><i class="fas ${item.imageIcon} fa-2x"></i></div>
-                        <div class="news-meta">${item.category}</div>
+                        <div class="news-meta">
+                            ${item.category} <span style="color:#666; font-size:0.75rem; font-weight:normal; margin-left:5px;">• ${date}</span>
+                        </div>
                         <h3 class="news-title">${item.title}</h3>
                         <p class="news-excerpt">${item.excerpt}</p>
-                        <a href="${item.link}" class="read-more" style="color:var(--primary); font-weight:bold;">Leggi articolo &rarr;</a>
+                        
+                        <div style="margin-top:15px; border-top:1px solid #222; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
+                            <div style="font-size:0.75rem; color:#888; font-style:italic;">
+                                <i class="fas fa-pen-nib" style="margin-right:5px; color:var(--primary);"></i> ${author}
+                            </div>
+                            <a href="${item.link}" target="_blank" style="font-size:1.2rem; color:#444;"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
                     </article>
                 `;
                 container.innerHTML += html;
@@ -201,4 +216,5 @@
         window.onload = loadNews;
     </script>
 </body>
+
 </html>
