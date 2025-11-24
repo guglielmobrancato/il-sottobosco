@@ -1,5 +1,35 @@
 const newsData = [
     {
+        "id": 1764016998,
+        "date": "24/11/2025",
+        "category": "cronaca",
+        "author": "Max V.",
+        "title": "#AccadeOggi",
+        "excerpt": "I principali avvenimenti previsti per la giornata",
+        "imageIcon": "fa-user-secret",
+        "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/accadeoggi_dd38a7d3-309c-4e12-a6b9-d7b1590e0cf6.html"
+    },
+    {
+        "id": 1764017000,
+        "date": "24/11/2025",
+        "category": "geopolitica",
+        "author": "Max V.",
+        "title": "Paraguay e Israele firmano un memorandum sulla Difesa",
+        "excerpt": "Visita ad Asunci\u00f3n del ministro degli Esteri Gideon Sa'ar",
+        "imageIcon": "fa-globe-europe",
+        "link": "https://www.ansa.it/sito/notizie/mondo/americalatina/2025/11/24/paraguay-e-israele-firmano-un-memorandum-sulla-difesa_0d12cba6-b68d-470b-9370-5b8ff91c89ae.html"
+    },
+    {
+        "id": 1764017004,
+        "date": "24/11/2025",
+        "category": "arte",
+        "author": "Il Corvo",
+        "title": "'Moda e bellezza dal Friuli' protagonista a Palazzo Metternich",
+        "excerpt": "A Vienna sfilano talento e tradizione della Regione",
+        "imageIcon": "fa-film",
+        "link": "https://www.ansa.it/sito/notizie/cultura/moda/2025/11/24/moda-e-bellezza-dal-friuli-protagonista-a-palazzo-metternich_6ee1ae52-ef6a-4a1c-a2c3-14b6dea6662e.html"
+    },
+    {
         "category": "cronaca",
         "title": "++ 19enne ucciso a Napoli non era l'obiettivo dell'agguato ++",
         "excerpt": "Killer 15enne voleva colpire un amico. Ha agito da solo a piedi...",
