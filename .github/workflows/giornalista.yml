@@ -21,8 +21,9 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Installa Librerie AI
-      run: pip install google-generativeai
+   - name: Installa Librerie AI
+      # Aggiungiamo -U per forzare l'aggiornamento all'ultima versione
+      run: pip install -U google-generativeai
 
     # QUI È LA MAGIA: Passiamo la chiave allo script
     - name: Esegui lo script Bot
