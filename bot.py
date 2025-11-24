@@ -3,16 +3,12 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import ssl
 import os
-import random
 import time
 from datetime import datetime
 import google.generativeai as genai
 
 # --- CONFIGURAZIONE ---
-# Recupera la chiave segreta da GitHub
 API_KEY = os.environ.get("GEMINI_API_KEY")
-
-# Se non c'è la chiave (test locale), lo script si ferma o usa una stringa vuota
 if API_KEY:
     genai.configure(api_key=API_KEY)
     model = genai.GenerativeModel('gemini-pro')
@@ -28,47 +24,60 @@ ICONS = {
     "cronaca": "fa-user-secret",
     "geopolitica": "fa-globe-europe",
     "tech": "fa-microchip",
-    "arte": "fa-film",
+    "arte": "fa-book",
     "difesa": "fa-shield-alt"
 }
 
-FAKE_AUTHORS = [
-    "Dario 'Vipera' Neri", "Elena Sarti", "L'Osservatore", "Max V.", 
-    "Giulia R.", "Il Corvo", "Dr. Mantis"
-]
-
-# --- FUNZIONE: RISCRITTURA CON IA ---
-def rewrite_with_ai(title, description):
-    if not API_KEY:
-        return description # Se non c'è AI, restituisce l'originale
+# --- FUNZIONE: GENERAZIONE ACCADEMICA ---
+def generate_academic_paper(title, description):
+    if not API_KEY: return title, description, description 
     
     prompt = f"""
-    Sei un giornalista underground del blog 'Il Sottobosco'.
-    Riscrivi questa notizia in italiano.
-    Stile: Sintetico, diretto, leggermente cinico o misterioso. Max 40 parole.
+    Agisci come un Ricercatore Senior del centro studi 'Il Sottobosco'.
+    Scrivi un REPORT DI ANALISI (circa 300 parole) partendo da questa notizia.
     
-    Notizia Originale: {title} - {description}
+    Linee Guida:
+    1. Tono: Accademico, distaccato, analitico. Usa terminologia specifica.
+    2. Obiettivo: Non fare cronaca. Analizza le cause profonde, gli impatti sociologici o geopolitici a lungo termine.
+    3. Analogia: Inserisci obbligatoriamente un parallelo storico, filosofico o scientifico per contestualizzare l'evento.
+    4. Struttura: Titolo saggistico -> Abstract (3 righe) -> Analisi dettagliata.
+    
+    Notizia Fonte: {title} - {description}
+    
+    Output richiesto: 
+    Prima riga: Titolo Saggistico (es. "La dialettica della crisi...")
+    Seconda riga: vuota
+    Dalla terza riga: Il corpo del testo.
     """
     try:
         response = model.generate_content(prompt)
-        return response.text.strip()
-    except:
-        return description # Fallback in caso di errore
+        full_text = response.text.strip()
+        
+        # Separiamo Titolo dal Corpo
+        parts = full_text.split('\n', 2)
+        if len(parts) >= 3:
+            new_title = parts[0].replace("Titolo:", "").strip()
+            body = parts[2].strip()
+        else:
+            new_title = title
+            body = full_text
 
-# --- STEP 1: CARICA ARCHIVIO ESISTENTE ---
-# Proviamo a leggere il file news.js esistente per non cancellare la storia
+        # Creiamo un estratto (Abstract) per la home
+        excerpt = " ".join(body.split()[:35]) + "..."
+        
+        return new_title, body, excerpt
+    except:
+        return title, "Analisi momentaneamente non disponibile.", "..."
+
+# --- STEP 1: CARICA ARCHIVIO ---
 try:
     with open("news.js", "r", encoding="utf-8") as f:
         content = f.read()
-        # Rimuoviamo "const newsData = " e ";" per ottenere solo il JSON
         json_str = content.replace("const newsData = ", "").replace(";", "")
         archive = json.loads(json_str)
 except:
     archive = []
 
-print(f"📚 Articoli in archivio: {len(archive)}")
-
-# Lista dei link già presenti per evitare duplicati
 existing_links = [item['link'] for item in archive]
 new_articles = []
 
@@ -76,68 +85,67 @@ new_articles = []
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
+# Header generico per non essere bloccati
 HEADERS = {'User-Agent': "Mozilla/5.0"}
 
-print("--- INIZIO SCANSIONE INTELLIGENTE ---")
+print("--- INIZIO SCANSIONE ACCADEMICA ---")
 
 for cat, url in SOURCES.items():
     try:
-        print(f"📡 Analizzo {cat}...")
+        print(f"📡 Analisi Fonte: {cat}...")
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, context=ctx) as response:
             tree = ET.fromstring(response.read())
             
-            # Prende solo la PRIMA notizia più recente per categoria
+            # Prende la prima notizia
             item = tree.find(".//item") 
             if item:
                 link = item.find("link").text
                 
-                # Se la notizia è già in archivio, la saltiamo
                 if link in existing_links:
-                    print("   -> Già in archivio. Salto.")
+                    print("   -> Già presente in archivio.")
                     continue
 
                 title = item.find("title").text
                 desc_obj = item.find("description")
-                desc = desc_obj.text if desc_obj is not None else ""
-                raw_desc = desc.split('<')[0].strip()
+                raw_desc = desc_obj.text.split('<')[0].strip() if desc_obj is not None else ""
 
-                print("   -> 🧠 Riscrivo con IA...")
-                ai_text = rewrite_with_ai(title, raw_desc)
+                # --- ESTRAZIONE IMMAGINE (Nuova Feature) ---
+                image_url = ""
+                # Cerchiamo nel tag <enclosure> (standard RSS per le immagini)
+                enclosure = item.find("enclosure")
+                if enclosure is not None and "image" in enclosure.get("type", ""):
+                    image_url = enclosure.get("url")
                 
-                # Creiamo il nuovo oggetto notizia
+                print("   -> 🧠 Generazione Analisi Accademica...")
+                new_title, body, excerpt = generate_academic_paper(title, raw_desc)
+                
                 new_article = {
-                    "id": int(time.time()), # ID unico basato sull'orario
+                    "id": int(time.time()), 
                     "date": datetime.now().strftime("%d/%m/%Y"),
                     "category": cat,
-                    "author": random.choice(FAKE_AUTHORS),
-                    "title": title,
-                    "excerpt": ai_text,
+                    "author": "La Redazione", # Autore fisso
+                    "title": new_title,
+                    "excerpt": excerpt,
+                    "body": body,
                     "imageIcon": ICONS.get(cat, "fa-newspaper"),
-                    "link": link # Manteniamo il link fonte per correttezza, o mettiamo "#"
+                    "imageReal": image_url, # Salviamo l'URL della foto vera
+                    "link": link
                 }
                 
                 new_articles.append(new_article)
-                time.sleep(2) # Pausa per non intasare l'IA
+                time.sleep(4) # Pausa relax per Gemini
 
     except Exception as e:
         print(f"Errore su {cat}: {e}")
 
-# --- STEP 3: AGGIORNA E SALVA ---
+# --- STEP 3: SALVA ---
 if new_articles:
-    print(f"✅ Trovati {len(new_articles)} nuovi articoli.")
-    # Mette i nuovi in cima + i vecchi sotto
     updated_archive = new_articles + archive
-    
-    # Manteniamo l'archivio pulito: teniamo solo ultimi 50 articoli
     updated_archive = updated_archive[:50]
-
     json_data = json.dumps(updated_archive, indent=4)
-    file_content = f"const newsData = {json_data};"
-
     with open("news.js", "w", encoding="utf-8") as f:
-        f.write(file_content)
+        f.write(f"const newsData = {json_data};")
+    print(f"✅ Pubblicati {len(new_articles)} nuovi report di ricerca.")
 else:
-    print("💤 Nessuna nuova notizia trovata.")
-
-print("--- FINE ---")
+    print("💤 Nessun nuovo report da generare.")
