@@ -1,6 +1,18 @@
 const newsData = [
     {
-        "id": 1764020736,
+        "id": 1764021498,
+        "date": "24/11/2025",
+        "category": "geopolitica",
+        "author": "La Redazione",
+        "title": "Brigitte Bardot di nuovo ricoverata in ospedale a Tolone",
+        "excerpt": "Poco pi\u00f9 di un mese fa gi\u00e0 sottoposta a intervento chirurgico",
+        "body": "\u26a0\ufe0f TUTTI I MODELLI FALLITI. Ultimo errore: HTTP 404",
+        "imageIcon": "fa-globe-europe",
+        "imageReal": "",
+        "link": "https://www.ansa.it/sito/notizie/mondo/europa/2025/11/24/brigitte-bardot-di-nuovo-ricoverata-in-ospedale-a-tolone_38d5e789-1569-42bb-91b1-296752f4e95c.html"
+    },
+    {
+        "id": 1764021500,
         "date": "24/11/2025",
         "category": "geopolitica",
         "author": "La Redazione",
@@ -12,19 +24,7 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/mondo/europa/2025/11/24/zelensky-molti-aspetti-giusti-nel-nuovo-piano-usa-kiev_a91bfcc9-89fe-4601-80d2-1f22244f43d4.html"
     },
     {
-        "id": 1764020738,
-        "date": "24/11/2025",
-        "category": "geopolitica",
-        "author": "La Redazione",
-        "title": "Casa Bianca, 'Trump non \u00e8 stato di parte ai colloqui su Ucraina'",
-        "excerpt": "'Il presidente \u00e8 ottimista sul piano per porre fine alla guerra'",
-        "body": "\u26a0\ufe0f TUTTI I MODELLI FALLITI. Ultimo errore: HTTP 404",
-        "imageIcon": "fa-globe-europe",
-        "imageReal": "",
-        "link": "https://www.ansa.it/sito/notizie/mondo/nordamerica/2025/11/24/casa-bianca-trump-non-e-stato-di-parte-ai-colloqui-su-ucraina_97adfd9a-4f23-4ecd-9041-38b5b5de880f.html"
-    },
-    {
-        "id": 1764020741,
+        "id": 1764021503,
         "date": "24/11/2025",
         "category": "tech",
         "author": "La Redazione",
@@ -36,7 +36,7 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/tecnologia/hitech/2023/05/30/apple-risarcira-proprietari-di-macbook-per-le-tastiere-difettose_ce9214c7-b68d-4d8e-ad5f-7bd5bd04ecbe.html"
     },
     {
-        "id": 1764020743,
+        "id": 1764021505,
         "date": "24/11/2025",
         "category": "tech",
         "author": "La Redazione",
@@ -48,7 +48,7 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/tecnologia/internet_social/2023/05/30/linventore-di-internet-tim-berners-lee-alla-fiera-di-rimini_8d846c97-938c-40d3-a479-5100edfc4344.html"
     },
     {
-        "id": 1764020746,
+        "id": 1764021508,
         "date": "24/11/2025",
         "category": "cronaca",
         "author": "La Redazione",
@@ -60,7 +60,7 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/accadeoggi_dd38a7d3-309c-4e12-a6b9-d7b1590e0cf6.html"
     },
     {
-        "id": 1764020748,
+        "id": 1764021511,
         "date": "24/11/2025",
         "category": "cronaca",
         "author": "La Redazione",
