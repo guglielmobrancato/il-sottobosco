@@ -2,9 +2,8 @@ name: Bot Giornalista Sottobosco
 
 on:
   schedule:
-    # Esegue alle 07:00 UTC (ore 8:00 o 9:00 in Italia)
+    # Ore 08:00 italiane circa
     - cron: '0 7 * * *'
-  # Permette di avviarlo a mano per test
   workflow_dispatch:
 
 permissions:
@@ -31,5 +30,5 @@ jobs:
         git config --global user.name 'Sottobosco Bot'
         git config --global user.email 'bot@sottobosco.com'
         git add news.js
-        git commit -m "Notizie aggiornate in automatico" || echo "Nessuna novità da aggiungere"
-        git push
+        # Se non ci sono modifiche, non fare nulla ed esci senza errore
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Notizie aggiornate in automatico" && git pull --rebase origin main && git push)
