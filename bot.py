@@ -10,40 +10,76 @@ import google.generativeai as genai
 # --- CONFIGURAZIONE ---
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Variabile per tracciare lo stato
-STATUS_MSG = "Inizializzazione..."
+# LISTA DEI MODELLI DA PROVARE (Se uno fallisce, passa al prossimo)
+CANDIDATE_MODELS = [
+    'gemini-1.5-flash',
+    'gemini-1.5-flash-latest',
+    'gemini-pro',        # Il classico indistruttibile
+    'models/gemini-pro'
+]
+
+ACTIVE_MODEL = None
 
 if API_KEY:
-    try:
-        genai.configure(api_key=API_KEY)
-        # Proviamo SOLO il modello più recente e standard
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        STATUS_MSG = "✅ Chiave presente. Modello configurato."
-    except Exception as e:
-        STATUS_MSG = f"❌ Errore Configurazione: {str(e)}"
+    genai.configure(api_key=API_KEY)
+    
+    print("--- RICERCA MODELLO IA FUNZIONANTE ---")
+    for m_name in CANDIDATE_MODELS:
+        try:
+            print(f"Tentativo con '{m_name}'...", end=" ")
+            # Testiamo se il modello risponde
+            test_model = genai.GenerativeModel(m_name)
+            test_model.generate_content("Ciao") 
+            ACTIVE_MODEL = test_model
+            print("✅ COLLEGATO!")
+            break # Trovato, usciamo dal ciclo
+        except Exception as e:
+            print(f"❌ Fallito.")
 else:
-    STATUS_MSG = "❌ Chiave API mancante nei Secrets di GitHub."
+    print("⚠️ Chiave mancante.")
 
-SOURCES = { "geopolitica": "https://www.ansa.it/sito/notizie/mondo/mondo_rss.xml" } # Solo una fonte per test veloce
-ICONS = { "geopolitica": "fa-globe-europe" }
+SOURCES = {
+    "geopolitica": "https://www.ansa.it/sito/notizie/mondo/mondo_rss.xml",
+    "tech": "https://www.ansa.it/sito/notizie/tecnologia/tecnologia_rss.xml",
+    "cronaca": "https://www.ansa.it/sito/notizie/cronaca/cronaca_rss.xml"
+}
+
+ICONS = { 
+    "geopolitica": "fa-globe-europe", 
+    "tech": "fa-microchip", 
+    "cronaca": "fa-user-secret"
+}
 
 def generate_paper(title, description):
-    # Se c'è stato un errore in configurazione, lo restituiamo subito
-    if "❌" in STATUS_MSG:
-        return title, f"DIAGNOSTICA:\n{STATUS_MSG}\n\nControlla i Secrets su GitHub.", description
+    if not ACTIVE_MODEL:
+        return title, f"⚠️ ERRORE TOTALE: Nessun modello IA ha risposto.\n{description}", description
 
     prompt = f"""
-    Scrivi un'analisi accademica di 100 parole su: {title}.
-    Contesto: {description}
+    Agisci come Ricercatore Senior del think-tank 'Il Sottobosco'.
+    Scrivi un REPORT DI ANALISI (200 parole) su: "{title}".
+    Contesto: "{description}".
+    
+    Regole:
+    1. Tono Accademico e analitico.
+    2. Struttura: Titolo Saggistico nella prima riga, poi il testo.
     """
     
     try:
-        response = model.generate_content(prompt)
+        response = ACTIVE_MODEL.generate_content(prompt)
         text = response.text.strip()
-        return title, text, "Analisi generata con successo..."
+        
+        parts = text.split('\n', 1)
+        if len(parts) > 1:
+            new_title = parts[0].replace("Titolo:", "").replace("*", "").strip()
+            body = parts[1].strip()
+        else:
+            new_title = title
+            body = text
+
+        return new_title, body, " ".join(body.split()[:30]) + "..."
+
     except Exception as e:
-        # SCRIVIAMO L'ERRORE ESATTO NELL'ARTICOLO
-        return title, f"⚠️ ERRORE GEN: {str(e)}\n\nVersione lib: {genai.__version__}", description
+        return title, f"⚠️ Errore Generazione: {str(e)}", description
 
 # --- ESECUZIONE ---
 new_articles = []
@@ -52,39 +88,47 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 HEADERS = {'User-Agent': "Mozilla/5.0"}
 
-print("--- DIAGNOSTICA SITO ---")
+print("--- INIZIO SCANSIONE ---")
 
 for cat, url in SOURCES.items():
     try:
+        print(f"Lettura {cat}...")
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, context=ctx) as response:
             tree = ET.fromstring(response.read())
-            # Prendiamo SOLO LA PRIMA notizia
-            item = tree.find(".//item")
-            if item:
+            
+            # Prendiamo le prime 2 notizie
+            for item in tree.findall(".//item")[:2]:
                 title = item.find("title").text
-                desc = item.find("description").text.split('<')[0].strip()
+                d = item.find("description")
+                desc = d.text.split('<')[0].strip() if d is not None else ""
                 
-                # Generazione
+                img = ""
+                enc = item.find("enclosure")
+                if enc is not None and "image" in enc.get("type", ""): img = enc.get("url")
+
+                print(f" -> Genero Paper su: {title[:20]}...")
                 new_title, body, excerpt = generate_paper(title, desc)
 
                 new_articles.append({
-                    "id": int(time.time()),
+                    "id": int(time.time()) + len(new_articles),
                     "date": datetime.now().strftime("%d/%m/%Y"),
                     "category": cat,
-                    "author": "System Diagnostic",
+                    "author": "La Redazione",
                     "title": new_title,
                     "excerpt": excerpt,
-                    "body": body, # Qui leggeremo l'errore
-                    "imageIcon": "fa-bug",
-                    "imageReal": "",
+                    "body": body,
+                    "imageIcon": ICONS.get(cat, "fa-newspaper"),
+                    "imageReal": img,
                     "link": item.find("link").text
                 })
+                time.sleep(2) 
     except Exception as e:
-        print(f"Errore RSS: {e}")
+        print(f"Errore {cat}: {e}")
 
-# SALVATAGGIO
+# SALVATAGGIO (Resetta il file per pulire gli errori precedenti)
 if new_articles:
+    json_data = json.dumps(new_articles, indent=4)
     with open("news.js", "w", encoding="utf-8") as f:
-        f.write(f"const newsData = {json.dumps(new_articles, indent=4)};")
-    print("✅ DATABASE DIAGNOSTICO PRONTO")
+        f.write(f"const newsData = {json_data};")
+    print("✅ DATABASE AGGIORNATO (Modello Funzionante Trovato)")
