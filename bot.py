@@ -10,9 +10,13 @@ from datetime import datetime
 # --- CONFIGURAZIONE ---
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# URL DIRETTO ALLE API DI GOOGLE (Bypassa la libreria Python)
-# Usiamo il modello Flash che è veloce e gratuito
-API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
+# LISTA DI ENDPOINT DA PROVARE IN ORDINE
+# Se il primo fallisce (404), passa al secondo.
+MODEL_ENDPOINTS = [
+    f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}",
+    f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={API_KEY}",
+    f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro:generateContent?key={API_KEY}"
+]
 
 SOURCES = {
     "geopolitica": "https://www.ansa.it/sito/notizie/mondo/mondo_rss.xml",
@@ -30,7 +34,6 @@ def generate_paper_manual(title, description):
     if not API_KEY:
         return title, "⚠️ ERRORE: Chiave mancante.", description
 
-    # 1. Costruiamo il pacchetto dati (JSON) a mano
     payload = {
         "contents": [{
             "parts": [{
@@ -38,38 +41,43 @@ def generate_paper_manual(title, description):
             }]
         }]
     }
-    
     data = json.dumps(payload).encode('utf-8')
     
-    try:
-        # 2. Spediamo la richiesta (POST)
-        req = urllib.request.Request(API_URL, data=data, headers={'Content-Type': 'application/json'})
-        with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            
-            # 3. Leggiamo la risposta grezza
-            try:
-                text = result['candidates'][0]['content']['parts'][0]['text'].strip()
-                
-                parts = text.split('\n', 1)
-                if len(parts) > 1:
-                    new_title = parts[0].replace("Titolo:", "").replace("*", "").strip()
-                    body = parts[1].strip()
-                else:
-                    new_title = title
-                    body = text
-                    
-                return new_title, body, " ".join(body.split()[:30]) + "..."
-                
-            except (KeyError, IndexError):
-                return title, "⚠️ L'IA ha risposto ma il formato è vuoto (Safety Block).", description
+    last_error = ""
 
-    except urllib.error.HTTPError as e:
-        # Qui catturiamo l'errore esatto se Google ci blocca
-        error_body = e.read().decode()
-        return title, f"⚠️ ERRORE HTTP {e.code}: {error_body}", description
-    except Exception as e:
-        return title, f"⚠️ ERRORE GENERICO: {str(e)}", description
+    # CICLO DI TENTATIVI SUI DIVERSI MODELLI
+    for url in MODEL_ENDPOINTS:
+        try:
+            req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
+            with urllib.request.urlopen(req) as response:
+                result = json.loads(response.read().decode('utf-8'))
+                
+                # Se siamo qui, ha funzionato!
+                try:
+                    text = result['candidates'][0]['content']['parts'][0]['text'].strip()
+                    parts = text.split('\n', 1)
+                    if len(parts) > 1:
+                        new_title = parts[0].replace("Titolo:", "").replace("*", "").strip()
+                        body = parts[1].strip()
+                    else:
+                        new_title = title
+                        body = text
+                    return new_title, body, " ".join(body.split()[:30]) + "..."
+                except:
+                    return title, "⚠️ L'IA ha risposto vuoto.", description
+                    
+        except urllib.error.HTTPError as e:
+            last_error = f"HTTP {e.code}"
+            if e.code == 404:
+                continue # Prova il prossimo modello
+            else:
+                # Se è un errore diverso (es. 403 Forbidden), inutile insistere
+                return title, f"⚠️ ERRORE BLOCCANTE {e.code}: Controlla API Key.", description
+        except Exception as e:
+            last_error = str(e)
+            continue
+
+    return title, f"⚠️ TUTTI I MODELLI FALLITI. Ultimo errore: {last_error}", description
 
 # --- ESECUZIONE ---
 new_articles = []
@@ -78,7 +86,7 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 HEADERS = {'User-Agent': "Mozilla/5.0"}
 
-print("--- START METODO DIRETTO (REST) ---")
+print("--- START METODO MULTI-MODELLO ---")
 
 for cat, url in SOURCES.items():
     try:
@@ -119,4 +127,4 @@ if new_articles:
     json_data = json.dumps(new_articles, indent=4)
     with open("news.js", "w", encoding="utf-8") as f:
         f.write(f"const newsData = {json_data};")
-    print("✅ DATABASE AGGIORNATO VIA REST API")
+    print("✅ DATABASE AGGIORNATO")
