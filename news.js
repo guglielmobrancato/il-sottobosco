@@ -1,6 +1,6 @@
 const newsData = [
     {
-        "id": 1764018427,
+        "id": 1764018615,
         "date": "24/11/2025",
         "category": "cronaca",
         "author": "La Redazione",
@@ -12,19 +12,19 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/accadeoggi_dd38a7d3-309c-4e12-a6b9-d7b1590e0cf6.html"
     },
     {
-        "id": 1764018433,
+        "id": 1764018622,
         "date": "24/11/2025",
         "category": "geopolitica",
         "author": "La Redazione",
-        "title": "Brasile, Lula in Mozambico riceve una laurea honoris causa",
-        "excerpt": "Il presidente rilancia sulla cooperazione e i biodiesel",
-        "body": "ERRORE GENERAZIONE IA: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nTesto originale: Il presidente rilancia sulla cooperazione e i biodiesel",
+        "title": "Casa Bianca, 'Trump non \u00e8 stato di parte ai colloqui su Ucraina'",
+        "excerpt": "'Il presidente \u00e8 ottimista sul piano per porre fine alla guerra'",
+        "body": "ERRORE GENERAZIONE IA: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nTesto originale: 'Il presidente \u00e8 ottimista sul piano per porre fine alla guerra'",
         "imageIcon": "fa-globe-europe",
         "imageReal": "",
-        "link": "https://www.ansa.it/sito/notizie/mondo/americalatina/2025/11/24/brasile-lula-in-mozambico-riceve-una-laurea-honoris-causa_9fb057b6-584c-4457-aa0c-aced12990738.html"
+        "link": "https://www.ansa.it/sito/notizie/mondo/nordamerica/2025/11/24/casa-bianca-trump-non-e-stato-di-parte-ai-colloqui-su-ucraina_97adfd9a-4f23-4ecd-9041-38b5b5de880f.html"
     },
     {
-        "id": 1764018438,
+        "id": 1764018628,
         "date": "24/11/2025",
         "category": "tech",
         "author": "La Redazione",
@@ -36,7 +36,7 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/tecnologia/hitech/2023/05/30/apple-risarcira-proprietari-di-macbook-per-le-tastiere-difettose_ce9214c7-b68d-4d8e-ad5f-7bd5bd04ecbe.html"
     },
     {
-        "id": 1764018444,
+        "id": 1764018634,
         "date": "24/11/2025",
         "category": "arte",
         "author": "La Redazione",
