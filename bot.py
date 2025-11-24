@@ -2,11 +2,9 @@ import json
 import urllib.request
 import xml.etree.ElementTree as ET
 import html
-import random
-from datetime import datetime
+import ssl
 
-# --- CONFIGURAZIONE FONTI (Feed RSS Reali) ---
-# Usiamo ANSA per semplicità, ma potresti collegarci l'IA qui in mezzo
+# --- CONFIGURAZIONE ---
 SOURCES = {
     "cronaca": "https://www.ansa.it/sito/notizie/cronaca/cronaca_rss.xml",
     "geopolitica": "https://www.ansa.it/sito/notizie/mondo/mondo_rss.xml",
@@ -15,7 +13,6 @@ SOURCES = {
     "arte": "https://www.ansa.it/sito/notizie/cultura/cultura_rss.xml"
 }
 
-# Icone per abbellire
 ICONS = {
     "cronaca": "fa-user-secret",
     "geopolitica": "fa-globe-europe",
@@ -25,55 +22,67 @@ ICONS = {
     "difesa": "fa-shield-alt"
 }
 
+# Fix per problemi di certificati SSL su alcuni server
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+# Header per fingere di essere un browser reale (evita il blocco 403)
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+
 articles_list = []
 
-print("🤖 IL BOT SOTTOBOSCO È AL LAVORO...")
+print("🤖 IL BOT 2.0 STA LAVORANDO...")
 
 for category, url in SOURCES.items():
     try:
-        print(f"   Scaricando notizie per: {category}...")
+        print(f"   📡 Scaricando: {category}...")
         
-        # Scarica il Feed RSS
-        with urllib.request.urlopen(url) as response:
+        # Creiamo la richiesta con il "biglietto da visita" (User-Agent)
+        req = urllib.request.Request(url, headers=HEADERS)
+        
+        with urllib.request.urlopen(req, context=ctx) as response:
             xml_data = response.read()
             root = ET.fromstring(xml_data)
             
-            # Prende la prima notizia di ogni categoria
-            item = root.find(".//item") 
-            if item:
+            # Prende i primi 2 articoli per ogni categoria (così riempiamo bene il sito)
+            for item in root.findall(".//item")[:2]:
                 title = item.find("title").text
                 link = item.find("link").text
                 desc = item.find("description").text
                 
-                # Pulizia base del testo (rimuove tag HTML se presenti)
-                clean_desc = html.unescape(desc).split('<')[0] 
+                # Pulizia descrizione
+                if desc:
+                    clean_desc = html.unescape(desc).split('<')[0].strip()
+                else:
+                    clean_desc = "Leggi l'articolo completo sul sito."
 
-                # Aggiunge alla lista
                 articles_list.append({
                     "category": category,
                     "title": title,
-                    "excerpt": clean_desc[:120] + "...", # Taglia a 120 caratteri
+                    "excerpt": clean_desc[:110] + "...",
                     "imageIcon": ICONS.get(category, "fa-newspaper"),
                     "link": link
                 })
                 
     except Exception as e:
-        print(f"❌ Errore su {category}: {e}")
+        print(f"❌ Errore critico su {category}: {e}")
 
-# --- AGGIUNTA MANUALE O FISSA (es. Difesa che non ha RSS facile) ---
+# --- AGGIUNTA MANUALE ---
 articles_list.append({
     "category": "difesa",
-    "title": "Analisi Strategica: I nuovi scenari del 2025",
-    "excerpt": "Report esclusivo del Sottobosco sulle nuove tecnologie militari.",
+    "title": "Analisi Strategica: Scenari 2025",
+    "excerpt": "Report esclusivo del Sottobosco sulle nuove tecnologie militari e l'impatto globale.",
     "imageIcon": "fa-shield-alt",
-    "link": "#"
+    "link": "https://www.rid.it/"
 })
 
-# --- SALVATAGGIO NEL FILE JS ---
-js_content = f"const newsData = {json.dumps(articles_list, indent=4)};"
-
-with open("news.js", "w", encoding="utf-8") as f:
-    f.write(js_content)
-
-print("\n✅ FATTO! Il file news.js è stato aggiornato con le notizie vere.")
-print("👉 Ora apri index.html e vedrai le news fresche.")
+# --- SALVATAGGIO ---
+# Se abbiamo scaricato qualcosa, scriviamo il file.
+if len(articles_list) > 1:
+    js_content = f"const newsData = {json.dumps(articles_list, indent=4)};"
+    with open("news.js", "w", encoding="utf-8") as f:
+        f.write(js_content)
+    print("\n✅ FILE SCRITTO CORRETTAMENTE!")
+else:
+    print("\n⚠️ ATTENZIONE: Non ho trovato news. Il file non è stato toccato.")
