@@ -10,59 +10,66 @@ import google.generativeai as genai
 # --- RECUPERO CHIAVE ---
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
-# Configurazione IA
 if API_KEY:
     genai.configure(api_key=API_KEY)
-    model = genai.GenerativeModel('gemini-pro')
+    # --- LA CORREZIONE È QUI SOTTO ---
+    # Usiamo 'gemini-1.5-flash' che è il modello standard attuale
+    model = genai.GenerativeModel('gemini-1.5-flash')
 else:
-    print("⚠️ ATTENZIONE: Chiave API mancante. Funzionerà solo in copia-incolla.")
+    print("⚠️ Chiave mancante.")
 
 SOURCES = {
     "geopolitica": "https://www.ansa.it/sito/notizie/mondo/mondo_rss.xml",
-    "tech": "https://www.ansa.it/sito/notizie/tecnologia/tecnologia_rss.xml"
+    "tech": "https://www.ansa.it/sito/notizie/tecnologia/tecnologia_rss.xml",
+    "cronaca": "https://www.ansa.it/sito/notizie/cronaca/cronaca_rss.xml"
 }
 
-ICONS = { "geopolitica": "fa-globe-europe", "tech": "fa-microchip" }
+ICONS = { 
+    "geopolitica": "fa-globe-europe", 
+    "tech": "fa-microchip",
+    "cronaca": "fa-user-secret"
+}
 
 def generate_paper(title, description):
     if not API_KEY:
-        return title, f"⚠️ ERRORE: Chiave GitHub non trovata. Controlla i Secrets.\n\n{description}", description
+        return title, f"⚠️ ERRORE: Chiave non trovata.\n{description}", description
 
     prompt = f"""
-    Agisci come Ricercatore Senior. Scrivi un report accademico (200 parole) su:
-    {title}
+    Agisci come Ricercatore Senior del think-tank 'Il Sottobosco'.
+    Scrivi un REPORT DI ANALISI (circa 250 parole) su: "{title}".
+    Contesto di partenza: "{description}".
     
-    Contesto: {description}
-    
-    Regole:
-    1. Stile saggistico.
-    2. Inserisci un riferimento storico.
-    3. Output: Titolo nella prima riga, poi il testo.
+    Linee Guida:
+    1. Tono: Accademico, analitico, autorevole.
+    2. Contenuto: Analizza le implicazioni future e fai un parallelo storico.
+    3. Formattazione: Titolo Saggistico nella prima riga, poi il testo completo.
     """
+    
     try:
         response = model.generate_content(prompt)
         text = response.text.strip()
         
         parts = text.split('\n', 1)
-        if len(parts) > 1:
-            new_title = parts[0].replace("Titolo:", "").strip()
+        if len(parts) > 1 and len(parts[0]) < 100:
+            new_title = parts[0].replace("Titolo:", "").replace("*", "").strip()
             body = parts[1].strip()
         else:
             new_title = title
             body = text
-            
-        return new_title, body, " ".join(body.split()[:25]) + "..."
-    except Exception as e:
-        return title, f"⚠️ Errore IA: {str(e)}", description
 
-# --- ESECUZIONE (RESET TOTALE OGNI VOLTA) ---
+        return new_title, body, " ".join(body.split()[:30]) + "..."
+
+    except Exception as e:
+        return title, f"⚠️ ERRORE IA: {str(e)}\n\n{description}", description
+
+# --- ESECUZIONE ---
 new_articles = []
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 HEADERS = {'User-Agent': "Mozilla/5.0"}
 
-print("--- FORZATURA AGGIORNAMENTO ---")
+print("--- START FIX 1.5 ---")
 
 for cat, url in SOURCES.items():
     try:
@@ -71,20 +78,17 @@ for cat, url in SOURCES.items():
         with urllib.request.urlopen(req, context=ctx) as response:
             tree = ET.fromstring(response.read())
             
-            # Prende la prima notizia
-            item = tree.find(".//item")
-            if item:
+            # Prendiamo le prime 2 notizie per categoria
+            for item in tree.findall(".//item")[:2]:
                 title = item.find("title").text
-                # Pulizia descrizione
                 d = item.find("description")
                 desc = d.text.split('<')[0].strip() if d is not None else ""
                 
-                # Immagine
                 img = ""
                 enc = item.find("enclosure")
                 if enc is not None and "image" in enc.get("type", ""): img = enc.get("url")
 
-                print(f"Generazione IA per: {title[:30]}...")
+                print(f" -> Genero Paper su: {title[:20]}...")
                 new_title, body, excerpt = generate_paper(title, desc)
 
                 new_articles.append({
@@ -99,17 +103,14 @@ for cat, url in SOURCES.items():
                     "imageReal": img,
                     "link": item.find("link").text
                 })
-                time.sleep(2) # Pausa breve
+                time.sleep(2) # Pausa importante
     except Exception as e:
         print(f"Errore {cat}: {e}")
 
-# SALVATAGGIO FORZATO
-# Aggiungiamo un commento con l'orario per costringere Git a vedere una modifica
-timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-json_content = json.dumps(new_articles, indent=4)
-file_content = f"const newsData = {json_content};\n// Ultimo aggiornamento forzato: {timestamp}"
+# SALVATAGGIO
+if new_articles:
+    json_data = json.dumps(new_articles, indent=4)
+    with open("news.js", "w", encoding="utf-8") as f:
+        f.write(f"const newsData = {json_data};")
+    print("✅ DATABASE AGGIORNATO CON GEMINI 1.5")
 
-with open("news.js", "w", encoding="utf-8") as f:
-    f.write(file_content)
-
-print("✅ FILE RISCRITTO DA ZERO. ORA GITHUB DOVRÀ AGGIORNARE.")
