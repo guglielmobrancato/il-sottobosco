@@ -1,173 +1,242 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Sottobosco | Think Tank</title>
+    <title>Marte Strategic Horizon | Intelligence Hub</title>
+    <meta name="description" content="Global Intelligence, Defense, and Strategic Analysis Hub. Powered by Marte Studios.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        :root { --bg-color: #0a0a0a; --card-bg: #141414; --primary: #2e8b57; --text-main: #e0e0e0; }
-        body { font-family: 'Georgia', serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; line-height: 1.6; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        
-        /* HEADER */
-        header { background: rgba(10, 10, 10, 0.95); padding: 1rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-        .logo { font-family: 'Helvetica', sans-serif; font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .logo span { color: var(--primary); }
-        
-        /* HERO */
-        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px 40px; background: radial-gradient(circle at center, #1b1b1b 0%, #000000 100%); }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.1rem; color: #888; max-width: 700px; font-style: italic; }
+        :root {
+            --bg-color: #f4f4f4;       /* Bianco carta sporco, riposante */
+            --paper-color: #ffffff;    /* Bianco puro per i box */
+            --text-main: #111111;      /* Nero assoluto */
+            --text-secondary: #555555;
+            --accent-color: #003366;   /* Blu "Navy" istituzionale */
+            --alert-color: #8b0000;    /* Rosso scuro per le breaking news */
+            --border: 1px solid #dcdcdc;
+        }
 
-        /* GRID */
-        .section { padding: 4rem 2rem; max-width: 1200px; margin: auto; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        
-        /* CARD */
-        .news-card { background: var(--card-bg); border: 1px solid #222; padding: 20px; border-radius: 4px; transition: 0.3s; display: flex; flex-direction: column; }
-        .news-card:hover { border-color: var(--primary); transform: translateY(-3px); }
-        
-        .news-img { width: 100%; height: 200px; background-color: #000; margin-bottom: 15px; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #333; overflow: hidden; }
-        .news-meta { font-family: 'Helvetica', sans-serif; font-size: 0.7rem; color: var(--primary); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 10px; }
-        .news-title { font-size: 1.4rem; font-weight: bold; margin: 0 0 10px 0; line-height: 1.3; }
-        .news-excerpt { font-size: 0.95rem; color: #aaa; margin-bottom: 20px; flex-grow: 1; }
+        body {
+            font-family: 'Merriweather', serif; /* Stile Giornale/Accademico */
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
 
-        /* READER (L'ARTICOLO APERTO) */
-        #article-reader { display: none; background: var(--bg-color); min-height: 100vh; padding: 120px 20px; max-width: 800px; margin: auto; position: relative; z-index: 2000; }
-        .reader-content { animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        h1, h2, h3, h4, .sans { font-family: 'Inter', sans-serif; letter-spacing: -0.5px; }
+        
+        /* HEADER ISTITUZIONALE */
+        header {
+            background-color: var(--paper-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--accent-color); }
+        .brand span { font-weight: 400; color: var(--text-main); }
+        .date-display { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; }
+
+        /* LAYOUT PRINCIPALE */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 300px 1fr; /* Sidebar (Brief) + Main (Deep Dive) */
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        /* COLONNA SX: THE MORNING BRIEF (Daily) */
+        .sidebar {
+            background: #eef2f5;
+            padding: 20px;
+            border-top: 4px solid var(--alert-color);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--alert-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brief-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dcdcdc;
+            padding-bottom: 15px;
+        }
+
+        .brief-cat { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--accent-color); font-family: 'Inter', sans-serif; margin-bottom: 5px; display: block;}
+        .brief-headline { font-size: 0.95rem; font-weight: 600; font-family: 'Inter', sans-serif; line-height: 1.4; }
+        .brief-time { font-size: 0.7rem; color: #777; margin-top: 5px; display: block; }
+
+        /* COLONNA DX: THE WEEKLY MONOGRAPH (Deep Dive) */
+        .main-content {
+            background: var(--paper-color);
+            padding: 40px;
+            border: var(--border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .monograph-header { border-bottom: 1px solid #eee; margin-bottom: 30px; padding-bottom: 20px; }
+        .monograph-label { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; }
+        .monograph-title { font-size: 2.5rem; margin: 10px 0; font-weight: 900; line-height: 1.2; }
+        .monograph-meta { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-secondary); margin-top: 10px; }
+        
+        .article-body { font-size: 1.1rem; color: #222; text-align: justify; }
+        .article-body p { margin-bottom: 1.5rem; }
+        
+        /* Citazioni Accademiche */
+        .citation { 
+            font-size: 0.9rem; 
+            background: #f9f9f9; 
+            padding: 15px; 
+            border-left: 3px solid var(--accent-color); 
+            color: #555; 
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .references { margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.8rem; color: #666; }
+        .references h4 { text-transform: uppercase; margin-bottom: 10px; }
 
         /* FOOTER */
-        footer { text-align: center; padding: 4rem; border-top: 1px solid #222; color: #555; font-size: 0.8rem; font-family: sans-serif; }
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            background: #111;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+        }
+        
+        .footer-link { color: #888; text-decoration: none; margin: 0 10px; }
+        .footer-link:hover { color: #fff; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .monograph-title { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Il <span>Sottobosco</span></div>
+        <div class="brand">Marte <span>Strategic Horizon</span></div>
+        <div class="date-display" id="current-date">Live Intelligence</div>
     </header>
 
-    <div id="main-content">
-        <section class="hero">
-            <h1>Osservatorio <br><span style="color:var(--primary)">Indipendente</span></h1>
-            <p>"Analisi profonde su un mondo superficiale."</p>
-        </section>
-
-        <section class="section">
-            <div class="news-grid" id="news-container">
-                </div>
-        </section>
+    <div class="container">
         
-        <footer>
-            &copy; 2025 Il Sottobosco Research Unit.
-        </footer>
+        <aside class="sidebar">
+            <div class="sidebar-title">
+                <i class="fas fa-satellite-dish"></i> Morning Brief <span id="brief-time">08:00 AM</span>
+            </div>
+            
+            <div id="brief-container">
+                <div class="brief-item">
+                    <span class="brief-cat">System Status</span>
+                    <div class="brief-headline">In attesa del primo aggiornamento satellitare...</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div id="monograph-container">
+                <article>
+                    <div class="monograph-header">
+                        <span class="monograph-label">Weekly Strategic Analysis • Vol. 1</span>
+                        <h1 class="monograph-title">Initialising Strategic Protocols</h1>
+                        <div class="monograph-meta">
+                            By <strong>Marte Intelligence AI</strong> • awaiting data ingestion
+                        </div>
+                    </div>
+                    <div class="article-body">
+                        <p>Il sistema sta calibrando le fonti per la prima analisi settimanale. Il focus sarà sull'intersezione tra tecnologie quantistiche, cybersecurity e nuovi assetti geopolitici.</p>
+                        <p>Le prossime pubblicazioni seguiranno rigorosi standard accademici.</p>
+                    </div>
+                </article>
+            </div>
+        </main>
+
     </div>
 
-    <section id="article-reader">
-        <button onclick="closeArticle()" style="background:transparent; border:1px solid #444; color:#fff; padding:8px 20px; cursor:pointer; margin-bottom:30px; font-family:sans-serif; text-transform:uppercase; font-size:0.8rem;">
-            &larr; Torna all'Indice
-        </button>
-        
-        <div class="reader-content">
-            <div id="reader-meta" style="color:var(--primary); text-transform:uppercase; font-size:0.8rem; font-weight:bold; margin-bottom:15px; font-family:sans-serif;">CATEGORIA</div>
-            <h1 id="reader-title" style="font-size:2.8rem; line-height:1.1; margin-bottom:20px;">Titolo</h1>
-            <div style="border-bottom:1px solid #333; padding-bottom:20px; margin-bottom:30px; color:#666; font-style:italic;">
-                Analisi a cura di <span style="color:#eee;">La Redazione</span> • <span id="reader-date">Data</span>
-            </div>
-            
-            <div id="reader-image" style="width:100%; height:300px; background:#111; margin-bottom:30px; background-size:cover; background-position:center; display:none;"></div>
+    <footer>
+        <p>&copy; 2025 Marte Strategic Horizon. A Marte Studios Production.</p>
+        <p>
+            <a href="https://www.martestudios.com" class="footer-link">Marte Studios</a> | 
+            <a href="#" class="footer-link">Legal Disclaimer</a> | 
+            <a href="#" class="footer-link">Editorial Policy</a>
+        </p>
+    </footer>
 
-            <div id="reader-body" style="font-size:1.2rem; line-height:1.8; color:#ccc; white-space: pre-line;">
-                Testo...
-            </div>
-            
-            <div style="margin-top:50px; padding-top:20px; border-top:1px solid #222; font-size:0.8rem; color:#555; text-align:center;">
-                Report generato automaticamente da Sottobosco AI Unit. <br>
-                <a id="reader-link" href="#" target="_blank" style="color:#777; text-decoration:underline;">Verifica fonte originale</a>
-            </div>
-        </div>
-    </section>
-
-    <script src="news.js"></script>
+    <script src="data.js"></script>
     <script>
-        function loadNews() {
-            const container = document.getElementById('news-container');
-            if(!container) return;
-            container.innerHTML = ""; 
+        // Data in alto
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', options);
 
-            // Se il database è vuoto (abbiamo appena resettato)
-            if (typeof newsData === 'undefined' || newsData.length === 0) {
-                container.innerHTML = "<p style='text-align:center; color:#666; grid-column:1/-1;'>In attesa del prossimo bollettino (Esegui il Bot)...</p>";
-                return;
+        // Funzione per caricare i dati (se presenti)
+        if (typeof mshData !== 'undefined') {
+            
+            // 1. Carica Morning Brief
+            const briefContainer = document.getElementById('brief-container');
+            if (mshData.briefs && mshData.briefs.length > 0) {
+                briefContainer.innerHTML = "";
+                mshData.briefs.forEach(brief => {
+                    briefContainer.innerHTML += `
+                        <div class="brief-item">
+                            <span class="brief-cat">${brief.category}</span>
+                            <div class="brief-headline">${brief.text}</div>
+                        </div>
+                    `;
+                });
             }
 
-            const latestNews = newsData.slice(0, 12);
-
-            latestNews.forEach(item => {
-                const date = item.date || "";
-                
-                // GESTIONE IMMAGINE (Vera o Icona)
-                let visualContent = '';
-                if (item.imageReal && item.imageReal !== "") {
-                    visualContent = `<div class="news-img" style="background-image: url('${item.imageReal}'); background-size: cover; background-position: center;"></div>`;
-                } else {
-                    visualContent = `<div class="news-img"><i class="fas ${item.imageIcon} fa-2x"></i></div>`;
-                }
-
-                const html = `
-                    <article class="news-card">
-                        ${visualContent}
-                        <div class="news-meta">${item.category} • ${date}</div>
-                        <h3 class="news-title">${item.title}</h3>
-                        <p class="news-excerpt">${item.excerpt}</p>
-                        <div style="margin-top:auto; padding-top:15px; border-top:1px solid #222; display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-size:0.75rem; color:#666; text-transform:uppercase;">La Redazione</span>
-                            <button onclick="openArticle(${item.id})" style="background:var(--primary); border:none; color:#fff; padding:5px 15px; cursor:pointer; font-weight:bold; font-size:0.7rem; border-radius:2px; text-transform:uppercase;">
-                                Leggi Paper
-                            </button>
+            // 2. Carica Monografia Settimanale
+            const monoContainer = document.getElementById('monograph-container');
+            if (mshData.monograph) {
+                const mono = mshData.monograph;
+                monoContainer.innerHTML = `
+                    <article>
+                        <div class="monograph-header">
+                            <span class="monograph-label">Weekly Strategic Analysis</span>
+                            <h1 class="monograph-title">${mono.title}</h1>
+                            <div class="monograph-meta">
+                                By <strong>${mono.author}</strong> • ${mono.date} • <i class="fas fa-clock"></i> ${mono.readTime} read
+                            </div>
+                        </div>
+                        <div class="article-body">
+                            ${mono.content}
+                        </div>
+                        <div class="references">
+                            <h4>References & Bibliography</h4>
+                            <ul>
+                                ${mono.references.map(ref => `<li>${ref}</li>`).join('')}
+                            </ul>
                         </div>
                     </article>
                 `;
-                container.innerHTML += html;
-            });
-        }
-
-        function openArticle(id) {
-            const article = newsData.find(n => n.id === id);
-            if (!article) return;
-
-            document.getElementById('reader-title').innerText = article.title;
-            document.getElementById('reader-meta').innerText = article.category;
-            document.getElementById('reader-date').innerText = article.date;
-            
-            // Gestione Immagine nel Reader
-            const imgDiv = document.getElementById('reader-image');
-            if (article.imageReal) {
-                imgDiv.style.display = 'block';
-                imgDiv.style.backgroundImage = `url('${article.imageReal}')`;
-            } else {
-                imgDiv.style.display = 'none';
             }
-
-            // Fallback se il body non esiste ancora (vecchie news)
-            document.getElementById('reader-body').innerText = article.body ? article.body : "Testo completo non disponibile. Riprova con i prossimi articoli.";
-            
-            document.getElementById('reader-link').href = article.link;
-
-            // Switch visuale
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('article-reader').style.display = 'block';
-            window.scrollTo(0, 0);
         }
-
-        function closeArticle() {
-            document.getElementById('main-content').style.display = 'block';
-            document.getElementById('article-reader').style.display = 'none';
-            window.scrollTo(0, 0);
-        }
-
-        window.onload = loadNews;
     </script>
 </body>
 </html>
