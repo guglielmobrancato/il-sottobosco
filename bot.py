@@ -15,10 +15,23 @@ print("------------------------------------------------")
 if API_KEY:
     masked_key = API_KEY[:5] + "..." + API_KEY[-3:]
     print(f"✅ DEBUG: Chiave trovata! ({masked_key})")
+    
     try:
         genai.configure(api_key=API_KEY)
-        model = genai.GenerativeModel('gemini-pro')
-        print("✅ DEBUG: Modello 'gemini-pro' configurato.")
+        
+        # PROVIAMO A ELENCARE I MODELLI DISPONIBILI (Per sicurezza)
+        print("🔍 DEBUG: Cerco modelli disponibili...")
+        try:
+            for m in genai.list_models():
+                if 'generateContent' in m.supported_generation_methods:
+                    print(f"   - {m.name}")
+        except Exception as e:
+            print(f"   (Impossibile elencare modelli: {e})")
+
+        # USARE GEMINI 1.5 FLASH (Il nuovo standard)
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        print("✅ DEBUG: Modello 'gemini-1.5-flash' selezionato.")
+        
     except Exception as e:
         print(f"❌ DEBUG: Errore configurazione Gemini: {e}")
 else:
@@ -53,7 +66,7 @@ def extract_json(text):
         clean = text.replace("```json", "").replace("```", "").strip()
         return json.loads(clean)
     except Exception as e:
-        print(f"⚠️ Parsing JSON fallito. Testo parziale: {text[:50]}...")
+        print(f"⚠️ Parsing JSON fallito: {text[:50]}...")
         return None
 
 # --- 4. MOTORE AI ---
@@ -107,14 +120,12 @@ def generate_monograph(news_list):
 # --- 5. ESECUZIONE ---
 print("--- STARTING ANALYSIS ---")
 
-# FIX: DEFINIZIONE VARIABILI GLOBALI PRIMA DI TUTTO
 raw_news = []
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 headers = {'User-Agent': 'Mozilla/5.0'}
 
-# Ora possiamo avviare il loop
 for cat, url in SOURCES.items():
     try:
         req = urllib.request.Request(url, headers=headers)
