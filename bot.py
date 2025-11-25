@@ -7,6 +7,29 @@ import time
 from datetime import datetime
 import google.generativeai as genai
 
+# --- DEBUG INIZIALE ---
+API_KEY = os.environ.get("GEMINI_API_KEY")
+
+print("------------------------------------------------")
+if API_KEY:
+    print(f"✅ DEBUG: Chiave trovata! Lunghezza: {len(API_KEY)} caratteri.")
+    print(f"✅ DEBUG: Inizia con: {API_KEY[:5]}...")
+    genai.configure(api_key=API_KEY)
+    model = genai.GenerativeModel('gemini-1.5-flash')
+else:
+    print("❌ DEBUG: NESSUNA CHIAVE TROVATA. Variabile ambiente vuota.")
+print("------------------------------------------------")
+# ... il resto del codice rimane uguale ...
+
+import json
+import urllib.request
+import xml.etree.ElementTree as ET
+import ssl
+import os
+import time
+from datetime import datetime
+import google.generativeai as genai
+
 # --- CONFIGURAZIONE ---
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if API_KEY:
@@ -143,4 +166,5 @@ with open("data.js", "w", encoding="utf-8") as f:
     f.write(f"const mshData = {json_output};")
 
 print("--- UPDATE COMPLETE ---")
+
 
