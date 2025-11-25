@@ -17,7 +17,6 @@ if API_KEY:
     print(f"✅ DEBUG: Chiave trovata! ({masked_key})")
     try:
         genai.configure(api_key=API_KEY)
-        # MODELLO CHE FUNZIONA PER TE
         model = genai.GenerativeModel('gemini-2.0-flash')
         print("✅ DEBUG: Modello 'gemini-2.0-flash' selezionato.")
     except Exception as e:
@@ -45,16 +44,17 @@ def load_existing_data():
 
 def extract_json(text):
     try:
-        match_array = re.search(r'\[.*\]', text, re.DOTALL)
-        if match_array: return json.loads(match_array.group())
+        # Prova a trovare un blocco JSON {...} o [...]
+        match = re.search(r'(\{.*\}|\[.*\])', text, re.DOTALL)
+        if match:
+            return json.loads(match.group())
         
-        match_obj = re.search(r'\{.*\}', text, re.DOTALL)
-        if match_obj: return json.loads(match_obj.group())
-
+        # Se fallisce, prova a pulire i backticks
         clean = text.replace("```json", "").replace("```", "").strip()
         return json.loads(clean)
     except:
-        return None
+        # Se fallisce tutto, restituisce il testo grezzo (così non perdiamo l'articolo)
+        return text
 
 # --- 4. MOTORE AI ---
 def generate_briefing(news_list):
@@ -65,7 +65,7 @@ def generate_briefing(news_list):
     Sei un analista di intelligence. News:
     {context}
     Estrai 5 punti chiave essenziali. Stile: Tecnico, sintetico.
-    RISPONDI SOLO CON JSON ARRAY:
+    RISPONDI SOLO CON UN JSON ARRAY:
     [
         {{"category": "DEFENSE", "text": "Sintesi notizia..."}}
     ]
@@ -73,7 +73,7 @@ def generate_briefing(news_list):
     try:
         response = model.generate_content(prompt)
         result = extract_json(response.text)
-        # Se è un dizionario singolo, mettilo in una lista
+        if isinstance(result, str): return [{"category": "RAW", "text": result[:100]}]
         if isinstance(result, dict): result = [result]
         return result if result else [{"category": "ERROR", "text": "Dati non validi."}]
     except Exception as e:
@@ -88,7 +88,7 @@ def generate_monograph(news_list):
     Sei un Professore di Strategia. News: {context}
     Scrivi una monografia settimanale (Titolo, Autore, Tempo lettura, Contenuto HTML, Fonti).
     Collega argomenti diversi. Usa tag HTML <p>, <h3>, <strong>.
-    RISPONDI SOLO CON UN JSON VALIDO (Oggetto, non lista):
+    RISPONDI SOLO CON UN JSON VALIDO:
     {{
         "title": "Titolo Accademico",
         "author": "Marte Intelligence Unit",
@@ -138,19 +138,40 @@ if True:
     new_mono = generate_monograph(raw_news)
     
     if new_mono:
-        # --- FIX SAFETY CHECK: SE È UNA LISTA, PRENDI IL PRIMO ELEMENTO ---
+        # --- BLOCCO DI SICUREZZA ANTI-CRASH ---
+        
+        # CASO 1: È una lista? Prendi il primo elemento.
         if isinstance(new_mono, list):
-            print("⚠️ L'IA ha restituito una lista invece di un oggetto. Correggo.")
-            new_mono = new_mono[0]
+            print("⚠️ Fix: L'IA ha dato una lista.")
+            if len(new_mono) > 0: new_mono = new_mono[0]
+            else: new_mono = None
 
-        new_mono["date"] = datetime.now().strftime("%B %d, %Y")
-        current_data["monograph"] = new_mono
-        print("✅ Monografia creata.")
+        # CASO 2: È una stringa? (L'errore che avevi tu). Creiamo l'oggetto a mano.
+        if isinstance(new_mono, str):
+            print("⚠️ Fix: L'IA ha dato testo grezzo. Lo incapsulo.")
+            new_mono = {
+                "title": "Strategic Report (Automated)",
+                "author": "Marte Intelligence AI",
+                "readTime": "3 min",
+                "content": f"<p>{new_mono}</p>", # Usiamo la stringa come contenuto
+                "references": ["Automated Sources"]
+            }
+
+        # CASO 3: Ora è sicuramente un dizionario. Possiamo salvare.
+        if isinstance(new_mono, dict):
+            new_mono["date"] = datetime.now().strftime("%B %d, %Y")
+            current_data["monograph"] = new_mono
+            print("✅ Monografia salvata correttamente.")
+        else:
+            print("❌ Errore fatale: Formato dati sconosciuto.")
+            
     else:
-        print("❌ Monografia fallita.")
+        print("❌ Monografia fallita (None).")
 
 json_output = json.dumps(current_data, indent=4)
 with open("data.js", "w", encoding="utf-8") as f:
     f.write(f"const mshData = {json_output};")
 
 print("--- UPDATE COMPLETE ---")
+
+
