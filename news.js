@@ -1,31 +1,31 @@
 const newsData = [
     {
-        "id": 1764022883,
-        "date": "24/11/2025",
+        "id": 1764060954,
+        "date": "25/11/2025",
         "category": "geopolitica",
         "author": "La Redazione",
-        "title": "Elezioni in Honduras, chiusa la campagna elettorale",
-        "excerpt": "Sono tre i favoriti alla presidenza nel voto di domenica",
+        "title": "Evacuati abitanti dopo caduta di un drone in Moldavia",
+        "excerpt": "Caccia Nato alzati in volo per proteggere spazio aereo romeno",
         "body": "\u26a0\ufe0f ERRORE GROK 403: error code: 1010",
         "imageIcon": "fa-globe-europe",
         "imageReal": "",
-        "link": "https://www.ansa.it/sito/notizie/mondo/americalatina/2025/11/24/elezioni-in-honduras-chiusa-la-campagna-elettorale_cc81891f-ad5d-43e8-bd78-16e4dd261861.html"
+        "link": "https://www.ansa.it/sito/notizie/mondo/europa/2025/11/25/evacuati-abitanti-dopo-caduta-di-un-drone-in-moldavia_14c82ce6-a5a9-4a6d-8734-708877d6d9c9.html"
     },
     {
-        "id": 1764022885,
-        "date": "24/11/2025",
+        "id": 1764060956,
+        "date": "25/11/2025",
         "category": "geopolitica",
         "author": "La Redazione",
-        "title": "Brigitte Bardot di nuovo ricoverata in ospedale a Tolone",
-        "excerpt": "Poco pi\u00f9 di un mese fa gi\u00e0 sottoposta a intervento chirurgico",
+        "title": "Zelensky, 22 missili russi, droni anche in Moldavia e Romania",
+        "excerpt": "'Non interrompere gli aiuti all'Ucraina'",
         "body": "\u26a0\ufe0f ERRORE GROK 403: error code: 1010",
         "imageIcon": "fa-globe-europe",
         "imageReal": "",
-        "link": "https://www.ansa.it/sito/notizie/mondo/europa/2025/11/24/brigitte-bardot-di-nuovo-ricoverata-in-ospedale-a-tolone_38d5e789-1569-42bb-91b1-296752f4e95c.html"
+        "link": "https://www.ansa.it/sito/notizie/mondo/europa/2025/11/25/zelensky-22-missili-russi-droni-anche-in-moldavia-e-romania_8fee6d2f-5e6c-4987-be6d-d2b1f756db4e.html"
     },
     {
-        "id": 1764022888,
-        "date": "24/11/2025",
+        "id": 1764060958,
+        "date": "25/11/2025",
         "category": "tech",
         "author": "La Redazione",
         "title": "Apple risarcir\u00e0 proprietari di MacBook per le tastiere difettose",
@@ -36,8 +36,8 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/tecnologia/hitech/2023/05/30/apple-risarcira-proprietari-di-macbook-per-le-tastiere-difettose_ce9214c7-b68d-4d8e-ad5f-7bd5bd04ecbe.html"
     },
     {
-        "id": 1764022890,
-        "date": "24/11/2025",
+        "id": 1764060960,
+        "date": "25/11/2025",
         "category": "tech",
         "author": "La Redazione",
         "title": "L'inventore di Internet Tim Berners-Lee alla Fiera di Rimini",
@@ -48,27 +48,27 @@ const newsData = [
         "link": "https://www.ansa.it/sito/notizie/tecnologia/internet_social/2023/05/30/linventore-di-internet-tim-berners-lee-alla-fiera-di-rimini_8d846c97-938c-40d3-a479-5100edfc4344.html"
     },
     {
-        "id": 1764022892,
-        "date": "24/11/2025",
+        "id": 1764060963,
+        "date": "25/11/2025",
         "category": "cronaca",
         "author": "La Redazione",
-        "title": "#AccadeOggi",
-        "excerpt": "I principali avvenimenti previsti per la giornata",
+        "title": "Vento forte, collegamenti per Ischia e Procida irregolari",
+        "excerpt": "Sospese nel golfo di Napoli tutte le corse degli aliscafi",
         "body": "\u26a0\ufe0f ERRORE GROK 403: error code: 1010",
         "imageIcon": "fa-user-secret",
         "imageReal": "",
-        "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/accadeoggi_dd38a7d3-309c-4e12-a6b9-d7b1590e0cf6.html"
+        "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/25/vento-forte-collegamenti-per-ischia-e-procida-irregolari_caec810b-67e7-4a08-b374-f917ba560d4d.html"
     },
     {
-        "id": 1764022895,
-        "date": "24/11/2025",
+        "id": 1764060965,
+        "date": "25/11/2025",
         "category": "cronaca",
         "author": "La Redazione",
-        "title": "Decaro, \u00e8 un risultato elettorale straordinario",
-        "excerpt": "'Stasera festeggio, domani mi metter\u00f2 a lavorare per i pugliesi'",
+        "title": "Femminicidio in Gallura, Ragnedda 'ho sparato per difendermi'",
+        "excerpt": "Reo confesso ribadisce la sua versione. Al via esami su pc",
         "body": "\u26a0\ufe0f ERRORE GROK 403: error code: 1010",
         "imageIcon": "fa-user-secret",
         "imageReal": "",
-        "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/24/decaro-e-un-risultato-elettorale-straordinario_8b2ff5da-8522-463e-bb65-2c5d6d2039f6.html"
+        "link": "https://www.ansa.it/sito/notizie/cronaca/2025/11/25/femminicidio-in-gallura-ragnedda-ho-sparato-per-difendermi_f89a1a04-641e-4dc9-88d9-d732d426a96c.html"
     }
 ];
