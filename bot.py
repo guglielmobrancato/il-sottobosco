@@ -128,7 +128,7 @@ current_data["briefs"] = new_briefs
 # 4. Genera MONOGRAFIA solo se è Lunedì (Day 0)
 # (O se forziamo manualmente per test)
 today = get_day_of_week()
-if today == 0: 
+if True:
     print("È Lunedì: Generazione Monografia Strategica...")
     new_mono = generate_monograph(raw_news)
     if new_mono:
@@ -143,3 +143,4 @@ with open("data.js", "w", encoding="utf-8") as f:
     f.write(f"const mshData = {json_output};")
 
 print("--- UPDATE COMPLETE ---")
+
