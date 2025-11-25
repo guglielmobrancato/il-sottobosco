@@ -1,124 +1,145 @@
 import json
 import urllib.request
-import urllib.error
 import xml.etree.ElementTree as ET
 import ssl
 import os
 import time
 from datetime import datetime
+import google.generativeai as genai
 
-# --- CONFIGURAZIONE XAI (GROK) ---
-API_KEY = os.environ.get("XAI_API_KEY")
-API_URL = "https://api.x.ai/v1/chat/completions"
+# --- CONFIGURAZIONE ---
+API_KEY = os.environ.get("GEMINI_API_KEY")
+if API_KEY:
+    genai.configure(api_key=API_KEY)
+    model = genai.GenerativeModel('gemini-1.5-flash') # Modello veloce ed economico
 
+# Fonti "High Level" per professionisti
 SOURCES = {
-    "geopolitica": "https://www.ansa.it/sito/notizie/mondo/mondo_rss.xml",
-    "tech": "https://www.ansa.it/sito/notizie/tecnologia/tecnologia_rss.xml",
-    "cronaca": "https://www.ansa.it/sito/notizie/cronaca/cronaca_rss.xml"
+    "GEOPOLITICS": "http://feeds.bbci.co.uk/news/world/rss.xml",
+    "DEFENSE": "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=945&max=10", # US Defense
+    "TECH & QUANTUM": "https://www.mit.edu/news/rss.xml", # MIT News
+    "MARKETS": "https://www.cnbc.com/id/10000664/device/rss/rss.html" # Finance
 }
 
-ICONS = { 
-    "geopolitica": "fa-globe-europe", 
-    "tech": "fa-microchip", 
-    "cronaca": "fa-user-secret"
-}
+# --- FUNZIONI UTILI ---
+def clean_html(raw_html):
+    return raw_html.split('<')[0].strip()
 
-def generate_paper_grok(title, description):
-    if not API_KEY:
-        return title, "⚠️ ERRORE: Chiave XAI_API_KEY mancante.", description
+def get_day_of_week():
+    return datetime.today().weekday() # 0 = Lunedì, 6 = Domenica
 
-    # Costruiamo la richiesta per Grok
-    payload = {
-        "model": "grok-beta", # O 'grok-2' se hai accesso
-        "messages": [
-            {
-                "role": "system",
-                "content": "Sei un ricercatore senior del think-tank 'Il Sottobosco'. Scrivi in italiano. Stile: Accademico, analitico, cinico, underground."
-            },
-            {
-                "role": "user",
-                "content": f"Scrivi un REPORT DI ANALISI (200 parole) su: '{title}'. Contesto: '{description}'. Regole: Prima riga TITOLO SAGGISTICO, poi vai a capo e scrivi il testo."
-            }
-        ],
-        "temperature": 0.7
-    }
-    
-    data = json.dumps(payload).encode('utf-8')
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {API_KEY}"
-    }
-
+def load_existing_data():
     try:
-        req = urllib.request.Request(API_URL, data=data, headers=headers)
-        with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            
-            # Leggiamo la risposta di Grok
-            text = result['choices'][0]['message']['content'].strip()
-            
-            parts = text.split('\n', 1)
-            if len(parts) > 1:
-                new_title = parts[0].replace("Titolo:", "").replace('"', '').strip()
-                body = parts[1].strip()
-            else:
-                new_title = title
-                body = text
-                
-            return new_title, body, " ".join(body.split()[:30]) + "..."
+        with open("data.js", "r", encoding="utf-8") as f:
+            content = f.read().replace("const mshData = ", "").replace(";", "")
+            return json.loads(content)
+    except:
+        return {"briefs": [], "monograph": {}}
 
-    except urllib.error.HTTPError as e:
-        return title, f"⚠️ ERRORE GROK {e.code}: {e.read().decode()}", description
+# --- MOTORE AI ---
+def generate_briefing(news_list):
+    if not API_KEY: return [{"category": "SYSTEM", "text": "AI Offline."}]
+    
+    # Creiamo un testo unico con tutte le news per darle in pasto all'IA
+    context = "\n".join([f"- {n['cat']}: {n['title']}" for n in news_list])
+    
+    prompt = f"""
+    Sei un analista di intelligence militare per Marte Strategic Horizon.
+    Leggi queste notizie grezze:
+    {context}
+
+    Compito: Estrai 5 punti chiave essenziali per un report mattutino destinato a CEO e Generali.
+    Stile: Telegrafico, freddo, senza fronzoli. Solo fatti.
+    Output desiderato: Una lista JSON pura (senza markdown) di oggetti con campi "category" (es. DEFENSE, MARKETS) e "text".
+    Esempio: [{{"category": "DEFENSE", "text": "Nuovi movimenti truppe confine est."}}]
+    """
+    try:
+        response = model.generate_content(prompt)
+        # Pulizia brutale per assicurarsi che sia JSON valido
+        clean_json = response.text.replace("```json", "").replace("```", "").strip()
+        return json.loads(clean_json)
     except Exception as e:
-        return title, f"⚠️ ERRORE GENERICO: {str(e)}", description
+        print(f"Errore Briefing AI: {e}")
+        return [{"category": "ERROR", "text": "Analisi dati fallita."}]
+
+def generate_monograph(news_list):
+    if not API_KEY: return None
+    
+    context = "\n".join([f"- {n['title']} (Source: {n['link']})" for n in news_list[:15]])
+    
+    prompt = f"""
+    Sei un Professore Universitario di Strategia Globale. Scrivi una monografia settimanale per 'Marte Strategic Horizon'.
+    
+    Input Dati (Ultime notizie):
+    {context}
+
+    Compito: Scrivi un saggio approfondito (circa 800 parole) che colleghi i puntini tra queste notizie.
+    Cerca pattern non ovvi tra Tecnologia, Difesa e Geopolitica.
+    
+    Formato Output JSON:
+    {{
+        "title": "Titolo Accademico in Inglese",
+        "author": "Marte Intelligence Unit",
+        "readTime": "5 min",
+        "content": "Testo dell'articolo in HTML (usa <p>, <h3>, <strong>). Linguaggio formale, italiano.",
+        "references": ["Lista delle fonti reali citate"]
+    }}
+    """
+    try:
+        response = model.generate_content(prompt)
+        clean_json = response.text.replace("```json", "").replace("```", "").strip()
+        return json.loads(clean_json)
+    except Exception as e:
+        print(f"Errore Monografia AI: {e}")
+        return None
 
 # --- ESECUZIONE ---
-new_articles = []
+print("--- MARTE STRATEGIC HORIZON: ANALYZING ---")
+
+# 1. Scarica News
+raw_news = []
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
-HEADERS = {'User-Agent': "Mozilla/5.0"}
-
-print("--- START GROK BOT ---")
+headers = {'User-Agent': 'Mozilla/5.0'}
 
 for cat, url in SOURCES.items():
     try:
-        print(f"Leggo {cat}...")
-        req = urllib.request.Request(url, headers=HEADERS)
+        req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req, context=ctx) as response:
             tree = ET.fromstring(response.read())
-            
-            # Prime 2 notizie
-            for item in tree.findall(".//item")[:2]:
-                title = item.find("title").text
-                d = item.find("description")
-                desc = d.text.split('<')[0].strip() if d is not None else ""
-                
-                img = ""
-                enc = item.find("enclosure")
-                if enc is not None and "image" in enc.get("type", ""): img = enc.get("url")
-
-                print(f" -> Invio a Grok: {title[:20]}...")
-                new_title, body, excerpt = generate_paper_grok(title, desc)
-
-                new_articles.append({
-                    "id": int(time.time()) + len(new_articles),
-                    "date": datetime.now().strftime("%d/%m/%Y"),
-                    "category": cat,
-                    "author": "La Redazione",
-                    "title": new_title,
-                    "excerpt": excerpt,
-                    "body": body,
-                    "imageIcon": ICONS.get(cat, "fa-newspaper"),
-                    "imageReal": img,
+            for item in tree.findall(".//item")[:4]: # Prendi 4 news per fonte
+                raw_news.append({
+                    "cat": cat,
+                    "title": item.find("title").text,
                     "link": item.find("link").text
                 })
-                time.sleep(1) 
-    except Exception as e:
-        print(f"Errore {cat}: {e}")
+    except:
+        print(f"Fonte offline: {cat}")
 
-if new_articles:
-    json_data = json.dumps(new_articles, indent=4)
-    with open("news.js", "w", encoding="utf-8") as f:
-        f.write(f"const newsData = {json_data};")
-    print("✅ DATABASE AGGIORNATO CON GROK")
+# 2. Carica dati vecchi
+current_data = load_existing_data()
+
+# 3. Genera SEMPRE il Morning Brief
+print("Generazione Morning Brief...")
+new_briefs = generate_briefing(raw_news)
+current_data["briefs"] = new_briefs
+
+# 4. Genera MONOGRAFIA solo se è Lunedì (Day 0)
+# (O se forziamo manualmente per test)
+today = get_day_of_week()
+if today == 0: 
+    print("È Lunedì: Generazione Monografia Strategica...")
+    new_mono = generate_monograph(raw_news)
+    if new_mono:
+        new_mono["date"] = datetime.now().strftime("%B %d, %Y")
+        current_data["monograph"] = new_mono
+else:
+    print("Non è Lunedì: Mantengo la monografia precedente.")
+
+# 5. Salva
+json_output = json.dumps(current_data, indent=4)
+with open("data.js", "w", encoding="utf-8") as f:
+    f.write(f"const mshData = {json_output};")
+
+print("--- UPDATE COMPLETE ---")
