@@ -8,21 +8,18 @@ import re
 from datetime import datetime
 import google.generativeai as genai
 
-# --- 1. CONFIGURAZIONE E DEBUG CHIAVE ---
+# --- 1. CONFIGURAZIONE ---
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
 print("------------------------------------------------")
 if API_KEY:
     masked_key = API_KEY[:5] + "..." + API_KEY[-3:]
     print(f"✅ DEBUG: Chiave trovata! ({masked_key})")
-    
     try:
         genai.configure(api_key=API_KEY)
-        
-        # USARE GEMINI 2.0 FLASH (Presente nella tua lista)
+        # MODELLO CHE FUNZIONA PER TE
         model = genai.GenerativeModel('gemini-2.0-flash')
         print("✅ DEBUG: Modello 'gemini-2.0-flash' selezionato.")
-        
     except Exception as e:
         print(f"❌ DEBUG: Errore configurazione Gemini: {e}")
 else:
@@ -37,7 +34,7 @@ SOURCES = {
     "MARKETS": "https://www.cnbc.com/id/10000664/device/rss/rss.html"
 }
 
-# --- 3. FUNZIONI DI UTILITÀ ---
+# --- 3. UTILITÀ ---
 def load_existing_data():
     try:
         with open("data.js", "r", encoding="utf-8") as f:
@@ -56,8 +53,7 @@ def extract_json(text):
 
         clean = text.replace("```json", "").replace("```", "").strip()
         return json.loads(clean)
-    except Exception as e:
-        print(f"⚠️ Parsing JSON fallito: {text[:50]}...")
+    except:
         return None
 
 # --- 4. MOTORE AI ---
@@ -66,18 +62,19 @@ def generate_briefing(news_list):
     
     context = "\n".join([f"- {n['cat']}: {n['title']}" for n in news_list])
     prompt = f"""
-    Sei un analista di intelligence. Leggi:
+    Sei un analista di intelligence. News:
     {context}
-    Estrai 5 punti chiave essenziali per un report strategico. Stile: Tecnico, sintetico.
-    RISPONDI SOLO CON UN JSON ARRAY VALIDO:
+    Estrai 5 punti chiave essenziali. Stile: Tecnico, sintetico.
+    RISPONDI SOLO CON JSON ARRAY:
     [
-        {{"category": "DEFENSE", "text": "Sintesi notizia..."}},
-        {{"category": "MARKETS", "text": "Sintesi notizia..."}}
+        {{"category": "DEFENSE", "text": "Sintesi notizia..."}}
     ]
     """
     try:
         response = model.generate_content(prompt)
         result = extract_json(response.text)
+        # Se è un dizionario singolo, mettilo in una lista
+        if isinstance(result, dict): result = [result]
         return result if result else [{"category": "ERROR", "text": "Dati non validi."}]
     except Exception as e:
         print(f"Errore Briefing: {e}")
@@ -91,7 +88,7 @@ def generate_monograph(news_list):
     Sei un Professore di Strategia. News: {context}
     Scrivi una monografia settimanale (Titolo, Autore, Tempo lettura, Contenuto HTML, Fonti).
     Collega argomenti diversi. Usa tag HTML <p>, <h3>, <strong>.
-    RISPONDI SOLO CON UN JSON VALIDO:
+    RISPONDI SOLO CON UN JSON VALIDO (Oggetto, non lista):
     {{
         "title": "Titolo Accademico",
         "author": "Marte Intelligence Unit",
@@ -125,26 +122,32 @@ for cat, url in SOURCES.items():
             for item in tree.findall(".//item")[:3]:
                 title = item.find("title").text
                 raw_news.append({"cat": cat, "title": title})
-    except Exception as e:
-        print(f"Fonte offline ({cat}): {e}")
+    except:
+        pass
 
 current_data = load_existing_data()
 
 print("Generazione Briefing...")
 new_briefs = generate_briefing(raw_news)
-if new_briefs:
+if new_briefs and isinstance(new_briefs, list):
     current_data["briefs"] = new_briefs
 
-# FORZATURA MONOGRAFIA (if True)
+# FORZATURA MONOGRAFIA
 if True: 
     print("Generazione Monografia (Forzata)...")
     new_mono = generate_monograph(raw_news)
+    
     if new_mono:
+        # --- FIX SAFETY CHECK: SE È UNA LISTA, PRENDI IL PRIMO ELEMENTO ---
+        if isinstance(new_mono, list):
+            print("⚠️ L'IA ha restituito una lista invece di un oggetto. Correggo.")
+            new_mono = new_mono[0]
+
         new_mono["date"] = datetime.now().strftime("%B %d, %Y")
         current_data["monograph"] = new_mono
-        print("Monografia creata.")
+        print("✅ Monografia creata.")
     else:
-        print("Monografia fallita.")
+        print("❌ Monografia fallita.")
 
 json_output = json.dumps(current_data, indent=4)
 with open("data.js", "w", encoding="utf-8") as f:
