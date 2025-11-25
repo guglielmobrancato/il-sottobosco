@@ -1,240 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marte Strategic Horizon | Intelligence Hub</title>
-    <meta name="description" content="Global Intelligence, Defense, and Strategic Analysis Hub. Powered by Marte Studios.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <title>Marte Strategic Horizon | Global Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
-            --bg-color: #f4f4f4;       /* Bianco carta sporco, riposante */
-            --paper-color: #ffffff;    /* Bianco puro per i box */
-            --text-main: #111111;      /* Nero assoluto */
-            --text-secondary: #555555;
-            --accent-color: #003366;   /* Blu "Navy" istituzionale */
-            --alert-color: #8b0000;    /* Rosso scuro per le breaking news */
-            --border: 1px solid #dcdcdc;
+            --bg: #f0f2f5;
+            --paper: #ffffff;
+            --dark: #1a1a1a;
+            --accent: #0044cc; /* Blu Marte */
+            --ticker-bg: #000000;
+            --up: #00cc66;
+            --down: #ff3333;
         }
-
-        body {
-            font-family: 'Merriweather', serif; /* Stile Giornale/Accademico */
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
-        }
-
-        h1, h2, h3, h4, .sans { font-family: 'Inter', sans-serif; letter-spacing: -0.5px; }
+        body { margin: 0; font-family: 'Merriweather', serif; background: var(--bg); color: #333; }
         
-        /* HEADER ISTITUZIONALE */
-        header {
-            background-color: var(--paper-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* --- TICKER BAR --- */
+        .ticker-wrap { background: var(--ticker-bg); color: #fff; padding: 8px 0; font-family: 'JetBrains Mono', monospace; overflow: hidden; white-space: nowrap; border-bottom: 2px solid var(--accent); }
+        .ticker-item { display: inline-block; padding: 0 20px; font-size: 0.85rem; border-right: 1px solid #333; }
+        .ticker-name { font-weight: bold; color: #aaa; margin-right: 5px; }
+        .ticker-val { color: #fff; }
+        .trend-up { color: var(--up); }
+        .trend-down { color: var(--down); }
 
-        .brand { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--accent-color); }
-        .brand span { font-weight: 400; color: var(--text-main); }
-        .date-display { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; }
+        /* --- HEADER --- */
+        header { background: var(--paper); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
+        .brand { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); text-transform: uppercase; letter-spacing: -1px; }
+        .brand span { color: var(--accent); }
+        .meta { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #666; text-transform: uppercase; font-weight: 600; }
 
-        /* LAYOUT PRINCIPALE */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            display: grid;
-            grid-template-columns: 300px 1fr; /* Sidebar (Brief) + Main (Deep Dive) */
-            gap: 40px;
-            padding: 0 20px;
-        }
+        /* --- LAYOUT --- */
+        .container { max-width: 1400px; margin: 30px auto; display: grid; grid-template-columns: 350px 1fr; gap: 40px; padding: 0 20px; }
 
-        /* COLONNA SX: THE MORNING BRIEF (Daily) */
-        .sidebar {
-            background: #eef2f5;
-            padding: 20px;
-            border-top: 4px solid var(--alert-color);
-            height: fit-content;
-        }
-
-        .sidebar-title {
-            font-size: 0.9rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--alert-color);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brief-item {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #dcdcdc;
-            padding-bottom: 15px;
-        }
-
-        .brief-cat { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--accent-color); font-family: 'Inter', sans-serif; margin-bottom: 5px; display: block;}
-        .brief-headline { font-size: 0.95rem; font-weight: 600; font-family: 'Inter', sans-serif; line-height: 1.4; }
-        .brief-time { font-size: 0.7rem; color: #777; margin-top: 5px; display: block; }
-
-        /* COLONNA DX: THE WEEKLY MONOGRAPH (Deep Dive) */
-        .main-content {
-            background: var(--paper-color);
-            padding: 40px;
-            border: var(--border);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .monograph-header { border-bottom: 1px solid #eee; margin-bottom: 30px; padding-bottom: 20px; }
-        .monograph-label { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; }
-        .monograph-title { font-size: 2.5rem; margin: 10px 0; font-weight: 900; line-height: 1.2; }
-        .monograph-meta { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-secondary); margin-top: 10px; }
+        /* --- SIDEBAR (SEZIONI VERTICALI) --- */
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
         
-        .article-body { font-size: 1.1rem; color: #222; text-align: justify; }
+        .sector-card { background: var(--paper); border: 1px solid #ddd; padding: 20px; border-top: 4px solid var(--dark); }
+        .sector-title { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+        .sector-list { list-style: none; padding: 0; margin: 0; }
+        .sector-list li { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.4; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .sector-list li:last-child { border: none; }
+        
+        /* Stili specifici per card */
+        .card-intel { border-top-color: #8b0000; } /* Rosso Intelligence */
+        .card-science { border-top-color: #6600cc; } /* Viola Quantum */
+        .card-cinema { border-top-color: #ff9900; } /* Arancio Cinema */
+
+        /* --- MAIN (MONOGRAFIA) --- */
+        .main-content { background: var(--paper); padding: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--accent); }
+        .label { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .mono-title { font-family: 'Inter', sans-serif; font-size: 3rem; margin: 0 0 20px 0; font-weight: 900; line-height: 1.1; letter-spacing: -1px; }
+        .mono-meta { font-family: 'Inter', sans-serif; color: #777; font-size: 0.9rem; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        
+        .article-body { font-size: 1.2rem; line-height: 1.8; color: #222; }
         .article-body p { margin-bottom: 1.5rem; }
-        
-        /* Citazioni Accademiche */
-        .citation { 
-            font-size: 0.9rem; 
-            background: #f9f9f9; 
-            padding: 15px; 
-            border-left: 3px solid var(--accent-color); 
-            color: #555; 
-            margin: 20px 0;
-            font-style: italic;
-        }
-
-        .references { margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.8rem; color: #666; }
-        .references h4 { text-transform: uppercase; margin-bottom: 10px; }
+        .article-body h3 { font-family: 'Inter', sans-serif; margin-top: 2rem; }
 
         /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px;
-            margin-top: 50px;
-            background: #111;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-        }
+        footer { text-align: center; padding: 40px; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888; margin-top: 50px; background: #111; }
         
-        .footer-link { color: #888; text-decoration: none; margin: 0 10px; }
-        .footer-link:hover { color: #fff; }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            .monograph-title { font-size: 1.8rem; }
-        }
+        @media (max-width: 900px) { .container { grid-template-columns: 1fr; } .mono-title { font-size: 2rem; } }
     </style>
 </head>
 <body>
 
+    <div class="ticker-wrap">
+        <div id="ticker-container">
+            <span class="ticker-item">LOADING FINANCIAL DATA...</span>
+        </div>
+    </div>
+
     <header>
         <div class="brand">Marte <span>Strategic Horizon</span></div>
-        <div class="date-display" id="current-date">Live Intelligence</div>
+        <div class="meta" id="update-time">LIVE INTELLIGENCE</div>
     </header>
 
     <div class="container">
         
-        <aside class="sidebar">
-            <div class="sidebar-title">
-                <i class="fas fa-satellite-dish"></i> Morning Brief <span id="brief-time">08:00 AM</span>
-            </div>
-            
-            <div id="brief-container">
-                <div class="brief-item">
-                    <span class="brief-cat">System Status</span>
-                    <div class="brief-headline">In attesa del primo aggiornamento satellitare...</div>
-                </div>
-            </div>
+        <aside class="sidebar" id="sections-container">
+            <div class="sector-card">Loading Intelligence...</div>
         </aside>
 
-        <main class="main-content">
-            <div id="monograph-container">
-                <article>
-                    <div class="monograph-header">
-                        <span class="monograph-label">Weekly Strategic Analysis • Vol. 1</span>
-                        <h1 class="monograph-title">Initialising Strategic Protocols</h1>
-                        <div class="monograph-meta">
-                            By <strong>Marte Intelligence AI</strong> • awaiting data ingestion
-                        </div>
-                    </div>
-                    <div class="article-body">
-                        <p>Il sistema sta calibrando le fonti per la prima analisi settimanale. Il focus sarà sull'intersezione tra tecnologie quantistiche, cybersecurity e nuovi assetti geopolitici.</p>
-                        <p>Le prossime pubblicazioni seguiranno rigorosi standard accademici.</p>
-                    </div>
-                </article>
-            </div>
+        <main class="main-content" id="monograph-container">
+            <h1 class="mono-title">Initializing System...</h1>
         </main>
 
     </div>
 
     <footer>
-        <p>&copy; 2025 Marte Strategic Horizon. A Marte Studios Production.</p>
-        <p>
-            <a href="https://www.martestudios.com" class="footer-link">Marte Studios</a> | 
-            <a href="#" class="footer-link">Legal Disclaimer</a> | 
-            <a href="#" class="footer-link">Editorial Policy</a>
-        </p>
+        &copy; 2025 Marte Strategic Horizon. Powered by Marte Studios. <br>
+        Global Intelligence • Rome • New York • Tokyo
     </footer>
 
     <script src="data.js"></script>
     <script>
-        // Data in alto
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', options);
-
-        // Funzione per caricare i dati (se presenti)
         if (typeof mshData !== 'undefined') {
             
-            // 1. Carica Morning Brief
-            const briefContainer = document.getElementById('brief-container');
-            if (mshData.briefs && mshData.briefs.length > 0) {
-                briefContainer.innerHTML = "";
-                mshData.briefs.forEach(brief => {
-                    briefContainer.innerHTML += `
-                        <div class="brief-item">
-                            <span class="brief-cat">${brief.category}</span>
-                            <div class="brief-headline">${brief.text}</div>
+            // 1. POPOLA TICKER
+            const tickCont = document.getElementById('ticker-container');
+            if (mshData.ticker && mshData.ticker.length > 0) {
+                tickCont.innerHTML = "";
+                // Duplichiamo i dati per fare scena (o scorrimento in futuro)
+                mshData.ticker.forEach(item => {
+                    const trendClass = item.trend === 'up' ? 'trend-up' : 'trend-down';
+                    tickCont.innerHTML += `
+                        <div class="ticker-item">
+                            <span class="ticker-name">${item.name}</span>
+                            <span class="ticker-val">${item.price}</span>
+                            <span class="${trendClass}">${item.change}</span>
                         </div>
                     `;
                 });
             }
 
-            // 2. Carica Monografia Settimanale
-            const monoContainer = document.getElementById('monograph-container');
+            // 2. POPOLA SEZIONI LATERALI
+            const sectCont = document.getElementById('sections-container');
+            if (mshData.sections) {
+                sectCont.innerHTML = "";
+                mshData.sections.forEach(sec => {
+                    // Scegli icona e colore in base al titolo
+                    let icon = "fa-layer-group";
+                    let extraClass = "";
+                    if(sec.title.includes("Intelligence")) { icon = "fa-user-secret"; extraClass = "card-intel"; }
+                    if(sec.title.includes("Quantum")) { icon = "fa-atom"; extraClass = "card-science"; }
+                    if(sec.title.includes("Cinema")) { icon = "fa-film"; extraClass = "card-cinema"; }
+                    if(sec.title.includes("Sanità")) { icon = "fa-heartbeat"; }
+
+                    let listHtml = sec.items.map(i => `<li>${i}</li>`).join('');
+                    
+                    sectCont.innerHTML += `
+                        <div class="sector-card ${extraClass}">
+                            <div class="sector-title"><i class="fas ${icon}"></i> ${sec.title}</div>
+                            <ul class="sector-list">${listHtml}</ul>
+                        </div>
+                    `;
+                });
+            }
+
+            // 3. POPOLA MONOGRAFIA
+            const monoCont = document.getElementById('monograph-container');
             if (mshData.monograph) {
-                const mono = mshData.monograph;
-                monoContainer.innerHTML = `
-                    <article>
-                        <div class="monograph-header">
-                            <span class="monograph-label">Weekly Strategic Analysis</span>
-                            <h1 class="monograph-title">${mono.title}</h1>
-                            <div class="monograph-meta">
-                                By <strong>${mono.author}</strong> • ${mono.date} • <i class="fas fa-clock"></i> ${mono.readTime} read
-                            </div>
-                        </div>
-                        <div class="article-body">
-                            ${mono.content}
-                        </div>
-                        <div class="references">
-                            <h4>References & Bibliography</h4>
-                            <ul>
-                                ${mono.references.map(ref => `<li>${ref}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </article>
+                const m = mshData.monograph;
+                monoCont.innerHTML = `
+                    <span class="label">Daily Strategic Analysis</span>
+                    <h1 class="mono-title">${m.title}</h1>
+                    <div class="mono-meta">By <strong>${m.author}</strong> • Read time: ${m.readTime}</div>
+                    <div class="article-body">${m.content}</div>
                 `;
+            }
+
+            // Data aggiornamento
+            if (mshData.last_update) {
+                document.getElementById('update-time').innerText = "UPDATED: " + mshData.last_update;
             }
         }
     </script>
