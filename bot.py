@@ -19,18 +19,9 @@ if API_KEY:
     try:
         genai.configure(api_key=API_KEY)
         
-        # PROVIAMO A ELENCARE I MODELLI DISPONIBILI (Per sicurezza)
-        print("🔍 DEBUG: Cerco modelli disponibili...")
-        try:
-            for m in genai.list_models():
-                if 'generateContent' in m.supported_generation_methods:
-                    print(f"   - {m.name}")
-        except Exception as e:
-            print(f"   (Impossibile elencare modelli: {e})")
-
-        # USARE GEMINI 1.5 FLASH (Il nuovo standard)
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        print("✅ DEBUG: Modello 'gemini-1.5-flash' selezionato.")
+        # USARE GEMINI 2.0 FLASH (Presente nella tua lista)
+        model = genai.GenerativeModel('gemini-2.0-flash')
+        print("✅ DEBUG: Modello 'gemini-2.0-flash' selezionato.")
         
     except Exception as e:
         print(f"❌ DEBUG: Errore configurazione Gemini: {e}")
