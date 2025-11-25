@@ -1,37 +1,38 @@
-name: Bot Giornalista AI
+name: MSH Intelligence Bot
 
 on:
   schedule:
-    - cron: '0 8 * * *'
+    # Esegue ogni mattina alle 07:00 UTC (08:00 ITA)
+    - cron: '0 7 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  aggiorna-news:
+  intelligence-analysis:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout del codice
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Imposta Python
+    - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
 
-    # Nessuna installazione necessaria, usiamo Python standard
+    - name: Install Dependencies
+      run: pip install google-generativeai
 
-    - name: Esegui lo script Bot
+    - name: Run Analyst Bot
       env:
-        # Passiamo la chiave di XAI
-        XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: python bot.py
 
-    - name: Salva le modifiche
+    - name: Publish Intelligence
       run: |
-        git config --global user.name 'Sottobosco Bot'
-        git config --global user.email 'bot@sottobosco.com'
-        git add news.js
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Grok News Update" && git pull --rebase origin main && git push)
+        git config --global user.name 'Marte Intelligence'
+        git config --global user.email 'intel@martestudios.com'
+        git add data.js
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Intelligence Update" && git pull --rebase origin main && git push)
