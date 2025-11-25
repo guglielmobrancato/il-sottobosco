@@ -17,16 +17,97 @@ if API_KEY:
     print(f"✅ DEBUG: Chiave trovata! ({masked_key})")
     try:
         genai.configure(api_key=API_KEY)
-        # USARE GEMINI-PRO (Versione Stabile)
+        # MODELLO STABILE
         model = genai.GenerativeModel('gemini-pro')
         print("✅ DEBUG: Modello 'gemini-pro' configurato.")
     except Exception as e:
         print(f"❌ DEBUG: Errore configurazione Gemini: {e}")
 else:
-    print("❌ DEBUG: NESSUNA CHIAVE TROVATA. Controlla i Secrets di GitHub.")
+    print("❌ DEBUG: NESSUNA CHIAVE TROVATA.")
 print("------------------------------------------------")
 
-# --- 2. FONTI RSS (Aggiornate e Stabili) ---
+# --- 2. FONTI RSS ---
+# ATTENZIONE: Mantieni i link su una riga sola!
 SOURCES = {
     "GEOPOLITICS": "http://feeds.bbci.co.uk/news/world/rss.xml",
-    "DEFENSE": "https
+    "DEFENSE": "https://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?ContentType=1&Site=945&max=10",
+    "TECH": "https://www.wired.com/feed/rss",
+    "MARKETS": "https://www.cnbc.com/id/10000664/device/rss/rss.html"
+}
+
+# --- 3. FUNZIONI DI UTILITÀ ---
+def load_existing_data():
+    try:
+        with open("data.js", "r", encoding="utf-8") as f:
+            content = f.read().replace("const mshData = ", "").replace(";", "")
+            return json.loads(content)
+    except:
+        return {"briefs": [], "monograph": {}}
+
+def extract_json(text):
+    try:
+        match_array = re.search(r'\[.*\]', text, re.DOTALL)
+        if match_array: return json.loads(match_array.group())
+        
+        match_obj = re.search(r'\{.*\}', text, re.DOTALL)
+        if match_obj: return json.loads(match_obj.group())
+
+        clean = text.replace("```json", "").replace("```", "").strip()
+        return json.loads(clean)
+    except Exception as e:
+        print(f"⚠️ JSON Parsing fallito: {text[:50]}...")
+        return None
+
+# --- 4. MOTORE AI ---
+def generate_briefing(news_list):
+    if not API_KEY: return [{"category": "SYSTEM", "text": "AI Offline."}]
+    
+    context = "\n".join([f"- {n['cat']}: {n['title']}" for n in news_list])
+    prompt = f"""
+    Sei un analista di intelligence. Leggi:
+    {context}
+    Estrai 5 punti chiave essenziali per un report strategico. Stile: Tecnico, sintetico.
+    RISPONDI SOLO CON UN JSON ARRAY VALIDO:
+    [
+        {{"category": "DEFENSE", "text": "Sintesi notizia..."}},
+        {{"category": "MARKETS", "text": "Sintesi notizia..."}}
+    ]
+    """
+    try:
+        response = model.generate_content(prompt)
+        result = extract_json(response.text)
+        return result if result else [{"category": "ERROR", "text": "Dati non validi."}]
+    except Exception as e:
+        print(f"Errore Briefing: {e}")
+        return [{"category": "ERROR", "text": "Errore API."}]
+
+def generate_monograph(news_list):
+    if not API_KEY: return None
+    
+    context = "\n".join([f"- {n['title']}" for n in news_list[:20]])
+    prompt = f"""
+    Sei un Professore di Strategia. News disponibili: {context}
+    Scrivi una monografia settimanale (Titolo, Autore, Tempo lettura, Contenuto HTML, Fonti).
+    Collega argomenti diversi. Usa tag HTML <p>, <h3>, <strong>.
+    RISPONDI SOLO CON UN JSON VALIDO:
+    {{
+        "title": "Titolo Accademico",
+        "author": "Marte Intelligence Unit",
+        "readTime": "5 min",
+        "content": "<p>Testo...</p>",
+        "references": ["Fonte 1", "Fonte 2"]
+    }}
+    """
+    try:
+        response = model.generate_content(prompt)
+        result = extract_json(response.text)
+        return result
+    except Exception as e:
+        print(f"Errore Monografia: {e}")
+        return None
+
+# --- 5. ESECUZIONE ---
+print("--- STARTING ANALYSIS ---")
+
+raw_news = []
+ctx
