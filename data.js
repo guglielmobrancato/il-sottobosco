@@ -1,8 +1,8 @@
 const mshData = {
     "briefs": [
         {
-            "category": "SYSTEM",
-            "text": "AI Offline."
+            "category": "ERROR",
+            "text": "Analisi dati fallita."
         }
     ],
     "monograph": {}
