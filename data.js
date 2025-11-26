@@ -1,7 +1,6 @@
 const mshData = {
-    "last_update": "26/11/2025 08:15",
+    "last_update": "26/11/2025 08:30",
 
-    // --- DATI BORSA ---
     "ticker": [
         { "name": "GOLD", "price": "\u20ac 3,610.21", "change": "\u25bc 0.1%", "trend": "down" },
         { "name": "BITCOIN", "price": "\u20ac 75,713.51", "change": "\u25b2 0.47%", "trend": "up" },
@@ -11,7 +10,6 @@ const mshData = {
         { "name": "LEONARDO", "price": "\u20ac 14.20", "change": "\u25bc 0.3%", "trend": "down" }
     ],
 
-    // --- SEZIONI LATERALI ---
     "sections": [
         {
             "title": "Intelligence & Think Tanks (Focus Italia)",
@@ -47,7 +45,6 @@ const mshData = {
         }
     ],
 
-    // --- ARTICOLO PRINCIPALE ---
     "monograph": {
         "title": "Convergenza di Crisi: Tecnologie di Disruzione, Instabilità Geopolitica e il Futuro del Potere",
         "author": "Marte Intelligence Unit",
@@ -64,21 +61,20 @@ const mshData = {
         `
     },
 
-    // --- ARCHIVIO (Se questo è vuoto, non vedi nulla!) ---
     "archive": [
         {
             "title": "Dossier: Il Corridoio Artico",
             "author": "Marte Strategic Horizon",
             "date": "20 NOV 2025",
             "readTime": "8 min",
-            "content": "<p>Con lo scioglimento dei ghiacci, la rotta del Mare del Nord diventa il nuovo teatro di competizione tra Russia, Cina e NATO.</p>"
+            "content": "<p>Con lo scioglimento dei ghiacci, la rotta del Mare del Nord diventa il nuovo teatro di competizione tra Russia, Cina e NATO. L'impatto sui porti europei sarà devastante se non calcolato...</p><p>Devi riempire questo spazio con molto testo per renderlo lungo!</p>"
         },
         {
             "title": "Cyber-Warfare: Infrastrutture Critiche",
             "author": "Guglielmo Brancato",
             "date": "15 NOV 2025",
             "readTime": "5 min",
-            "content": "<p>L'attacco alle infrastrutture idriche in Europa segna un cambio di paradigma nella guerra ibrida.</p>"
+            "content": "<p>L'attacco alle infrastrutture idriche in Europa segna un cambio di paradigma nella guerra ibrida. Non più furto di dati, ma sabotaggio cinetico tramite codice...</p>"
         }
     ]
 };
