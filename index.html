@@ -22,9 +22,37 @@
 
         body { margin: 0; font-family: 'Merriweather', serif; background: var(--bg); color: #333; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         
-        /* --- TICKER BAR --- */
-        .ticker-wrap { background: var(--ticker-bg); color: #fff; padding: 10px 0; font-family: 'JetBrains Mono', monospace; overflow: hidden; white-space: nowrap; border-bottom: 2px solid var(--accent); }
-        .ticker-item { display: inline-block; padding: 0 15px; font-size: 0.8rem; border-right: 1px solid #333; }
+        /* --- TICKER BAR ANIMATA --- */
+        .ticker-wrap { 
+            background: var(--ticker-bg); 
+            color: #fff; 
+            padding: 10px 0; 
+            font-family: 'JetBrains Mono', monospace; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            border-bottom: 2px solid var(--accent); 
+            position: relative;
+        }
+        
+        /* Contenitore che scorre */
+        .ticker-track {
+            display: inline-block;
+            white-space: nowrap;
+            /* Animazione infinita: 40 secondi per fare un giro */
+            animation: ticker-scroll 40s linear infinite; 
+        }
+
+        /* L'animazione sposta il contenuto da destra a sinistra */
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Si sposta del 50% perché duplicheremo il contenuto */
+        }
+
+        .ticker-wrap:hover .ticker-track {
+            animation-play-state: paused; /* Si ferma se passi col mouse */
+        }
+
+        .ticker-item { display: inline-block; padding: 0 30px; font-size: 0.8rem; border-right: 1px solid #333; }
         .ticker-name { font-weight: bold; color: #aaa; margin-right: 5px; }
         .ticker-val { color: #fff; }
         .trend-up { color: var(--up); }
@@ -32,22 +60,35 @@
 
         /* --- HEADER --- */
         header { background: var(--paper); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
-        .brand { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--dark); text-transform: uppercase; letter-spacing: -1px; line-height: 1.2; }
+        
+        /* Logo Cliccabile */
+        .brand { 
+            font-family: 'Inter', sans-serif; 
+            font-size: 1.4rem; 
+            font-weight: 900; 
+            color: var(--dark); 
+            text-transform: uppercase; 
+            letter-spacing: -1px; 
+            line-height: 1.2; 
+            cursor: pointer; /* Manina al passaggio */
+            transition: 0.3s;
+        }
+        .brand:hover { opacity: 0.8; }
         .brand span { color: var(--accent); display: inline-block; }
+        
         .meta { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #666; text-transform: uppercase; font-weight: 600; text-align: right; }
 
-        /* --- LAYOUT GRID --- */
+        /* --- LAYOUT --- */
         .container { 
             max-width: 1400px; 
             margin: 30px auto; 
             display: grid; 
-            grid-template-columns: 350px 1fr; /* Sidebar - Main */
+            grid-template-columns: 350px 1fr; 
             gap: 40px; 
             padding: 0 20px; 
-            flex: 1; /* Spinge il footer in basso */
+            flex: 1; 
         }
 
-        /* --- SIDEBAR --- */
         .sidebar { display: flex; flex-direction: column; gap: 20px; }
         .sector-card { background: var(--paper); border: 1px solid var(--border); padding: 20px; border-top: 4px solid var(--dark); border-radius: 4px; }
         .sector-title { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
@@ -59,7 +100,6 @@
         .card-science { border-top-color: #6600cc; } 
         .card-cinema { border-top-color: #ff9900; } 
 
-        /* --- MAIN ARTICLE --- */
         .main-content { 
             background: var(--paper); 
             padding: 50px; 
@@ -74,9 +114,25 @@
         .article-body p { margin-bottom: 1.5rem; }
         .article-body h3 { font-family: 'Inter', sans-serif; margin-top: 2.5rem; font-weight: 800; font-size: 1.4rem; }
 
+        /* TASTO TORNA ALLA HOME */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent);
+            cursor: pointer;
+            border: 1px solid var(--accent);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background: var(--accent); color: #fff; }
+
         /* --- ARCHIVIO --- */
         .archive-section { 
-            grid-column: 1 / -1; /* Occupa tutta la larghezza */
+            grid-column: 1 / -1; 
             margin-top: 40px; 
             background: var(--dark); 
             color: #fff; 
@@ -90,7 +146,6 @@
         .arch-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888; margin-bottom: 5px; display: block; }
         .arch-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: #fff; line-height: 1.3; }
 
-        /* --- FOOTER & DISCLAIMER --- */
         footer { text-align: center; padding: 40px 20px; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888; margin-top: 50px; background: #111; border-top: 1px solid #222; }
         
         .ai-disclaimer {
@@ -107,20 +162,18 @@
         }
         .ai-disclaimer i { color: var(--accent); margin-right: 8px; }
 
-        /* --- MOBILE OPTIMIZATION (Fix Ordine & Posizione) --- */
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 900px) {
             .container { 
-                grid-template-columns: 1fr; /* Colonna singola */
+                grid-template-columns: 1fr; 
                 gap: 30px; 
                 margin: 20px auto;
-                display: flex; /* Flexbox è più facile per ordinare su mobile */
+                display: flex; 
                 flex-direction: column;
             }
-            
-            /* --- ORDINE DEGLI ELEMENTI SU MOBILE --- */
-            .main-content { order: 1; padding: 25px; } /* Prima l'articolo */
-            .sidebar { order: 2; } /* Poi la sidebar */
-            .archive-section { order: 3; } /* Infine l'archivio */
+            .main-content { order: 1; padding: 25px; } 
+            .sidebar { order: 2; } 
+            .archive-section { order: 3; } 
 
             .mono-title { font-size: 1.8rem; }
             .brand { font-size: 1.2rem; }
@@ -132,13 +185,11 @@
 <body>
 
     <div class="ticker-wrap">
-        <div id="ticker-container">
-            <span class="ticker-item">SYSTEM LOADING...</span>
-        </div>
+        <div id="ticker-track" class="ticker-track"></div>
     </div>
 
     <header>
-        <div class="brand">Marte <span>Strategic Horizon</span></div>
+        <div class="brand" onclick="resetHome()">Marte <span>Strategic Horizon</span></div>
         <div class="meta" id="update-time">INITIALIZING...</div>
     </header>
 
@@ -151,14 +202,12 @@
         <main class="main-content">
             <div id="monograph-container">
                 <h1 class="mono-title">Waiting for Data...</h1>
-                <p>Establishing secure connection to MSH Database...</p>
             </div>
         </main>
 
         <section class="archive-section" id="archive-section">
             <div class="archive-header"><i class="fas fa-archive"></i> CLASSIFIED ARCHIVES</div>
-            <div class="archive-grid" id="archive-container">
-                </div>
+            <div class="archive-grid" id="archive-container"></div>
         </section>
 
     </div>
@@ -175,15 +224,23 @@
         </div>
     </footer>
 
-    <script src="data.js?v=2"></script>
+    <script src="data.js?v=3"></script>
     
     <script>
-        // Funzione per mostrare gli articoli
-        function renderArticle(articleData) {
+        // Funzione per mostrare gli articoli (Gestisce pulsante "Torna alla Home")
+        function renderArticle(articleData, isArchive = false) {
             const monoCont = document.getElementById('monograph-container');
             monoCont.style.opacity = '0.5';
+            
+            // Se è archivio, aggiungiamo il bottone Back
+            let backButtonHtml = "";
+            if(isArchive) {
+                backButtonHtml = `<div class="back-btn" onclick="resetHome()"><i class="fas fa-arrow-left"></i> Torna alla Home</div>`;
+            }
+
             setTimeout(() => {
                 monoCont.innerHTML = `
+                    ${backButtonHtml}
                     <span class="label">Strategic Analysis // ${articleData.date || 'CURRENT'}</span>
                     <h1 class="mono-title">${articleData.title}</h1>
                     <div class="mono-meta">
@@ -194,24 +251,31 @@
                 `;
                 monoCont.style.opacity = '1';
                 monoCont.style.transition = 'opacity 0.3s';
+                
+                // Su mobile, scrolla su quando cambi articolo
                 document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
             }, 200);
         }
 
-        // Gestione Caricamento
+        // Funzione per tornare alla home (chiamata dal Logo e dal pulsante Back)
+        function resetHome() {
+            if (typeof mshData !== 'undefined' && mshData.monograph) {
+                renderArticle(mshData.monograph, false); // false = NO archivio (quindi niente bottone)
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
-            // Controllo se i dati sono stati caricati
             if (typeof mshData !== 'undefined') {
                 
-                // 1. Ticker
-                const tickCont = document.getElementById('ticker-container');
+                // 1. TICKER INFINITO
+                const tickTrack = document.getElementById('ticker-track');
                 if (mshData.ticker && mshData.ticker.length > 0) {
-                    tickCont.innerHTML = "";
-                    const loopData = [...mshData.ticker, ...mshData.ticker, ...mshData.ticker]; // Loop più lungo
-                    loopData.forEach(item => {
+                    // Generiamo l'HTML dei ticker
+                    let tickerHTML = "";
+                    mshData.ticker.forEach(item => {
                         const trendClass = item.trend === 'up' ? 'trend-up' : 'trend-down';
                         const trendIcon = item.trend === 'up' ? '▲' : '▼';
-                        tickCont.innerHTML += `
+                        tickerHTML += `
                             <div class="ticker-item">
                                 <span class="ticker-name">${item.name}</span>
                                 <span class="ticker-val">${item.price}</span>
@@ -219,6 +283,11 @@
                             </div>
                         `;
                     });
+
+                    // Per fare il loop infinito perfetto senza scatti:
+                    // Duplichiamo il contenuto molte volte (es. 6 volte) per riempire la striscia
+                    // L'animazione CSS poi sposterà solo la metà e resetterà
+                    tickTrack.innerHTML = tickerHTML + tickerHTML + tickerHTML + tickerHTML + tickerHTML + tickerHTML;
                 }
 
                 // 2. Sidebar
@@ -242,12 +311,10 @@
                     });
                 }
 
-                // 3. Articolo Principale
-                if (mshData.monograph) {
-                    renderArticle(mshData.monograph);
-                }
+                // 3. Articolo Iniziale
+                resetHome();
 
-                // 4. Archivio (La parte che ti interessa!)
+                // 4. Archivio
                 const archCont = document.getElementById('archive-container');
                 if (mshData.archive && mshData.archive.length > 0) {
                     archCont.innerHTML = "";
@@ -258,24 +325,20 @@
                             <span class="arch-date">${item.date}</span>
                             <div class="arch-title">${item.title}</div>
                         `;
-                        card.onclick = function() { renderArticle(item); };
+                        // Qui passiamo true per dire "siamo in archivio"
+                        card.onclick = function() { renderArticle(item, true); };
                         archCont.appendChild(card);
                     });
                 } else {
-                    archCont.innerHTML = "<div style='color:#666; font-style:italic; padding:10px;'>No archives classified in the system.</div>";
+                    archCont.innerHTML = "<div style='color:#666; font-style:italic; padding:10px;'>No archives classified.</div>";
                 }
 
                 // 5. Update Time
                 if (mshData.last_update) {
                     document.getElementById('update-time').innerHTML = '<i class="fas fa-satellite-dish" style="color:var(--accent)"></i> LIVE: ' + mshData.last_update;
                 }
-
-            } else {
-                // Errore se data.js non carica
-                document.getElementById('monograph-container').innerHTML = "<h1 style='color:red'>SYSTEM ERROR</h1><p>Data stream interrupted. Please refresh or check connection.</p>";
             }
         });
     </script>
 </body>
 </html>
-
