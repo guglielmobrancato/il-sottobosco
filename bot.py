@@ -125,23 +125,28 @@ def get_market_data():
     
     return data
 
-# --- 5. MOTORE AI (Multi-Sezione) ---
+# --- 5. MOTORE AI (Con Hyperlink e Tono Accademico) ---
+
 def analyze_sector(sector_name, news_list):
+    """Analizza una singola sezione laterale"""
     if not API_KEY or not news_list: return None
-    titles = "\n".join([f"- {n}" for n in news_list[:10]])
-    prompt = f"""
-    Sei un analista senior di {sector_name}.
-    Leggi questi titoli recenti:
-    {titles}
     
-    Compito: Scrivi un BREVE report (max 3 punti elenco) su cosa succede oggi.
-    Focus: Cerca sempre il coinvolgimento dell'ITALIA o implicazioni per l'Italia.
-    Sezione: {sector_name}
+    # news_list ora è una lista di stringhe formattate "TITOLO | URL"
+    # Per la sidebar, passiamo solo i titoli per brevità, o i primi 5 con URL
+    formatted_news = "\n".join(news_list[:8])
+    
+    prompt = f"""
+    Sei un analista senior di {sector_name} presso un think tank strategico.
+    Ecco le notizie agenzia (Titolo | URL):
+    {formatted_news}
+    
+    Compito: Sintetizza 3 punti chiave essenziali.
+    Stile: Telegrafico, Intelligence, Focus Italia.
     
     RISPONDI SOLO JSON:
     {{
         "title": "Titolo Sezione (es. Intelligence & Think Tank)",
-        "items": ["Punto 1 con focus Italia...", "Punto 2...", "Punto 3..."]
+        "items": ["Punto 1...", "Punto 2...", "Punto 3..."]
     }}
     """
     try:
@@ -150,66 +155,96 @@ def analyze_sector(sector_name, news_list):
     except:
         return None
 
-def generate_monograph(all_news):
+def generate_monograph_academic(all_news_with_links):
+    """Genera l'articolo principale con stile accademico e hyperlink"""
     if not API_KEY: return None
-    context = "\n".join(all_news[:25])
+    
+    # Prendiamo le prime 30 notizie con i link
+    context = "\n".join(all_news_with_links[:30])
     today_date = datetime.now().strftime("%d %b %Y")
     
     prompt = f"""
-    Sei il Direttore di 'Marte Strategic Horizon'.
-    Scrivi l'Editoriale Strategico del giorno.
-    News del giorno: {context}
+    Sei un Ricercatore Universitario e Analista Strategico. Stai scrivendo un paper per "Marte Strategic Horizon".
     
-    Compito: Scrivi un articolo approfondito che colleghi Intelligence, Tecnologia e Geopolitica.
+    FONTI DISPONIBILI (Usa queste URL per le citazioni):
+    {context}
+    
+    ISTRUZIONI RIGIDE:
+    1.  **Tono:** Accademico, formale, distaccato, analitico. Evita aggettivi sensazionalistici. Usa termini tecnici appropriati.
+    2.  **Contenuto:** Approfondisci il contesto storico e le implicazioni tecniche/geopolitiche a lungo termine. Collega i puntini tra eventi apparentemente distanti.
+    3.  **Veridicità e Hyperlink (FONDAMENTALE):** - Ogni volta che citi un fatto specifico derivato dalle fonti, DEVI inserire un hyperlink HTML su una parola chiave pertinente.
+        - Esempio: "Il recente <a href='https://...'>accordo bilaterale</a> suggerisce..."
+        - Usa SOLO le URL fornite nella lista sopra. Non inventare link.
+    4.  **Struttura:** - Introduzione (Abstract)
+        - Analisi del Contesto Storico
+        - Sviluppi Tecnici/Strategici
+        - Conclusioni Prospettiche
+        - Bibliografia (Lista puntata semplice delle fonti usate)
+
     Data di oggi: {today_date}
     
-    JSON RICHIESTO:
+    RISPONDI SOLO JSON COMPATIBILE:
     {{
-        "title": "Titolo Strategico",
-        "author": "Marte Intelligence Unit",
+        "title": "Titolo Accademico e Complesso",
+        "author": "Marte Research Dept.",
         "date": "{today_date}",
-        "readTime": "6 min read",
-        "content": "<p>Testo HTML lungo e dettagliato...</p>",
+        "readTime": "12 min read",
+        "content": "HTML body dell'articolo con paragrafi <p>, titoli <h3> e hyperlink <a href>...",
         "references": ["Fonte 1", "Fonte 2"]
     }}
     """
     try:
         response = model.generate_content(prompt)
         return extract_json(response.text)
-    except:
+    except Exception as e:
+        print(f"Errore generazione monografia: {e}")
         return None
 
 # --- 6. ESECUZIONE & ARCHIVIAZIONE ---
-print("--- STARTING MSH SYSTEM ---")
+print("--- STARTING MSH SYSTEM (ACADEMIC MODE) ---")
 
-# A. Carica dati esistenti per preservare l'archivio
+# A. Carica dati esistenti
 current_db = load_existing_data()
 
-# B. Scarica Nuovi Dati
+# B. Scarica Nuovi Dati Finanziari
 ticker_data = get_market_data()
 
-# C. Scarica News RSS
+# C. Scarica News RSS (CON I LINK)
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 headers = {'User-Agent': 'Mozilla/5.0'}
-news_basket = {} 
-all_titles_flat = []
+
+news_basket_for_sections = {} 
+all_news_with_links = [] # Lista formattata "TITOLO | URL" per la monografia
 
 for cat, urls in SOURCES.items():
     print(f"📡 Scansione {cat}...")
-    news_basket[cat] = []
+    news_basket_for_sections[cat] = []
+    
     for url in urls:
         try:
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, context=ctx) as response:
                 tree = ET.fromstring(response.read())
-                for item in tree.findall(".//item")[:4]:
+                for item in tree.findall(".//item")[:5]: # Prendiamo i primi 5 per feed
                     t = item.find("title").text
-                    news_basket[cat].append(t)
-                    all_titles_flat.append(t)
-        except:
-            pass
+                    
+                    # Tentativo di estrarre il link (alcuni RSS usano namespace, proviamo standard)
+                    l = item.find("link").text if item.find("link") is not None else ""
+                    # Se il link è vuoto, proviamo a cercarlo come attributo o pulirlo
+                    if not l: l = "https://marte-strategic-horizon.com" # Fallback
+                    
+                    # Pulizia stringhe
+                    t = t.strip()
+                    l = l.strip()
+                    
+                    # Salvataggio
+                    entry_str = f"TITOLO: {t} | URL: {l}"
+                    news_basket_for_sections[cat].append(entry_str)
+                    all_news_with_links.append(entry_str)
+        except Exception as e:
+            print(f"Errore lettura feed {url}: {e}")
 
 # D. Genera Sezioni AI
 sections_data = []
@@ -222,43 +257,40 @@ categories_map = {
 }
 print("🧠 Analisi AI per Sezioni...")
 for cat_code, cat_name in categories_map.items():
-    if cat_code in news_basket:
-        res = analyze_sector(cat_name, news_basket[cat_code])
+    if cat_code in news_basket_for_sections:
+        res = analyze_sector(cat_name, news_basket_for_sections[cat_code])
         if res: sections_data.append(res)
         time.sleep(2)
 
-# E. Genera Nuova Monografia
-print("🧠 Generazione Monografia...")
-new_monograph = generate_monograph(all_titles_flat)
+# E. Genera Nuova Monografia Accademica
+print("🧠 Generazione Monografia Accademica...")
+new_monograph = generate_monograph_academic(all_news_with_links)
+
+# Validazione risultato AI
 if isinstance(new_monograph, list): new_monograph = new_monograph[0]
 if isinstance(new_monograph, str): new_monograph = None
 
-# --- F. LOGICA ARCHIVIO (CRUCIALE) ---
-# 1. Recupera la monografia di "ieri" (quella che c'è attualmente nel file)
+# --- F. LOGICA ARCHIVIO ---
 old_monograph = current_db.get("monograph", {})
 
-# 2. Se è valida, spostala nell'archivio
+# Archivia solo se c'è un articolo valido
 if old_monograph and "title" in old_monograph and old_monograph["title"] != "Waiting for Data...":
     if "archive" not in current_db:
         current_db["archive"] = []
-    
-    # Inserisci in cima (indice 0)
     current_db["archive"].insert(0, old_monograph)
-    
-    # Mantieni solo gli ultimi 50
     current_db["archive"] = current_db["archive"][:50]
     print(f"✅ Archiviato articolo: {old_monograph['title']}")
 
-# 3. Assembla il DB Finale
+# G. Assembla il DB Finale
 final_db = {
     "ticker": ticker_data,
     "sections": sections_data,
-    "monograph": new_monograph if new_monograph else old_monograph, # Se l'AI fallisce, tieni il vecchio
-    "archive": current_db.get("archive", []), # L'archivio aggiornato
+    "monograph": new_monograph if new_monograph else old_monograph, # Se AI fallisce, mantieni vecchio
+    "archive": current_db.get("archive", []),
     "last_update": datetime.now().strftime("%d/%m/%Y %H:%M")
 }
 
-# G. Salva su file
+# H. Salva su file
 json_output = json.dumps(final_db, indent=4)
 with open("data.js", "w", encoding="utf-8") as f:
     f.write(f"const mshData = {json_output};")
