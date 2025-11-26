@@ -54,12 +54,25 @@ SOURCES = {
 
 # --- 3. FUNZIONI UTILITÀ ---
 def load_existing_data():
-    try:
-        with open("data.js", "r", encoding="utf-8") as f:
-            content = f.read().replace("const mshData = ", "").replace(";", "")
-            return json.loads(content)
-    except:
-        return {"ticker": [], "sections": [], "monograph": {}}
+    """Carica il database esistente per non perdere l'archivio"""
+    filename = "data.js"
+    if os.path.exists(filename):
+        try:
+            with open(filename, "r", encoding="utf-8") as f:
+                content = f.read()
+                # Rimuoviamo la parte JS per ottenere il JSON puro
+                json_str = content.replace("const mshData = ", "").rstrip(";")
+                return json.loads(json_str)
+        except Exception as e:
+            print(f"Errore caricamento dati esistenti: {e}")
+            
+    # Se fallisce o non esiste, ritorna struttura vuota
+    return {
+        "ticker": [], 
+        "sections": [], 
+        "monograph": {}, 
+        "archive": []
+    }
 
 def extract_json(text):
     try:
@@ -73,7 +86,6 @@ def extract_json(text):
 # --- 4. MOTORE FINANZIARIO (TICKER) ---
 def get_market_data():
     print("💰 Scarico Dati Finanziari...")
-    # Simboli: Oro, BTC, EURUSD, Petrolio, Nasdaq, FTSE MIB, Leonardo, Palantir
     tickers = ["GC=F", "BTC-USD", "EURUSD=X", "CL=F", "^IXIC", "FTSEMIB.MI", "LDO.MI", "PLTR"]
     names = {
         "GC=F": "GOLD", "BTC-USD": "BITCOIN", "EURUSD=X": "EUR/USD", 
@@ -83,10 +95,7 @@ def get_market_data():
     
     data = []
     try:
-        # Scarica dati (senza threads per evitare blocchi GitHub)
         stock_data = yf.download(tickers, period="2d", progress=False)['Close']
-        
-        # Scarica tasso cambio attuale per convertire in Euro se necessario
         eur_usd = stock_data["EURUSD=X"].iloc[-1]
 
         for sym in tickers:
@@ -95,13 +104,10 @@ def get_market_data():
                 price_prev = float(stock_data[sym].iloc[-2])
                 change = ((price_now - price_prev) / price_prev) * 100
                 
-                # Conversione in Euro approssimativa (se l'asset è in USD)
-                # Leonardo e FTSE sono già in EUR. EURUSD è un tasso.
                 is_usd = sym in ["GC=F", "BTC-USD", "CL=F", "^IXIC", "PLTR"]
                 display_price = price_now / eur_usd if is_usd else price_now
                 currency = "€"
                 
-                # Formattazione
                 trend = "up" if change >= 0 else "down"
                 arrow = "▲" if change >= 0 else "▼"
                 
@@ -115,7 +121,6 @@ def get_market_data():
                 pass
     except Exception as e:
         print(f"Errore Finanza: {e}")
-        # Dati fake di fallback se fallisce
         data = [{"name": "MARKET DATA", "price": "OFFLINE", "change": "-", "trend": "down"}]
     
     return data
@@ -123,9 +128,7 @@ def get_market_data():
 # --- 5. MOTORE AI (Multi-Sezione) ---
 def analyze_sector(sector_name, news_list):
     if not API_KEY or not news_list: return None
-    
     titles = "\n".join([f"- {n}" for n in news_list[:10]])
-    
     prompt = f"""
     Sei un analista senior di {sector_name}.
     Leggi questi titoli recenti:
@@ -149,8 +152,8 @@ def analyze_sector(sector_name, news_list):
 
 def generate_monograph(all_news):
     if not API_KEY: return None
-    # Mescola un po' tutto per la monografia
     context = "\n".join(all_news[:25])
+    today_date = datetime.now().strftime("%d %b %Y")
     
     prompt = f"""
     Sei il Direttore di 'Marte Strategic Horizon'.
@@ -158,16 +161,16 @@ def generate_monograph(all_news):
     News del giorno: {context}
     
     Compito: Scrivi un articolo approfondito che colleghi Intelligence, Tecnologia e Geopolitica.
-    Target: Professionisti, Militari, Business.
-    Stile: Accademico, Visionario.
+    Data di oggi: {today_date}
     
     JSON RICHIESTO:
     {{
         "title": "Titolo Strategico",
         "author": "Marte Intelligence Unit",
-        "readTime": "6 min",
-        "content": "<p>Testo HTML...</p>",
-        "references": ["Fonte reale 1", "Fonte reale 2"]
+        "date": "{today_date}",
+        "readTime": "6 min read",
+        "content": "<p>Testo HTML lungo e dettagliato...</p>",
+        "references": ["Fonte 1", "Fonte 2"]
     }}
     """
     try:
@@ -176,19 +179,21 @@ def generate_monograph(all_news):
     except:
         return None
 
-# --- 6. ESECUZIONE ---
+# --- 6. ESECUZIONE & ARCHIVIAZIONE ---
 print("--- STARTING MSH SYSTEM ---")
 
-# 1. Scarica Ticker
+# A. Carica dati esistenti per preservare l'archivio
+current_db = load_existing_data()
+
+# B. Scarica Nuovi Dati
 ticker_data = get_market_data()
 
-# 2. Scarica News per Categoria
+# C. Scarica News RSS
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 headers = {'User-Agent': 'Mozilla/5.0'}
-
-news_basket = {} # Dizionario {CATEGORIA: [titoli]}
+news_basket = {} 
 all_titles_flat = []
 
 for cat, urls in SOURCES.items():
@@ -206,7 +211,7 @@ for cat, urls in SOURCES.items():
         except:
             pass
 
-# 3. Genera Sezioni AI
+# D. Genera Sezioni AI
 sections_data = []
 categories_map = {
     "INTELLIGENCE": "Intelligence & Think Tanks (Focus Italia)",
@@ -215,33 +220,45 @@ categories_map = {
     "SANITA": "Sanità & Biotech",
     "MACRO": "Geopolitica Globale"
 }
-
 print("🧠 Analisi AI per Sezioni...")
 for cat_code, cat_name in categories_map.items():
     if cat_code in news_basket:
         res = analyze_sector(cat_name, news_basket[cat_code])
         if res: sections_data.append(res)
-        time.sleep(2) # Respiro per l'AI
+        time.sleep(2)
 
-# 4. Genera Monografia (Sempre)
+# E. Genera Nuova Monografia
 print("🧠 Generazione Monografia...")
-monograph_data = generate_monograph(all_titles_flat)
-if isinstance(monograph_data, list): monograph_data = monograph_data[0] # Fix lista
-if isinstance(monograph_data, str): monograph_data = None # Fix stringa
+new_monograph = generate_monograph(all_titles_flat)
+if isinstance(new_monograph, list): new_monograph = new_monograph[0]
+if isinstance(new_monograph, str): new_monograph = None
 
-# 5. Assembla e Salva
+# --- F. LOGICA ARCHIVIO (CRUCIALE) ---
+# 1. Recupera la monografia di "ieri" (quella che c'è attualmente nel file)
+old_monograph = current_db.get("monograph", {})
+
+# 2. Se è valida, spostala nell'archivio
+if old_monograph and "title" in old_monograph and old_monograph["title"] != "Waiting for Data...":
+    if "archive" not in current_db:
+        current_db["archive"] = []
+    
+    # Inserisci in cima (indice 0)
+    current_db["archive"].insert(0, old_monograph)
+    
+    # Mantieni solo gli ultimi 50
+    current_db["archive"] = current_db["archive"][:50]
+    print(f"✅ Archiviato articolo: {old_monograph['title']}")
+
+# 3. Assembla il DB Finale
 final_db = {
     "ticker": ticker_data,
     "sections": sections_data,
-    "monograph": monograph_data,
+    "monograph": new_monograph if new_monograph else old_monograph, # Se l'AI fallisce, tieni il vecchio
+    "archive": current_db.get("archive", []), # L'archivio aggiornato
     "last_update": datetime.now().strftime("%d/%m/%Y %H:%M")
 }
 
-# Fix per non rompere la monografia se fallisce
-if not final_db["monograph"]:
-    current = load_existing_data()
-    final_db["monograph"] = current.get("monograph", {})
-
+# G. Salva su file
 json_output = json.dumps(final_db, indent=4)
 with open("data.js", "w", encoding="utf-8") as f:
     f.write(f"const mshData = {json_output};")
