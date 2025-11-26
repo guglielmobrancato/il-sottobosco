@@ -15,67 +15,110 @@
             --ticker-bg: #000000;
             --up: #00cc66;
             --down: #ff3333;
+            --border: #ddd;
         }
-        body { margin: 0; font-family: 'Merriweather', serif; background: var(--bg); color: #333; }
+        
+        * { box-sizing: border-box; } /* Reset fondamentale per mobile */
+
+        body { margin: 0; font-family: 'Merriweather', serif; background: var(--bg); color: #333; overflow-x: hidden; }
         
         /* --- TICKER BAR --- */
-        .ticker-wrap { background: var(--ticker-bg); color: #fff; padding: 8px 0; font-family: 'JetBrains Mono', monospace; overflow: hidden; white-space: nowrap; border-bottom: 2px solid var(--accent); }
-        .ticker-item { display: inline-block; padding: 0 20px; font-size: 0.85rem; border-right: 1px solid #333; }
+        .ticker-wrap { background: var(--ticker-bg); color: #fff; padding: 10px 0; font-family: 'JetBrains Mono', monospace; overflow: hidden; white-space: nowrap; border-bottom: 2px solid var(--accent); position: relative; }
+        .ticker-item { display: inline-block; padding: 0 15px; font-size: 0.8rem; border-right: 1px solid #333; }
         .ticker-name { font-weight: bold; color: #aaa; margin-right: 5px; }
         .ticker-val { color: #fff; }
         .trend-up { color: var(--up); }
         .trend-down { color: var(--down); }
 
         /* --- HEADER --- */
-        header { background: var(--paper); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
-        .brand { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); text-transform: uppercase; letter-spacing: -1px; }
-        .brand span { color: var(--accent); }
-        .meta { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #666; text-transform: uppercase; font-weight: 600; }
+        header { background: var(--paper); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
+        .brand { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--dark); text-transform: uppercase; letter-spacing: -1px; line-height: 1.2; }
+        .brand span { color: var(--accent); display: inline-block; }
+        .meta { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #666; text-transform: uppercase; font-weight: 600; text-align: right; }
 
         /* --- LAYOUT --- */
-        .container { max-width: 1400px; margin: 30px auto; display: grid; grid-template-columns: 350px 1fr; gap: 40px; padding: 0 20px; }
+        .container { 
+            max-width: 1400px; 
+            margin: 30px auto; 
+            display: grid; 
+            grid-template-columns: 350px 1fr; /* Desktop default */
+            gap: 40px; 
+            padding: 0 20px; 
+        }
 
         /* --- SIDEBAR (SEZIONI VERTICALI) --- */
-        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .sidebar { display: flex; flex-direction: column; gap: 20px; order: 1; /* Desktop order */ }
         
-        .sector-card { background: var(--paper); border: 1px solid #ddd; padding: 20px; border-top: 4px solid var(--dark); }
-        .sector-title { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+        .sector-card { background: var(--paper); border: 1px solid var(--border); padding: 20px; border-top: 4px solid var(--dark); border-radius: 4px; }
+        .sector-title { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
         .sector-list { list-style: none; padding: 0; margin: 0; }
-        .sector-list li { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.4; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .sector-list li { margin-bottom: 12px; font-size: 0.9rem; line-height: 1.4; border-bottom: 1px solid #f4f4f4; padding-bottom: 8px; }
         .sector-list li:last-child { border: none; }
         
-        /* Stili specifici per card */
-        .card-intel { border-top-color: #8b0000; } /* Rosso Intelligence */
-        .card-science { border-top-color: #6600cc; } /* Viola Quantum */
-        .card-cinema { border-top-color: #ff9900; } /* Arancio Cinema */
+        /* Stili card specifiche */
+        .card-intel { border-top-color: #8b0000; } 
+        .card-science { border-top-color: #6600cc; } 
+        .card-cinema { border-top-color: #ff9900; } 
 
         /* --- MAIN (MONOGRAFIA) --- */
-        .main-content { background: var(--paper); padding: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--accent); }
-        .label { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        .mono-title { font-family: 'Inter', sans-serif; font-size: 3rem; margin: 0 0 20px 0; font-weight: 900; line-height: 1.1; letter-spacing: -1px; }
-        .mono-meta { font-family: 'Inter', sans-serif; color: #777; font-size: 0.9rem; margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .main-content { 
+            background: var(--paper); 
+            padding: 50px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+            border-top: 5px solid var(--accent); 
+            border-radius: 4px;
+            order: 2; /* Desktop order */
+        }
+        .label { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+        .mono-title { font-family: 'Inter', sans-serif; font-size: 2.5rem; margin: 0 0 20px 0; font-weight: 900; line-height: 1.1; letter-spacing: -1px; color: var(--dark); }
+        .mono-meta { font-family: 'Inter', sans-serif; color: #777; font-size: 0.85rem; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         
-        .article-body { font-size: 1.2rem; line-height: 1.8; color: #222; }
+        .article-body { font-size: 1.15rem; line-height: 1.8; color: #222; }
         .article-body p { margin-bottom: 1.5rem; }
-        .article-body h3 { font-family: 'Inter', sans-serif; margin-top: 2rem; }
+        .article-body h3 { font-family: 'Inter', sans-serif; margin-top: 2.5rem; font-weight: 800; font-size: 1.4rem; }
+        .article-body img { max-width: 100%; height: auto; border-radius: 4px; margin: 20px 0; }
+
+        /* --- ARCHIVIO --- */
+        .archive-section { grid-column: 1 / -1; margin-top: 40px; background: var(--dark); color: #fff; padding: 40px; border-radius: 4px; }
+        .archive-header { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 900; margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .archive-card { background: #222; padding: 20px; border: 1px solid #333; transition: 0.3s; cursor: pointer; border-radius: 4px; }
+        .archive-card:hover { border-color: var(--accent); background: #2a2a2a; transform: translateY(-2px); }
+        .arch-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #888; margin-bottom: 5px; display: block; }
+        .arch-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: #fff; line-height: 1.3; }
 
         /* FOOTER */
-        footer { text-align: center; padding: 40px; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888; margin-top: 50px; background: #111; }
-        
-        @media (max-width: 900px) { .container { grid-template-columns: 1fr; } .mono-title { font-size: 2rem; } }
+        footer { text-align: center; padding: 40px 20px; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888; margin-top: 50px; background: #111; border-top: 1px solid #222; }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 900px) {
+            .container { 
+                grid-template-columns: 1fr; /* Una sola colonna */
+                gap: 30px; 
+                margin: 20px auto;
+            }
+            .sidebar { order: 2; /* Sidebar VA SOTTO l'articolo su mobile */ }
+            .main-content { order: 1; padding: 25px; /* Meno padding laterale */ }
+            .mono-title { font-size: 1.8rem; }
+            .brand { font-size: 1.2rem; }
+            header { flex-direction: column; align-items: flex-start; }
+            .meta { text-align: left; width: 100%; margin-top: 5px; }
+            .ticker-item { font-size: 0.7rem; padding: 0 10px; }
+            .archive-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
     <div class="ticker-wrap">
         <div id="ticker-container">
-            <span class="ticker-item">LOADING FINANCIAL DATA...</span>
+            <span class="ticker-item">SYSTEM LOADING...</span>
         </div>
     </div>
 
     <header>
         <div class="brand">Marte <span>Strategic Horizon</span></div>
-        <div class="meta" id="update-time">LIVE INTELLIGENCE</div>
+        <div class="meta" id="update-time">INITIALIZING...</div>
     </header>
 
     <div class="container">
@@ -84,79 +127,134 @@
             <div class="sector-card">Loading Intelligence...</div>
         </aside>
 
-        <main class="main-content" id="monograph-container">
-            <h1 class="mono-title">Initializing System...</h1>
+        <main class="main-content">
+            <div id="monograph-container">
+                <h1 class="mono-title">Waiting for Data...</h1>
+            </div>
         </main>
+
+        <section class="archive-section" id="archive-section">
+            <div class="archive-header"><i class="fas fa-archive"></i> CLASSIFIED ARCHIVES</div>
+            <div class="archive-grid" id="archive-container">
+                </div>
+        </section>
 
     </div>
 
     <footer>
-        &copy; 2025 Marte Strategic Horizon. Powered by Marte Studios. <br>
+        &copy; 2025 Marte Strategic Horizon. Powered by Marte Studios.<br>
         Global Intelligence • Rome • New York • Tokyo
     </footer>
 
     <script src="data.js"></script>
+
     <script>
-        if (typeof mshData !== 'undefined') {
-            
-            // 1. POPOLA TICKER
-            const tickCont = document.getElementById('ticker-container');
-            if (mshData.ticker && mshData.ticker.length > 0) {
-                tickCont.innerHTML = "";
-                // Duplichiamo i dati per fare scena (o scorrimento in futuro)
-                mshData.ticker.forEach(item => {
-                    const trendClass = item.trend === 'up' ? 'trend-up' : 'trend-down';
-                    tickCont.innerHTML += `
-                        <div class="ticker-item">
-                            <span class="ticker-name">${item.name}</span>
-                            <span class="ticker-val">${item.price}</span>
-                            <span class="${trendClass}">${item.change}</span>
-                        </div>
-                    `;
-                });
-            }
-
-            // 2. POPOLA SEZIONI LATERALI
-            const sectCont = document.getElementById('sections-container');
-            if (mshData.sections) {
-                sectCont.innerHTML = "";
-                mshData.sections.forEach(sec => {
-                    // Scegli icona e colore in base al titolo
-                    let icon = "fa-layer-group";
-                    let extraClass = "";
-                    if(sec.title.includes("Intelligence")) { icon = "fa-user-secret"; extraClass = "card-intel"; }
-                    if(sec.title.includes("Quantum")) { icon = "fa-atom"; extraClass = "card-science"; }
-                    if(sec.title.includes("Cinema")) { icon = "fa-film"; extraClass = "card-cinema"; }
-                    if(sec.title.includes("Sanità")) { icon = "fa-heartbeat"; }
-
-                    let listHtml = sec.items.map(i => `<li>${i}</li>`).join('');
-                    
-                    sectCont.innerHTML += `
-                        <div class="sector-card ${extraClass}">
-                            <div class="sector-title"><i class="fas ${icon}"></i> ${sec.title}</div>
-                            <ul class="sector-list">${listHtml}</ul>
-                        </div>
-                    `;
-                });
-            }
-
-            // 3. POPOLA MONOGRAFIA
+        // Funzione helper per caricare un articolo (Corrente o Archivio)
+        function renderArticle(articleData) {
             const monoCont = document.getElementById('monograph-container');
-            if (mshData.monograph) {
-                const m = mshData.monograph;
+            
+            // Animazione fade-out/in
+            monoCont.style.opacity = '0.5';
+            
+            setTimeout(() => {
                 monoCont.innerHTML = `
-                    <span class="label">Daily Strategic Analysis</span>
-                    <h1 class="mono-title">${m.title}</h1>
-                    <div class="mono-meta">By <strong>${m.author}</strong> • Read time: ${m.readTime}</div>
-                    <div class="article-body">${m.content}</div>
+                    <span class="label">Strategic Analysis // ${articleData.date || 'CURRENT'}</span>
+                    <h1 class="mono-title">${articleData.title}</h1>
+                    <div class="mono-meta">
+                        <span>By <strong>${articleData.author}</strong></span>
+                        <span><i class="far fa-clock"></i> ${articleData.readTime}</span>
+                    </div>
+                    <div class="article-body">${articleData.content}</div>
                 `;
-            }
-
-            // Data aggiornamento
-            if (mshData.last_update) {
-                document.getElementById('update-time').innerText = "UPDATED: " + mshData.last_update;
-            }
+                monoCont.style.opacity = '1';
+                monoCont.style.transition = 'opacity 0.3s';
+                
+                // Scroll in cima all'articolo su mobile
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+            }, 200);
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof mshData !== 'undefined') {
+                
+                // 1. POPOLA TICKER
+                const tickCont = document.getElementById('ticker-container');
+                if (mshData.ticker && mshData.ticker.length > 0) {
+                    tickCont.innerHTML = "";
+                    // Duplichiamo 4 volte per simulare un loop lungo
+                    const loopData = [...mshData.ticker, ...mshData.ticker, ...mshData.ticker, ...mshData.ticker];
+                    loopData.forEach(item => {
+                        const trendClass = item.trend === 'up' ? 'trend-up' : 'trend-down';
+                        const trendIcon = item.trend === 'up' ? '▲' : '▼';
+                        tickCont.innerHTML += `
+                            <div class="ticker-item">
+                                <span class="ticker-name">${item.name}</span>
+                                <span class="ticker-val">${item.price}</span>
+                                <span class="${trendClass}" style="margin-left:5px;">${trendIcon} ${item.change}</span>
+                            </div>
+                        `;
+                    });
+                }
+
+                // 2. POPOLA SIDEBAR (SEZIONI)
+                const sectCont = document.getElementById('sections-container');
+                if (mshData.sections) {
+                    sectCont.innerHTML = "";
+                    mshData.sections.forEach(sec => {
+                        let icon = "fa-layer-group";
+                        let extraClass = "";
+                        // Logica icone automatica
+                        if(sec.title.includes("Intelligence") || sec.title.includes("Geopolitica")) { icon = "fa-globe-americas"; extraClass = "card-intel"; }
+                        if(sec.title.includes("Quantum") || sec.title.includes("Tech")) { icon = "fa-microchip"; extraClass = "card-science"; }
+                        if(sec.title.includes("Cinema") || sec.title.includes("Media")) { icon = "fa-film"; extraClass = "card-cinema"; }
+                        
+                        let listHtml = sec.items.map(i => `<li>${i}</li>`).join('');
+                        
+                        sectCont.innerHTML += `
+                            <div class="sector-card ${extraClass}">
+                                <div class="sector-title"><i class="fas ${icon}"></i> ${sec.title}</div>
+                                <ul class="sector-list">${listHtml}</ul>
+                            </div>
+                        `;
+                    });
+                }
+
+                // 3. CARICA ARTICOLO PRINCIPALE (Default)
+                if (mshData.monograph) {
+                    // Aggiungiamo data corrente se manca
+                    if(!mshData.monograph.date) mshData.monograph.date = new Date().toLocaleDateString();
+                    renderArticle(mshData.monograph);
+                }
+
+                // 4. POPOLA ARCHIVIO
+                const archCont = document.getElementById('archive-container');
+                // Controlliamo se esiste l'array archive in mshData
+                if (mshData.archive && mshData.archive.length > 0) {
+                    archCont.innerHTML = "";
+                    mshData.archive.forEach((item, index) => {
+                        // Creiamo un elemento cliccabile
+                        const card = document.createElement('div');
+                        card.className = 'archive-card';
+                        card.innerHTML = `
+                            <span class="arch-date">${item.date}</span>
+                            <div class="arch-title">${item.title}</div>
+                        `;
+                        // Al click, carica questo articolo nel main
+                        card.onclick = function() {
+                            renderArticle(item);
+                        };
+                        archCont.appendChild(card);
+                    });
+                } else {
+                    archCont.innerHTML = "<div style='color:#666; font-style:italic;'>No archives classified.</div>";
+                }
+
+                // 5. META INFO
+                if (mshData.last_update) {
+                    document.getElementById('update-time').innerHTML = '<i class="fas fa-satellite-dish" style="color:var(--accent)"></i> LIVE: ' + mshData.last_update;
+                }
+            }
+        });
     </script>
 </body>
 </html>
