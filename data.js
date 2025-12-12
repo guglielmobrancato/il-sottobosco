@@ -2,26 +2,26 @@ const mshData = {
     "ticker": [
         {
             "name": "GOLD",
-            "price": "\u20ac 3,622.74",
-            "change": "\u25b2 1.03%",
+            "price": "\u20ac 3,675.42",
+            "change": "\u25b2 0.71%",
             "trend": "up"
         },
         {
             "name": "BITCOIN",
-            "price": "\u20ac 77,069.41",
-            "change": "\u25bc 1.99%",
+            "price": "\u20ac 78,653.49",
+            "change": "\u25bc 0.16%",
             "trend": "down"
         },
         {
             "name": "EUR/USD",
             "price": "\u20ac 1.17",
-            "change": "\u25b2 0.64%",
+            "change": "\u25b2 0.35%",
             "trend": "up"
         },
         {
             "name": "OIL",
-            "price": "\u20ac 49.57",
-            "change": "\u25bc 0.77%",
+            "price": "\u20ac nan",
+            "change": "\u25bc nan%",
             "trend": "down"
         },
         {
@@ -53,33 +53,33 @@ const mshData = {
         {
             "title": "Intelligence & Think Tank - Focus Italia",
             "items": [
-                "Sindacato: Cresce la tensione sociale, Landini intensifica la retorica di mobilitazione (startmag.it).",
-                "Pensioni: Proposte Durigon sollevano dubbi, nodo previdenziale resta critico per la sostenibilit\u00e0 (startmag.it).",
-                "Censis: Quadro Italia rivela incertezza e preoccupazioni diffuse tra i cittadini (startmag.it)."
+                "Landini vs. Mattarella: Tensioni sindacali interne; potenziale impatto sulla stabilit\u00e0 politica.",
+                "Tajani e Forza Italia: Frizioni interne al partito; possibili ripercussioni sulla coalizione di governo.",
+                "Italia-USA: Rapporti bilaterali solidi; cooperazione strategica (difesa, spazio) rafforzata."
             ]
         },
         {
-            "title": "Quantum Tech & Physics - Intelligence Briefing (Italia)",
+            "title": "Quantum Tech & Physics - Strategic Implications Scan",
             "items": [
-                "Ocean Artico: Impatto antropico crescente, implicazioni geopolitiche per rotte commerciali e risorse naturali, potenzialmente rilevanti per interessi italiani in Mediterraneo e oltre.",
-                "Pandemia ricci di mare: Isole Canarie hotspot, rischio per biodiversit\u00e0 marina e settori pesca/turismo in aree vulnerabili come il Mediterraneo, necessita monitoraggio e contromisure.",
-                "Rewilding: Impatto positivo su ambiente e societ\u00e0 evidenziato; replicabilit\u00e0 e adattabilit\u00e0 del modello a contesti italiani (es. Appennini) da valutare per sviluppo sostenibile e resilienza climatica."
+                "Mosasaurs freshwater tolerance hints at potential for adapting to climate change impacts on aquatic ecosystems; implications for understanding future biodiversity resilience, crucial given Italian coastal vulnerabilities.",
+                "Australian social media restrictions precedent potentially impacting information access & discourse, raises concerns about Italian digital sovereignty & citizen engagement in the face of growing disinformation threats.",
+                "Holocaust denial prevalence on social media necessitates proactive educational initiatives combating misinformation, mirroring similar challenges in Italy regarding historical revisionism & online radicalization; requires robust digital literacy programs."
             ]
         },
         {
-            "title": "Healthcare & Biotech - Focus Italia",
+            "title": "Sanit\u00e0 & Biotech: Focus Italia",
             "items": [
-                "Oncologia: Desametasone riaccende risposta a terapie ormonali nel cancro al seno (cortisolo correlato).",
-                "Screening neonatale: Abruzzo all'avanguardia con screening su 56 malattie rare da singola goccia di sangue.",
-                "Innovazione chirurgica: Italia pioniere nell'uso di robot chirurgico con sensibilit\u00e0 tattile."
+                "Cancro al seno: Desametasone riaccende risposta a terapie ormonali (studio)",
+                "Abruzzo: Screening neonatale anticipa diagnosi per 56 malattie rare.",
+                "Italia: Chirurgia robotica all'avanguardia con robot a sensibilit\u00e0 tattile; AIFA si sposta a Milano."
             ]
         },
         {
-            "title": "Geopolitical Intelligence Briefing - Italy Focus",
+            "title": "Geopolitical Flash Report - Focus Italia",
             "items": [
-                "Venezuela: escalating tensions US seizes oil tanker, Nobel laureate emerges from hiding, impacting global oil markets and potentially influencing Italian energy security strategies.",
-                "US-EU relations: Italian media reports US strategy to distance Italy from other EU nations, possibly affecting Italian foreign policy and EU cohesion on key issues like Ukraine and China.",
-                "Trump's Foreign Policy: Potential shifts in US-Europe relations with proposed US-Zelensky meeting and new US immigration policies may impact Italian diplomacy, migration flows and security concerns."
+                "NATO: Segretario Generale Rutte avverte rischio attacco russo entro 5 anni; implicazioni sicurezza Europa e postura italiana.",
+                "Ucraina: Trump apre a negoziati e assistenza a Kiev; possibile impatto su strategia UE e supporto italiano.",
+                "USA vs. Venezuela: Sanzioni USA su petroliere; possibili conseguenze su approvvigionamenti energetici e prezzi in Italia."
             ]
         }
     ],
@@ -123,6 +123,45 @@ const mshData = {
         ]
     },
     "archive": [
+        {
+            "title": "Analisi Strategica Multidimensionale: Convergenze Geopolitiche, Socio-Economiche e Tecnologiche nel Panorama Globale del 2025",
+            "author": "Marte Research Dept.",
+            "date": "11 Dec 2025",
+            "readTime": "12 min read",
+            "content": "<p><b>Abstract:</b> Il presente documento analizza le interconnessioni tra eventi geopolitici, socio-economici e tecnologici che stanno plasmando il panorama globale alla fine del 2025. L'analisi si concentra su aree di tensione come l'Asia, il Venezuela e l'Europa, esaminando le dinamiche interne e le proiezioni future, con un'attenzione particolare all'impatto di tali dinamiche sulle strategie a lungo termine.</p>\n\n<h3>Analisi del Contesto Storico</h3>\n\n<p>Il 2025 \u00e8 caratterizzato da una crescente instabilit\u00e0 geopolitica. Le tensioni nei <a href='https://formiche.net/2025/12/tensione-nei-cieli-asiatici-lultimo-allarme-su-mosca-e-pechino/'>cieli asiatici</a>, che vedono coinvolti Mosca e Pechino, segnalano un riallineamento delle alleanze e un potenziale aumento del rischio di conflitti regionali. Parallelamente, la situazione in <a href='https://www.ilsole24ore.com/art/venezuela-trump-abbiamo-sequestrato-grande-petroliera-AIWTSwL'>Venezuela</a>, con il sequestro di una petroliera da parte degli USA, evidenzia la continua competizione per le risorse e l'influenza nella regione. Questa azione \u00e8 stata definita un <a href='https://www.bbc.com/news/articles/c1w9lg11jw0o'>'atto di pirateria'</a> da Caracas. Sul fronte europeo, emergono segnali di divergenza tra gli <a href='https://www.ilsole24ore.com/art/usa-vogliono-allontanare-italia-altri-paesi-ue-AIpH1wL'>USA e alcuni paesi dell'UE</a>, sollevando interrogativi sulla solidit\u00e0 dell'alleanza transatlantica.</p>\n\n<p>In Italia, il dibattito politico interno \u00e8 acceso. Le <a href='https://www.startmag.it/mondo/vi-racconto-le-ultime-sparate-scioperaiole-di-landini/'>'sparate scioperaiole' di Landini</a> riflettono le preoccupazioni del mondo del lavoro in un contesto di trasformazione economica e sociale. Contestualmente, le discussioni sulle <a href='https://www.startmag.it/economia/durigon-proposte-pensioni/'>pensioni</a> continuano a polarizzare l'opinione pubblica, evidenziando le sfide legate alla sostenibilit\u00e0 del sistema previdenziale.</p>\n\n<h3>Sviluppi Tecnici/Strategici</h3>\n\n<p>Sul fronte tecnologico, la corsa alla <a href='https://formiche.net/2025/12/tecnologia-quantistica-report-ecipe/'>tecnologia quantistica</a> si intensifica, con implicazioni significative per la sicurezza, la comunicazione e la computazione.  Parallelamente, l'Italia sta facendo progressi significativi nel campo della <a href='https://www.insalutenews.it/in-salute/chirurgia-robotica-litalia-fa-storia-tre-interventi-complessi-con-il-primo-robot-dotato-di-sensibilita-tattile/?utm_source=rss&utm_medium=rss&utm_campaign=chirurgia-robotica-litalia-fa-storia-tre-interventi-complessi-con-il-primo-robot-dotato-di-sensibilita-tattile'>chirurgia robotica</a>, con l'introduzione di robot dotati di sensibilit\u00e0 tattile, aprendo nuove frontiere nella medicina.</p>\n\n<p>Dal punto di vista strategico, il <a href='https://formiche.net/2025/12/african-lion-non-e-solo-unesercitazione-perche-il-marocco-e-diventato-strategico/'>Marocco</a> sta assumendo un ruolo sempre pi\u00f9 rilevante, come dimostra l'esercitazione African Lion, sottolineando l'importanza crescente del Nord Africa negli equilibri geopolitici globali. Inoltre, iniziative come <a href='https://formiche.net/2025/12/italia-e-america250-intesa/'>Italia e America250</a> rafforzano le alleanze strategiche, basate su una memoria condivisa e proiettate verso il futuro.</p>\n\n<h3>Conclusioni Prospettiche</h3>\n\n<p>Il 2025 si presenta come un anno di transizione, caratterizzato da incertezze e opportunit\u00e0. La capacit\u00e0 di comprendere e gestire le interconnessioni tra dinamiche geopolitiche, socio-economiche e tecnologiche sar\u00e0 fondamentale per affrontare le sfide future. In particolare, sar\u00e0 cruciale monitorare l'evoluzione delle tensioni in Asia e in Venezuela, le dinamiche interne all'UE e la competizione tecnologica globale. L'Italia, in questo contesto, dovr\u00e0 rafforzare le proprie alleanze strategiche, investire in innovazione e promuovere politiche economiche e sociali sostenibili.</p>\n\n<p>La situazione interna Italiana \u00e8 fotografata dal <a href='https://www.startmag.it/economia/come-sta-litalia-e-cosa-pensano-gli-italiani-ecco-cosa-dice-il-censis/'>Censis</a> che ci offre un quadro di cosa pensano gli Italiani.</p>\n\n<h3>Bibliografia</h3>\n",
+            "references": [
+                "Vi racconto le ultime sparate scioperaiole di Landini | URL: https://www.startmag.it/mondo/vi-racconto-le-ultime-sparate-scioperaiole-di-landini/",
+                "Perch\u00e9 Durigon non mi convince sulle pensioni | URL: https://www.startmag.it/economia/durigon-proposte-pensioni/",
+                "Come sta l\u2019Italia? E cosa pensano gli italiani? Ecco cosa dice il Censis | URL: https://www.startmag.it/economia/come-sta-litalia-e-cosa-pensano-gli-italiani-ecco-cosa-dice-il-censis/",
+                "Tutti i passi della Germania per la protezione dell\u2019alto mare | URL: https://www.startmag.it/mondo/germania-alto-mare/",
+                "I biglietti di Natale di Bossi raccontano la storia della Lega (e quella del Senat\u00f9r) | URL: https://www.startmag.it/mondo/umberto-bossi-biglietto-auguri-natale-2025/",
+                "Ecco chi corre (e chi no) sulla tecnologia quantistica. Report Ecipe | URL: https://formiche.net/2025/12/tecnologia-quantistica-report-ecipe/",
+                "Dalla Difesa europea alla costruzione del Paese. L\u2019attualit\u00e0 di De Gasperi spiegata da Mannino | URL: https://formiche.net/2025/12/difesa-europea-costruzione-del-paese-de-gasperi-mannino/",
+                "Italia e America250, un\u2019intesa che lega memoria, alleanza e futuro strategico | URL: https://formiche.net/2025/12/italia-e-america250-intesa/",
+                "Tensione nei cieli asiatici. L\u2019ultimo allarme su Mosca e Pechino | URL: https://formiche.net/2025/12/tensione-nei-cieli-asiatici-lultimo-allarme-su-mosca-e-pechino/",
+                "African Lion non \u00e8 solo un\u2019esercitazione. Perch\u00e9 il Marocco \u00e8 diventato strategico | URL: https://formiche.net/2025/12/african-lion-non-e-solo-unesercitazione-perche-il-marocco-e-diventato-strategico/",
+                "Research finds Indigenous peoples face unique challenges at work\u2014but also reveals what can help | URL: https://phys.org/news/2025-12-indigenous-peoples-unique-reveals.html",
+                "On a typical school day, 11% of students are absent. How can Australia fix this? | URL: https://phys.org/news/2025-12-typical-school-day-students-absent.html",
+                "Canary Islands may be 'missing link' in global sea urchin killer pandemic | URL: https://phys.org/news/2025-12-canary-islands-link-global-sea.html",
+                "New report highlights positive impact of rewilding project on people and nature | URL: https://phys.org/news/2025-12-highlights-positive-impact-rewilding-people.html",
+                "How are humans changing the Arctic Ocean? | URL: https://phys.org/news/2025-12-humans-arctic-ocean.html",
+                "Il cortisolo frena il cancro al seno: il desametasone riaccende la risposta alle terapie ormonali | URL: https://www.insalutenews.it/in-salute/il-cortisolo-frena-il-cancro-al-seno-il-desametasone-riaccende-la-risposta-alle-terapie-ormonali/?utm_source=rss&utm_medium=rss&utm_campaign=il-cortisolo-frena-il-cancro-al-seno-il-desametasone-riaccende-la-risposta-alle-terapie-ormonali",
+                "Rifiuti radioattivi e decommissioning: l\u2019Europa cerca regole comuni con HARPERS | URL: https://www.insalutenews.it/in-salute/rifiuti-radioattivi-e-decommissioning-leuropa-cerca-regole-comuni-con-harpers/?utm_source=rss&utm_medium=rss&utm_campaign=rifiuti-radioattivi-e-decommissioning-leuropa-cerca-regole-comuni-con-harpers",
+                "Una goccia di sangue per salvare una vita: l\u2019Abruzzo anticipa i tempi con lo screening su 56 malattie rare | URL: https://www.insalutenews.it/in-salute/una-goccia-di-sangue-per-salvare-una-vita-labruzzo-anticipa-i-tempi-con-lo-screening-su-56-malattie-rare/?utm_source=rss&utm_medium=rss&utm_campaign=una-goccia-di-sangue-per-salvare-una-vita-labruzzo-anticipa-i-tempi-con-lo-screening-su-56-malattie-rare",
+                "Chirurgia robotica, l\u2019Italia fa storia: tre interventi complessi con il primo robot dotato di sensibilit\u00e0 tattile | URL: https://www.insalutenews.it/in-salute/chirurgia-robotica-litalia-fa-storia-tre-interventi-complessi-con-il-primo-robot-dotato-di-sensibilita-tattile/?utm_source=rss&utm_medium=rss&utm_campaign=chirurgia-robotica-litalia-fa-storia-tre-interventi-complessi-con-il-primo-robot-dotato-di-sensibilita-tattile",
+                "Milano capitale del farmaco: AIFA esce da Roma e apre una nuova stagione di cooperazione regionale | URL: https://www.insalutenews.it/in-salute/milano-capitale-del-farmaco-aifa-esce-da-roma-e-apre-una-nuova-stagione-di-cooperazione-regionale/?utm_source=rss&utm_medium=rss&utm_campaign=milano-capitale-del-farmaco-aifa-esce-da-roma-e-apre-una-nuova-stagione-di-cooperazione-regionale",
+                "Venezuelan Nobel winner emerges to collect prize in Oslo after months in hiding | URL: https://www.bbc.com/news/articles/c0q5p43qgl1o?at_medium=RSS&at_campaign=rss",
+                "US seizes oil tanker off Venezuela as Caracas condemns 'act of piracy' | URL: https://www.bbc.com/news/articles/c1w9lg11jw0o?at_medium=RSS&at_campaign=rss",
+                "Indigenous deaths in custody in Australia hit highest level since 1980 | URL: https://www.bbc.com/news/articles/ckgkykywp58o?at_medium=RSS&at_campaign=rss",
+                "Goa nightclub owners held in Thailand over deadly fire | URL: https://www.bbc.com/news/articles/c04vgxk0613o?at_medium=RSS&at_campaign=rss",
+                "Trump launches $1m 'gold card' immigration visas | URL: https://www.bbc.com/news/articles/cj4q1lddj8go?at_medium=RSS&at_campaign=rss",
+                "Usa vogliono allontanare Italia dagli altri Paesi Ue | URL: https://www.ilsole24ore.com/art/usa-vogliono-allontanare-italia-altri-paesi-ue-AIpH1wL",
+                "Venezuela, Trump: abbiamo sequestrato una grande petroliera | URL: https://www.ilsole24ore.com/art/venezuela-trump-abbiamo-sequestrato-grande-petroliera-AIWTSwL",
+                "Trump: \u00abGli europei vogliono un incontro con noi e Zelensky nel fine settimana\u00bb | URL: https://www.ilsole24ore.com/art/trump-gli-europei-vogliono-incontro-noi-e-zelensky-fine-settimana-AIfIFkL",
+                "La Fed taglia i tassi di un quarto di punto, ma si prepara per una pausa | URL: https://www.ilsole24ore.com/art/la-fed-taglia-tassi-25-punti-base-350percento-375percento-come-atteso-AIHPVXL",
+                "Eileen Higgins, la prima sindaca democratica di Miami in 30 anni: la vittoria della \u201cGringa\u201d in una citt\u00e0 ispanica | URL: https://www.ilsole24ore.com/art/eileen-higgins-rompe-dominio-repubblicano-primo-sindaco-democratico-miami-trenta-anni-AImSDML"
+            ]
+        },
         {
             "title": "Geopolitica Terrestre nel 2025: Convergenze di Crisi e Prospettive Strategiche per la Pianificazione Extraterrestre",
             "author": "Marte Research Dept.",
@@ -484,5 +523,5 @@ const mshData = {
             ]
         }
     ],
-    "last_update": "11/12/2025 07:41"
+    "last_update": "12/12/2025 07:41"
 };
