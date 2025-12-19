@@ -2,27 +2,27 @@ const mshData = {
     "ticker": [
         {
             "name": "GOLD",
-            "price": "\u20ac 3,716.70",
-            "change": "\u25b2 0.41%",
+            "price": "\u20ac 3,717.00",
+            "change": "\u25b2 0.35%",
             "trend": "up"
         },
         {
             "name": "BITCOIN",
-            "price": "\u20ac 73,873.28",
-            "change": "\u25b2 0.72%",
+            "price": "\u20ac 74,945.52",
+            "change": "\u25b2 2.73%",
             "trend": "up"
         },
         {
             "name": "EUR/USD",
             "price": "\u20ac 1.17",
-            "change": "\u25bc 0.04%",
+            "change": "\u25bc 0.23%",
             "trend": "down"
         },
         {
             "name": "OIL",
-            "price": "\u20ac 47.95",
-            "change": "\u25b2 0.68%",
-            "trend": "up"
+            "price": "\u20ac 47.68",
+            "change": "\u25bc 0.52%",
+            "trend": "down"
         },
         {
             "name": "NASDAQ",
@@ -53,76 +53,95 @@ const mshData = {
         {
             "title": "Intelligence & Think Tank - Focus Italia",
             "items": [
-                "Assoluzione Salvini (Open Arms): Implicazioni politiche interne, ripercussioni su flussi migratori e narrazione pubblica.",
-                "FCAS: Futuro incerto programma caccia sesta generazione franco-tedesco-spagnolo. Rischi per autonomia strategica europea e ruolo Italia.",
-                "Competitivit\u00e0 Italia: Focus su liberalismo e biotech per colmare divario con USA e Cina. Necessit\u00e0 di nuove politiche e investimenti."
+                "Asset Russi: Impatto differenziato in UE su prestito a Ucraina; implicazioni economiche e politiche per l'Italia.",
+                "FCAS: Futuro del progetto franco-tedesco-spagnolo per caccia di sesta generazione; ruolo e benefici potenziali per l'industria della difesa italiana (es. Leonardo).",
+                "Migrazioni e Sicurezza: Progressi al Consiglio Europeo; implicazioni per gestione flussi migratori e sicurezza nazionale italiana."
             ]
         },
         {
-            "title": "Quantum Tech & Physics - Strategic Implications Scan",
+            "title": "Quantum Tech & Physics - Intelligence Briefing (Italia)",
             "items": [
-                "Gentrification in Spanish cities could impact future tech talent pools relocating for Italian R&D; potential for social instability risk.",
-                "Debate on 'nudges' reflects wider concern on algorithmic governance; Italian regulators should monitor ethical AI implementation for public trust.",
-                "Need for contextualization of extreme views applies to quantum misinformation; Italian security agencies must proactively counter disinformation targeting quantum tech development."
+                "Tagli alla scienza USA nel 2025: Potenziali ripercussioni su collaborazioni internazionali e brain drain verso l'Italia (considerare opportunit\u00e0 di reclutamento).",
+                "Impatto sociale: Aumento solitudine e difficolt\u00e0 economiche (USA, Australia). Implicazioni per il benessere mentale e possibile aumento della domanda di servizi sociali, anche in Italia.",
+                "Fallimento test scolastici precoci: Necessaria rivalutazione delle metodologie di valutazione nell'istruzione italiana per evitare sprechi di risorse e focalizzarsi su interventi efficaci."
             ]
         },
         {
-            "title": "Sanit\u00e0 & Biotech: Focus Italia - Innovazione e Sviluppi Chiave",
+            "title": "Sanit\u00e0 & Biotech - Intelligence Italia",
             "items": [
-                "Telechirurgia: Ospedale di Baggiovara (Modena) pioniere in interventi transfrontalieri (Italia-Polonia), aprendo nuove frontiere per la chirurgia a distanza.",
-                "Oncologia: IA identifica molecola RNA che potenzia chemioterapia per cancro al pancreas, promettendo riduzione dosaggi e maggiore efficacia (sviluppo italiano).",
-                "Neuroscienze: Studio italiano rivela meccanismi alla base della percezione tattile, con implicazioni per la comprensione e il trattamento di disturbi neurologici e sviluppo test su NGF (Rita Levi-Montalcini) per paralisi cerebrale infantile al Gemelli."
+                "Antibiotico-resistenza: Sorveglianza chiave per la governance efficace del fenomeno in Italia.",
+                "SSN: Il GIMBE evidenzia che la 'carenza' di medici \u00e8 una narrazione errata, con 93mila medici fuori dal sistema pubblico.",
+                "Salute & Disuguaglianze: Povert\u00e0 impatta negativamente su salute, invecchiamento e longevit\u00e0 in Italia."
             ]
         },
         {
-            "title": "Geopolitica Globale: Sintesi Intelligence",
+            "title": "Geopolitical Rapid Scan - Focus Italia",
             "items": [
-                "Australia: giro di vite su hate speech post-attacco Bondi, impatto sociale e politico interno.",
-                "UE: vertice cruciale su utilizzo asset russi congelati per Ucraina; si valuta emissione debito comune.",
-                "Tensioni Cina-Giappone: ritiro panda da Tokyo, escalation diplomatica con implicazioni economiche per l'Italia (es. export alimentare)."
+                "UE: Ok a prestito di 90 miliardi all'Ucraina (esclusi asset russi). Posizione italiana pro-cautela legale (Meloni). Impatto sul debito pubblico italiano da monitorare.",
+                "USA: Sparatorie Brown/MIT. Sospetto suicida. Rilevanza: clima sociale USA, rischio emulazione, implicazioni sicurezza per cittadini italiani all'estero.",
+                "Australia: Dopo attacco Bondi, nuovo programma di riacquisto armi. Rilevanza: dibattito italiano sul controllo armi, confronto modelli internazionali."
             ]
         }
     ],
     "monograph": {
-        "title": "Analisi Strategica Multidimensionale: Convergenze Geopolitiche, Tecnologiche e Socio-culturali nel 2025",
+        "title": "Geopolitica Globale nel 2025: Convergenze Strategiche e Resilienza Tecno-Economica",
         "author": "Marte Research Dept.",
-        "date": "18 Dec 2025",
+        "date": "19 Dec 2025",
         "readTime": "12 min read",
-        "content": "<h3>Introduzione (Abstract)</h3>\n<p>Il presente documento analizza le interconnessioni tra eventi geopolitici, sviluppi tecnologici e dinamiche socio-culturali che caratterizzano lo scenario globale alla fine del 2025. L'analisi si concentra su aree tematiche quali sicurezza internazionale, competizione economica, evoluzione normativa e progressi scientifici, con l'obiettivo di identificare tendenze di lungo periodo e potenziali punti di svolta strategici.</p>\n\n<h3>Analisi del Contesto Storico</h3>\n<p>Il contesto storico attuale \u00e8 caratterizzato da una crescente multipolarit\u00e0, con una competizione strategica accentuata tra potenze consolidate e nuove economie emergenti. La crisi in Ucraina, con le sue implicazioni per la sicurezza europea, continua a rappresentare un elemento di instabilit\u00e0, con l'Unione Europea che discute l'utilizzo di <a href='https://www.bbc.com/news/articles/c9vjlj1ezpgo?at_medium=RSS&at_campaign=rss'>asset russi congelati</a>. Parallelamente, si assiste a un riallineamento delle alleanze globali, come evidenziato dalle tensioni tra Cina e Giappone, che si manifestano anche attraverso la restituzione dei <a href='https://www.ilsole24ore.com/art/anche-panda-crisi-cina-giappone-pechino-si-riprende-ultimi-esemplari-zoo-tokyo-AIxb03S'>panda</a> allo zoo di Tokyo. La Cina continua la sua espansione economica e strategica, come dimostra l'interesse per le <a href='https://www.startmag.it/mondo/guinea-miniera-simandou-cina/'>risorse minerarie della Guinea</a>. Sul fronte interno, in Italia si discute di una <a href='https://formiche.net/2025/12/la-nuova-legge-elettorale-potrebbe-convenire-anche-a-schlein-parla-petruccioli/'>nuova legge elettorale</a> che potrebbe avere implicazioni significative per la stabilit\u00e0 politica del paese.</p>\n\n<h3>Sviluppi Tecnici/Strategici</h3>\n<p>Gli sviluppi tecnologici rivestono un ruolo cruciale nella competizione globale. In ambito militare, il <a href='https://www.startmag.it/spazio-e-difesa/che-succedera-al-fcas-il-progetto-franco-tedesco-spagnolo-per-il-caccia-di-sesta-generazione/'>progetto franco-tedesco-spagnolo per il caccia di sesta generazione (FCAS)</a> rappresenta un tentativo di mantenere la superiorit\u00e0 tecnologica europea, mentre gli Stati Uniti continuano a investire massicciamente in armamenti per Taiwan, con una <a href='https://www.ilsole24ore.com/art/taiwan-mega-commessa-armi-111-miliardi-dollari-usa-AILtryS'>mega commessa di armi da 11,1 miliardi di dollari</a>. Nel settore biotecnologico, l'Europa cerca di colmare il divario con Stati Uniti e Cina attraverso iniziative come il <a href='https://formiche.net/2025/12/biotech-act-europa-biotecnologia-greco-assobiotec/'>Biotech Act</a>. Importanti progressi si registrano anche in campo medico, con l'utilizzo dell'<a href='https://www.insalutenews.it/in-salute/ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi/?utm_source=rss&utm_medium=rss&utm_campaign=ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi'>Intelligenza Artificiale (IA)</a> contro il cancro al pancreas e lo studio italiano che svela il segreto della <a href='https://www.insalutenews.it/in-salute/la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile/?utm_source=rss&utm_medium=rss&utm_campaign=la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile'>percezione tattile</a>. Si continuano a sperimentare interventi di <a href='https://www.insalutenews.it/in-salute/baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia/?utm_source=rss&utm_medium=rss&utm_campaign=baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia'>telechirurgia</a>.</p>\n\n<h3>Conclusioni Prospettiche</h3>\n<p>Le tendenze analizzate suggeriscono un futuro caratterizzato da una competizione globale sempre pi\u00f9 intensa, sia in ambito geopolitico che economico e tecnologico. La capacit\u00e0 di adattamento e innovazione sar\u00e0 cruciale per mantenere la competitivit\u00e0 e garantire la sicurezza nazionale. L'Unione Europea dovr\u00e0 affrontare sfide significative per preservare la propria coesione e influenza nel contesto internazionale. Allo stesso tempo, gli sviluppi tecnologici in campo medico e scientifico offrono nuove opportunit\u00e0 per migliorare la salute e il benessere della popolazione, ma richiedono un'attenta valutazione delle implicazioni etiche e sociali.</p>\n\n<p>Infine, si registra un crescente interesse verso la <a href='https://phys.org/news/2025-12-neurodiversity-hidden-entrepreneurial-success.html'>neurodiversit\u00e0</a> come motore di successo imprenditoriale, suggerendo un cambiamento di paradigma nella valutazione del talento e delle competenze.</p>\n\n<h3>Bibliografia</h3>",
+        "content": "<p><b>Introduzione</b></p><p>Il panorama geopolitico del 2025 \u00e8 caratterizzato da una complessa interazione di sfide economiche, tensioni politiche e sviluppi tecnologici. Questo documento analizza alcune delle tendenze pi\u00f9 significative, esaminando le loro implicazioni a lungo termine e le potenziali convergenze strategiche. In particolare, si focalizza sulle dinamiche europee relative al sostegno all'Ucraina, sugli accordi commerciali internazionali, sui progressi nel settore della difesa e sulle crescenti preoccupazioni relative alla salute pubblica e alla stabilit\u00e0 sociale.</p><p><b>Analisi del Contesto Storico</b></p><p>Il conflitto in Ucraina continua a dominare l'agenda internazionale, con l'Unione Europea impegnata a fornire un significativo sostegno finanziario. La recente approvazione di un <a href='https://www.bbc.com/news/articles/c3e025vyppeo?at_medium=RSS&at_campaign=rss'>prestito da 90 miliardi di euro</a> all'Ucraina evidenzia l'impegno europeo, sebbene la decisione di non utilizzare immediatamente gli <a href='https://www.ilsole24ore.com/art/vertice-ue-accordo-unanime-prestito-90-miliardi-l-ucraina-escluso-l-uso-immediato-asset-russi-AIv33FU'>asset russi</a> per finanziare tale sostegno rifletta una cautela legale e politica. Le discussioni sull'utilizzo degli asset russi congelati continuano, con un dibattito aperto su chi <a href='https://www.startmag.it/economia/asset-russi-chi-vince-e-chi-perde-in-europa-sul-prestito-allucraina/'>vince e chi perde</a> in Europa in questo contesto.</p><p>Parallelamente, l'accordo UE-Mercosur rappresenta un tentativo di rafforzare i legami commerciali con il Sud America, ma solleva questioni complesse riguardanti gli <a href='https://www.startmag.it/podcast/cosa-ce-in-ballo-con-laccordo-ue-mercosur/'>equilibri commerciali</a> e gli impatti ambientali. La negoziazione di tali accordi commerciali globali \u00e8 sempre pi\u00f9 influenzata da considerazioni geopolitiche e dalla necessit\u00e0 di diversificare le catene di approvvigionamento.</p><p><b>Sviluppi Tecnici/Strategici</b></p><p>Nel settore della difesa, il progetto franco-tedesco-spagnolo per il <a href='https://www.startmag.it/spazio-e-difesa/che-succedera-al-fcas-il-progetto-franco-tedesco-spagnolo-per-il-caccia-di-sesta-generazione/'>caccia di sesta generazione (FCAS)</a> rimane un'iniziativa cruciale, sebbene complessa, per garantire l'autonomia strategica europea. La collaborazione tra paesi con interessi e priorit\u00e0 divergenti presenta sfide significative, ma il successo del progetto FCAS \u00e8 essenziale per mantenere la competitivit\u00e0 tecnologica e la capacit\u00e0 di deterrenza dell'Europa.</p><p>La cooperazione nel campo della sicurezza \u00e8 ulteriormente evidenziata dall'intesa tra il Ministero della Difesa italiano e <a href='https://formiche.net/2025/12/radar-e-sicurezza-lintesa-tra-difesa-e-leonardo/'>Leonardo</a> per lo sviluppo di tecnologie radar avanzate. Questo accordo sottolinea l'importanza crescente della sorveglianza e della capacit\u00e0 di risposta rapida in un contesto di minacce in evoluzione.</p><p>A livello globale, l'autocrazia venezuelana continua a fare affidamento sulla <a href='https://formiche.net/2025/12/lautocrazia-venezuelana-si-regge-sulla-tecnologia-di-pechino/'>tecnologia cinese</a> per mantenere il controllo sociale e politico. Questa dipendenza tecnologica solleva preoccupazioni riguardo alla privacy, alla libert\u00e0 di espressione e alla stabilit\u00e0 democratica.</p><p>Gli Stati Uniti continuano a fornire <a href='https://formiche.net/2025/12/cosi-washington-conferma-lassistenza-militare-a-taiwan/'>assistenza militare a Taiwan</a>, mantenendo una presenza strategica nel Pacifico occidentale. Questa politica \u00e8 volta a dissuadere l'aggressione cinese e a preservare la stabilit\u00e0 regionale.</p><p><b>Conclusioni Prospettiche</b></p><p>Le tendenze analizzate in questo documento suggeriscono un mondo sempre pi\u00f9 interconnesso e multipolare, caratterizzato da una competizione strategica crescente e dalla necessit\u00e0 di adattamento continuo. L'Europa deve affrontare sfide significative, tra cui la gestione delle conseguenze del conflitto in Ucraina, la promozione della coesione interna e il mantenimento della competitivit\u00e0 economica e tecnologica.</p><p>La crescente importanza della tecnologia, sia per la sicurezza che per il controllo sociale, richiede una riflessione approfondita sulle implicazioni etiche e politiche. La cooperazione internazionale e la diplomazia rimangono strumenti essenziali per affrontare le sfide globali e promuovere la stabilit\u00e0 e la prosperit\u00e0.</p><p>Infine, le problematiche sanitarie e sociali, come la <a href='https://www.insalutenews.it/in-salute/germi-multiresistenti-dallemergenza-alla-governance-il-ruolo-chiave-della-sorveglianza/?utm_source=rss&utm_medium=rss&utm_campaign=germi-multiresistenti-dallemergenza-alla-governance-il-ruolo-chiave-della-sorveglianza'>resistenza antimicrobica</a> e l'<a href='https://www.insalutenews.it/in-salute/la-poverta-mina-la-salute-pesa-soprattutto-su-invecchiamento-e-longevita/?utm_source=rss&utm_medium=rss&utm_campaign=la-poverta-mina-la-salute-pesa-soprattutto-su-invecchiamento-e-longevita'>impatto della povert\u00e0 sulla salute</a>, richiedono un'attenzione costante e investimenti adeguati per garantire il benessere delle popolazioni.</p>",
         "references": [
-            "Open Arms, chi vince e chi perde (con l\u2019assoluzione di Salvini) | URL: https://www.startmag.it/mondo/open-arms-chi-vince-e-chi-perde-con-lassoluzione-di-salvini/",
-            "La follia woke, la censura reale, la libert\u00e0 perduta | URL: https://www.startmag.it/mondo/miss-finlandia-censura-woke/",
-            "Che succeder\u00e0 al Fcas, il progetto franco-tedesco-spagnolo per il caccia di sesta generazione? | URL: https://www.startmag.it/spazio-e-difesa/che-succedera-al-fcas-il-progetto-franco-tedesco-spagnolo-per-il-caccia-di-sesta-generazione/",
-            "Cos\u00ec la Cina si pappa il ferro della Guinea | URL: https://www.startmag.it/mondo/guinea-miniera-simandou-cina/",
-            "Maxi disegno di legge sulla difesa, Cina e sicurezza nazionale, tutte le priorit\u00e0 del Congresso americano | URL: https://www.startmag.it/economia/difesa-cina-e-sicurezza-nazionale-tutte-le-priorita-del-congresso-americano/",
-            "La nuova legge elettorale potrebbe convenire (anche) a Schlein. Parla Petruccioli | URL: https://formiche.net/2025/12/la-nuova-legge-elettorale-potrebbe-convenire-anche-a-schlein-parla-petruccioli/",
-            "Cos\u00ec l\u2019Europa cerca di colmare il divario con Usa e Cina. Il Biotech act visto da Greco | URL: https://formiche.net/2025/12/biotech-act-europa-biotecnologia-greco-assobiotec/",
-            "Con Occhiuto a Palazzo Grazioli va in scena l\u2019Italia liberale | URL: https://formiche.net/2025/12/competitivita-liberta-a-palazzo-grazioli-il-dibattito-con-occhiuto/",
-            "Decarbonizzazione del trasporto aereo. Il patto tra istituzioni e industria per il Net Zero | URL: https://formiche.net/2025/12/fondazione-pacta-trasporto-aereo/",
-            "La farmaceutica ha saputo governare l\u2019incertezza, ma per Cattani (Farmindustria) l\u2019Europa rischia di restare spettatrice | URL: https://formiche.net/2025/12/farmaceutica-farmindustria-europa-italia-industria/",
-            "Gentrification hits Spain's medium cities | URL: https://phys.org/news/2025-12-gentrification-spain-medium-cities.html",
-            "Why you should be pleased we run trials on nudges, even if you don't like nudges (or trials) | URL: https://phys.org/news/2025-12-trials-nudges-dont.html",
-            "Shaping the conversation means offering context to extreme ideas, not just a platform | URL: https://phys.org/news/2025-12-conversation-context-extreme-ideas-platform.html",
-            "How can we effectively regulate international trade in wild species? | URL: https://phys.org/news/2025-12-effectively-international-wild-species.html",
-            "Why neurodiversity might be the hidden engine of entrepreneurial success | URL: https://phys.org/news/2025-12-neurodiversity-hidden-entrepreneurial-success.html",
-            "Baggiovara nella storia: interventi pionieristici in telechirurgia da Modena a Varsavia | URL: https://www.insalutenews.it/in-salute/baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia/?utm_source=rss&utm_medium=rss&utm_campaign=baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia",
-            "IA contro il cancro al pancreas: scoperta molecola a RNA che potenzia i chemioterapici e riduce i dosaggi | URL: https://www.insalutenews.it/in-salute/ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi/?utm_source=rss&utm_medium=rss&utm_campaign=ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi",
-            "Paralisi cerebrale infantile: la molecola Nobel di Rita Levi-Montalcini testata al Gemelli | URL: https://www.insalutenews.it/in-salute/paralisi-cerebrale-infantile-la-molecola-nobel-di-rita-levi-montalcini-testata-al-gemelli/?utm_source=rss&utm_medium=rss&utm_campaign=paralisi-cerebrale-infantile-la-molecola-nobel-di-rita-levi-montalcini-testata-al-gemelli",
-            "Fabio Guarracino eletto nel Comitato direttivo dell\u2019European Sepsis Alliance | URL: https://www.insalutenews.it/in-salute/fabio-guarracino-eletto-nel-comitato-direttivo-delleuropean-sepsis-alliance/?utm_source=rss&utm_medium=rss&utm_campaign=fabio-guarracino-eletto-nel-comitato-direttivo-delleuropean-sepsis-alliance",
-            "La mente comanda i sensi: studio italiano svela il segreto della percezione tattile | URL: https://www.insalutenews.it/in-salute/la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile/?utm_source=rss&utm_medium=rss&utm_campaign=la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile",
-            "'Maybe she's an angel now' says aunt of 10-year-old Bondi victim | URL: https://www.bbc.com/news/articles/cd0krr3jrkjo?at_medium=RSS&at_campaign=rss",
-            "Australian PM announces crackdown on hate speech after Bondi shooting | URL: https://www.bbc.com/news/articles/cgmneem1e89o?at_medium=RSS&at_campaign=rss",
-            "Rob Reiner's family breaks silence as son Nick faces judge on murder charges | URL: https://www.bbc.com/news/articles/cx239pp7gl7o?at_medium=RSS&at_campaign=rss",
-            "Watch: Moment Nick Reiner is arrested after being seen in convenience store | URL: https://www.bbc.com/news/videos/cn81dzj79glo?at_medium=RSS&at_campaign=rss",
-            "EU leaders face crunch decision on loaning Russia's frozen cash to Ukraine | URL: https://www.bbc.com/news/articles/c9vjlj1ezpgo?at_medium=RSS&at_campaign=rss",
-            "Anche i panda nella crisi Cina-Giappone: Pechino si riprende gli ultimi esemplari dallo zoo di Tokyo | URL: https://www.ilsole24ore.com/art/anche-panda-crisi-cina-giappone-pechino-si-riprende-ultimi-esemplari-zoo-tokyo-AIxb03S",
-            "Dagli asset russi al Mercosur, ecco di cosa si discuter\u00e0 al Consiglio europeo | URL: https://www.ilsole24ore.com/art/dagli-asset-russi-mercosur-ecco-cosa-si-discutera-consiglio-europeo-AIbBujS",
-            "Vertice Ue decisivo sugli asset russi, ma si aprono spiragli per debito in comune | URL: https://www.ilsole24ore.com/art/vertice-ue-decisivo-asset-russi-ma-si-aprono-spiragli-debito-comune-AICRwgS",
-            "Taiwan, mega commessa di armi Usa da 11,1 miliardi di dollari | URL: https://www.ilsole24ore.com/art/taiwan-mega-commessa-armi-111-miliardi-dollari-usa-AILtryS",
-            "Ghislaine Maxwell chiede annullamento della condanna per la vicenda Epstein | URL: https://www.ilsole24ore.com/art/ghislaine-maxwell-chiede-annullamento-condanna-la-vicenda-epstein-AI4NyrS"
+            "https://www.startmag.it/economia/asset-russi-chi-vince-e-chi-perde-in-europa-sul-prestito-allucraina/",
+            "https://www.startmag.it/podcast/cosa-ce-in-ballo-con-laccordo-ue-mercosur/",
+            "https://www.startmag.it/spazio-e-difesa/che-succedera-al-fcas-il-progetto-franco-tedesco-spagnolo-per-il-caccia-di-sesta-generazione/",
+            "https://formiche.net/2025/12/lautocrazia-venezuelana-si-regge-sulla-tecnologia-di-pechino/",
+            "https://formiche.net/2025/12/radar-e-sicurezza-lintesa-tra-difesa-e-leonardo/",
+            "https://formiche.net/2025/12/cosi-washington-conferma-lassistenza-militare-a-taiwan/",
+            "https://www.insalutenews.it/in-salute/germi-multiresistenti-dallemergenza-alla-governance-il-ruolo-chiave-della-sorveglianza/?utm_source=rss&utm_medium=rss&utm_campaign=germi-multiresistenti-dallemergenza-alla-governance-il-ruolo-chiave-della-sorveglianza",
+            "https://www.insalutenews.it/in-salute/la-poverta-mina-la-salute-pesa-soprattutto-su-invecchiamento-e-longevita/?utm_source=rss&utm_medium=rss&utm_campaign=la-poverta-mina-la-salute-pesa-soprattutto-su-invecchiamento-e-longevita",
+            "https://www.bbc.com/news/articles/c3e025vyppeo?at_medium=RSS&at_campaign=rss",
+            "https://www.ilsole24ore.com/art/vertice-ue-accordo-unanime-prestito-90-miliardi-l-ucraina-escluso-l-uso-immediato-asset-russi-AIv33FU"
         ]
     },
     "archive": [
+        {
+            "title": "Analisi Strategica Multidimensionale: Convergenze Geopolitiche, Tecnologiche e Socio-culturali nel 2025",
+            "author": "Marte Research Dept.",
+            "date": "18 Dec 2025",
+            "readTime": "12 min read",
+            "content": "<h3>Introduzione (Abstract)</h3>\n<p>Il presente documento analizza le interconnessioni tra eventi geopolitici, sviluppi tecnologici e dinamiche socio-culturali che caratterizzano lo scenario globale alla fine del 2025. L'analisi si concentra su aree tematiche quali sicurezza internazionale, competizione economica, evoluzione normativa e progressi scientifici, con l'obiettivo di identificare tendenze di lungo periodo e potenziali punti di svolta strategici.</p>\n\n<h3>Analisi del Contesto Storico</h3>\n<p>Il contesto storico attuale \u00e8 caratterizzato da una crescente multipolarit\u00e0, con una competizione strategica accentuata tra potenze consolidate e nuove economie emergenti. La crisi in Ucraina, con le sue implicazioni per la sicurezza europea, continua a rappresentare un elemento di instabilit\u00e0, con l'Unione Europea che discute l'utilizzo di <a href='https://www.bbc.com/news/articles/c9vjlj1ezpgo?at_medium=RSS&at_campaign=rss'>asset russi congelati</a>. Parallelamente, si assiste a un riallineamento delle alleanze globali, come evidenziato dalle tensioni tra Cina e Giappone, che si manifestano anche attraverso la restituzione dei <a href='https://www.ilsole24ore.com/art/anche-panda-crisi-cina-giappone-pechino-si-riprende-ultimi-esemplari-zoo-tokyo-AIxb03S'>panda</a> allo zoo di Tokyo. La Cina continua la sua espansione economica e strategica, come dimostra l'interesse per le <a href='https://www.startmag.it/mondo/guinea-miniera-simandou-cina/'>risorse minerarie della Guinea</a>. Sul fronte interno, in Italia si discute di una <a href='https://formiche.net/2025/12/la-nuova-legge-elettorale-potrebbe-convenire-anche-a-schlein-parla-petruccioli/'>nuova legge elettorale</a> che potrebbe avere implicazioni significative per la stabilit\u00e0 politica del paese.</p>\n\n<h3>Sviluppi Tecnici/Strategici</h3>\n<p>Gli sviluppi tecnologici rivestono un ruolo cruciale nella competizione globale. In ambito militare, il <a href='https://www.startmag.it/spazio-e-difesa/che-succedera-al-fcas-il-progetto-franco-tedesco-spagnolo-per-il-caccia-di-sesta-generazione/'>progetto franco-tedesco-spagnolo per il caccia di sesta generazione (FCAS)</a> rappresenta un tentativo di mantenere la superiorit\u00e0 tecnologica europea, mentre gli Stati Uniti continuano a investire massicciamente in armamenti per Taiwan, con una <a href='https://www.ilsole24ore.com/art/taiwan-mega-commessa-armi-111-miliardi-dollari-usa-AILtryS'>mega commessa di armi da 11,1 miliardi di dollari</a>. Nel settore biotecnologico, l'Europa cerca di colmare il divario con Stati Uniti e Cina attraverso iniziative come il <a href='https://formiche.net/2025/12/biotech-act-europa-biotecnologia-greco-assobiotec/'>Biotech Act</a>. Importanti progressi si registrano anche in campo medico, con l'utilizzo dell'<a href='https://www.insalutenews.it/in-salute/ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi/?utm_source=rss&utm_medium=rss&utm_campaign=ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi'>Intelligenza Artificiale (IA)</a> contro il cancro al pancreas e lo studio italiano che svela il segreto della <a href='https://www.insalutenews.it/in-salute/la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile/?utm_source=rss&utm_medium=rss&utm_campaign=la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile'>percezione tattile</a>. Si continuano a sperimentare interventi di <a href='https://www.insalutenews.it/in-salute/baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia/?utm_source=rss&utm_medium=rss&utm_campaign=baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia'>telechirurgia</a>.</p>\n\n<h3>Conclusioni Prospettiche</h3>\n<p>Le tendenze analizzate suggeriscono un futuro caratterizzato da una competizione globale sempre pi\u00f9 intensa, sia in ambito geopolitico che economico e tecnologico. La capacit\u00e0 di adattamento e innovazione sar\u00e0 cruciale per mantenere la competitivit\u00e0 e garantire la sicurezza nazionale. L'Unione Europea dovr\u00e0 affrontare sfide significative per preservare la propria coesione e influenza nel contesto internazionale. Allo stesso tempo, gli sviluppi tecnologici in campo medico e scientifico offrono nuove opportunit\u00e0 per migliorare la salute e il benessere della popolazione, ma richiedono un'attenta valutazione delle implicazioni etiche e sociali.</p>\n\n<p>Infine, si registra un crescente interesse verso la <a href='https://phys.org/news/2025-12-neurodiversity-hidden-entrepreneurial-success.html'>neurodiversit\u00e0</a> come motore di successo imprenditoriale, suggerendo un cambiamento di paradigma nella valutazione del talento e delle competenze.</p>\n\n<h3>Bibliografia</h3>",
+            "references": [
+                "Open Arms, chi vince e chi perde (con l\u2019assoluzione di Salvini) | URL: https://www.startmag.it/mondo/open-arms-chi-vince-e-chi-perde-con-lassoluzione-di-salvini/",
+                "La follia woke, la censura reale, la libert\u00e0 perduta | URL: https://www.startmag.it/mondo/miss-finlandia-censura-woke/",
+                "Che succeder\u00e0 al Fcas, il progetto franco-tedesco-spagnolo per il caccia di sesta generazione? | URL: https://www.startmag.it/spazio-e-difesa/che-succedera-al-fcas-il-progetto-franco-tedesco-spagnolo-per-il-caccia-di-sesta-generazione/",
+                "Cos\u00ec la Cina si pappa il ferro della Guinea | URL: https://www.startmag.it/mondo/guinea-miniera-simandou-cina/",
+                "Maxi disegno di legge sulla difesa, Cina e sicurezza nazionale, tutte le priorit\u00e0 del Congresso americano | URL: https://www.startmag.it/economia/difesa-cina-e-sicurezza-nazionale-tutte-le-priorita-del-congresso-americano/",
+                "La nuova legge elettorale potrebbe convenire (anche) a Schlein. Parla Petruccioli | URL: https://formiche.net/2025/12/la-nuova-legge-elettorale-potrebbe-convenire-anche-a-schlein-parla-petruccioli/",
+                "Cos\u00ec l\u2019Europa cerca di colmare il divario con Usa e Cina. Il Biotech act visto da Greco | URL: https://formiche.net/2025/12/biotech-act-europa-biotecnologia-greco-assobiotec/",
+                "Con Occhiuto a Palazzo Grazioli va in scena l\u2019Italia liberale | URL: https://formiche.net/2025/12/competitivita-liberta-a-palazzo-grazioli-il-dibattito-con-occhiuto/",
+                "Decarbonizzazione del trasporto aereo. Il patto tra istituzioni e industria per il Net Zero | URL: https://formiche.net/2025/12/fondazione-pacta-trasporto-aereo/",
+                "La farmaceutica ha saputo governare l\u2019incertezza, ma per Cattani (Farmindustria) l\u2019Europa rischia di restare spettatrice | URL: https://formiche.net/2025/12/farmaceutica-farmindustria-europa-italia-industria/",
+                "Gentrification hits Spain's medium cities | URL: https://phys.org/news/2025-12-gentrification-spain-medium-cities.html",
+                "Why you should be pleased we run trials on nudges, even if you don't like nudges (or trials) | URL: https://phys.org/news/2025-12-trials-nudges-dont.html",
+                "Shaping the conversation means offering context to extreme ideas, not just a platform | URL: https://phys.org/news/2025-12-conversation-context-extreme-ideas-platform.html",
+                "How can we effectively regulate international trade in wild species? | URL: https://phys.org/news/2025-12-effectively-international-wild-species.html",
+                "Why neurodiversity might be the hidden engine of entrepreneurial success | URL: https://phys.org/news/2025-12-neurodiversity-hidden-entrepreneurial-success.html",
+                "Baggiovara nella storia: interventi pionieristici in telechirurgia da Modena a Varsavia | URL: https://www.insalutenews.it/in-salute/baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia/?utm_source=rss&utm_medium=rss&utm_campaign=baggiovara-nella-storia-interventi-pionieristici-in-telechirurgia-da-modena-a-varsavia",
+                "IA contro il cancro al pancreas: scoperta molecola a RNA che potenzia i chemioterapici e riduce i dosaggi | URL: https://www.insalutenews.it/in-salute/ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi/?utm_source=rss&utm_medium=rss&utm_campaign=ia-contro-il-cancro-al-pancreas-scoperta-molecola-a-rna-che-potenzia-i-chemioterapici-e-riduce-i-dosaggi",
+                "Paralisi cerebrale infantile: la molecola Nobel di Rita Levi-Montalcini testata al Gemelli | URL: https://www.insalutenews.it/in-salute/paralisi-cerebrale-infantile-la-molecola-nobel-di-rita-levi-montalcini-testata-al-gemelli/?utm_source=rss&utm_medium=rss&utm_campaign=paralisi-cerebrale-infantile-la-molecola-nobel-di-rita-levi-montalcini-testata-al-gemelli",
+                "Fabio Guarracino eletto nel Comitato direttivo dell\u2019European Sepsis Alliance | URL: https://www.insalutenews.it/in-salute/fabio-guarracino-eletto-nel-comitato-direttivo-delleuropean-sepsis-alliance/?utm_source=rss&utm_medium=rss&utm_campaign=fabio-guarracino-eletto-nel-comitato-direttivo-delleuropean-sepsis-alliance",
+                "La mente comanda i sensi: studio italiano svela il segreto della percezione tattile | URL: https://www.insalutenews.it/in-salute/la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile/?utm_source=rss&utm_medium=rss&utm_campaign=la-mente-comanda-i-sensi-studio-italiano-svela-il-segreto-della-percezione-tattile",
+                "'Maybe she's an angel now' says aunt of 10-year-old Bondi victim | URL: https://www.bbc.com/news/articles/cd0krr3jrkjo?at_medium=RSS&at_campaign=rss",
+                "Australian PM announces crackdown on hate speech after Bondi shooting | URL: https://www.bbc.com/news/articles/cgmneem1e89o?at_medium=RSS&at_campaign=rss",
+                "Rob Reiner's family breaks silence as son Nick faces judge on murder charges | URL: https://www.bbc.com/news/articles/cx239pp7gl7o?at_medium=RSS&at_campaign=rss",
+                "Watch: Moment Nick Reiner is arrested after being seen in convenience store | URL: https://www.bbc.com/news/videos/cn81dzj79glo?at_medium=RSS&at_campaign=rss",
+                "EU leaders face crunch decision on loaning Russia's frozen cash to Ukraine | URL: https://www.bbc.com/news/articles/c9vjlj1ezpgo?at_medium=RSS&at_campaign=rss",
+                "Anche i panda nella crisi Cina-Giappone: Pechino si riprende gli ultimi esemplari dallo zoo di Tokyo | URL: https://www.ilsole24ore.com/art/anche-panda-crisi-cina-giappone-pechino-si-riprende-ultimi-esemplari-zoo-tokyo-AIxb03S",
+                "Dagli asset russi al Mercosur, ecco di cosa si discuter\u00e0 al Consiglio europeo | URL: https://www.ilsole24ore.com/art/dagli-asset-russi-mercosur-ecco-cosa-si-discutera-consiglio-europeo-AIbBujS",
+                "Vertice Ue decisivo sugli asset russi, ma si aprono spiragli per debito in comune | URL: https://www.ilsole24ore.com/art/vertice-ue-decisivo-asset-russi-ma-si-aprono-spiragli-debito-comune-AICRwgS",
+                "Taiwan, mega commessa di armi Usa da 11,1 miliardi di dollari | URL: https://www.ilsole24ore.com/art/taiwan-mega-commessa-armi-111-miliardi-dollari-usa-AILtryS",
+                "Ghislaine Maxwell chiede annullamento della condanna per la vicenda Epstein | URL: https://www.ilsole24ore.com/art/ghislaine-maxwell-chiede-annullamento-condanna-la-vicenda-epstein-AI4NyrS"
+            ]
+        },
         {
             "title": "Dinamiche Geopolitiche e Tecnologiche nel Sistema Terra: Implicazioni Strategiche per l'Esplorazione Marziana",
             "author": "Marte Research Dept.",
@@ -673,5 +692,5 @@ const mshData = {
             ]
         }
     ],
-    "last_update": "18/12/2025 07:40"
+    "last_update": "19/12/2025 07:39"
 };
