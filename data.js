@@ -2,27 +2,27 @@ const mshData = {
     "ticker": [
         {
             "name": "GOLD",
-            "price": "\u20ac 3,831.52",
-            "change": "\u25b2 0.79%",
-            "trend": "up"
+            "price": "\u20ac nan",
+            "change": "\u25bc nan%",
+            "trend": "down"
         },
         {
             "name": "BITCOIN",
-            "price": "\u20ac 73,771.73",
-            "change": "\u25bc 0.48%",
-            "trend": "down"
+            "price": "\u20ac 74,418.09",
+            "change": "\u25b2 0.13%",
+            "trend": "up"
         },
         {
             "name": "EUR/USD",
             "price": "\u20ac 1.18",
-            "change": "\u25b2 0.23%",
-            "trend": "up"
+            "change": "\u25bc 0.06%",
+            "trend": "down"
         },
         {
             "name": "OIL",
-            "price": "\u20ac 49.68",
-            "change": "\u25b2 0.34%",
-            "trend": "up"
+            "price": "\u20ac nan",
+            "change": "\u25bc nan%",
+            "trend": "down"
         },
         {
             "name": "NASDAQ",
@@ -53,76 +53,115 @@ const mshData = {
         {
             "title": "Intelligence & Think Tank - Focus Italia",
             "items": [
-                "Cybersecurity: Crescente minaccia truffe online richiede maggiore consapevolezza e protezione (Startmag).",
-                "Geopolitica: Cina rafforza capacit\u00e0 nucleare; USA riducono dipendenza da terre rare cinesi, Europa in ritardo (Formiche.net).",
-                "Industria: Leonardo investe in Officina Stellare (9.2M) per sviluppo capacit\u00e0 osservazione Terra via satellite; implicazioni strategiche sorveglianza e difesa (Formiche.net)."
+                "Berlusconi: Barbara argina tensioni politiche interne, stabilit\u00e0 dinastica in gioco.",
+                "Made in Italy: Cina intensifica pressione economica, settori chiave a rischio.",
+                "Geopolitica: Tensioni UE-USA (visti) e Germania-UE, implicazioni per allineamenti strategici italiani."
             ]
         },
         {
-            "title": "Quantum Tech & Physics - Strategic Insights (Italy Focus)",
+            "title": "Quantum Tech & Physics - Analisi Strategica (Focus Italia)",
             "items": [
-                "Tecniche tradizionali vs flavoring nel salmone: implicazioni per l'industria alimentare italiana e l'autenticit\u00e0 dei prodotti DOP/IGP. Monitorare impatto su filiera e percezione consumatori.",
-                "Instacart e AI pricing: rischio discriminazione algoritmica solleva questioni etiche sull'uso dell'AI nel retail. Le aziende italiane che usano algoritmi di pricing dinamico dovranno dimostrare trasparenza e correttezza.",
-                "Democrazia e verit\u00e0: riflessioni sulla polarizzazione e la necessit\u00e0 di un dibattito pubblico pi\u00f9 inclusivo. Rilevanza per il contesto politico italiano e il ruolo dei media nel plasmare l'opinione pubblica."
+                "AI design catalizzatori (applicazioni materiali) accelerer\u00e0 sviluppo tecnologie quantistiche in Italia, ricerca nuovi materiali superconduttori/quantum dot.",
+                "Ricerca Encelado (Saturno) \u2013 implicazioni astrobiologia e finanziamenti ESA/ASI; possibili ricadute su tecnologie rilevamento/analisi dati remote per space economy italiana.",
+                "Crescita 'twisted' piante: implicazioni biotecnologie, agricoltura di precisione. Italia leader settore, opportunit\u00e0 sviluppo variet\u00e0 resistenti/efficienti con tecniche quantistiche di simulazione."
             ]
         },
         {
-            "title": "Sanit\u00e0 & Biotech: Intelligence Italia",
+            "title": "Sanit\u00e0 & Biotech - Trend Italia",
             "items": [
                 "Oncologia: Approccio dietetico personalizzato emerge come potenziale 'farmaco di precisione' contro il cancro.",
-                "Medicina Fetale: Successo intervento in utero per rimozione cisti polmonare gigante; prospettive per chirurgia prenatale.",
-                "Neuroscienze: Identificato biomarcatore nel sangue per diagnosi precoce del Parkinson; implicazioni per screening e terapie."
+                "Medicina Fetale: Successo intervento in utero per rimozione cisti polmonare, evidenziando progressi nella chirurgia prenatale.",
+                "Neuroscienze: Identificato biomarker ematico per Parkinson, promettente per diagnosi precoce e monitoraggio della progressione."
             ]
         },
         {
-            "title": "Geopolitical Flash - Focus Italia",
+            "title": "Geopolitica Globale - Sintesi Rapida",
             "items": [
-                "Scandalo Epstein: Coinvolgimento potenziale di figure di spicco, riflessi su percezione pubblica e stabilit\u00e0 politica globale (monitorare impatto in Italia, vista la potenziale esposizione di figure legate al potere).",
-                "Tensioni USA-UE: Sanzioni USA a figure europee (incluso l'ex Commissario UE Breton) indicano crescenti divergenze su politiche digitali e tecnologiche; implicazioni per le aziende italiane e l'autonomia strategica europea.",
-                "Ucraina: Zelensky afferma volont\u00e0 di pace USA. Attentato a Mosca. Escalation del conflitto e instabilit\u00e0 ai confini UE: impatto diretto su economia italiana (energia, inflazione, supply chain) e rischio di disinformazione/ingerenza."
+                "Ucraina: Zelensky apre a zone demilitarizzate nel piano di pace; discorso natalizio aggressivo verso Putin, mentre persistono attivit\u00e0 militari russe nei mari settentrionali (Barents e Norvegia).",
+                "Honduras: Vittoria di un candidato supportato da Trump, indicando possibili cambiamenti nell'allineamento politico regionale e impatti sulle relazioni USA-America Latina.",
+                "Caso Epstein: Scoperta di un milione di documenti. Pressione per la trasparenza. Implicazioni politiche e reputazionali significative negli USA con potenziale eco in Europa, data la natura transnazionale del caso."
             ]
         }
     ],
     "monograph": {
-        "title": "Geopolitica Terrestre del 2025: Un'Analisi Strategica per Marte Strategic Horizon",
+        "title": "Geopolitica Globale e Innovazione Tecnologica: Implicazioni Strategiche per l'Esplorazione Spaziale del XXI Secolo",
         "author": "Marte Research Dept.",
-        "date": "24 Dec 2025",
+        "date": "25 Dec 2025",
         "readTime": "12 min read",
-        "content": "<h3>Abstract</h3>\n<p>Questo documento analizza gli sviluppi geopolitici del 2025 sulla Terra, focalizzandosi sulle dinamiche di potere tra le principali nazioni e le implicazioni per la strategia a lungo termine di Marte Strategic Horizon. L'analisi considera gli aspetti economici, tecnologici, militari e sociali, con un'attenzione particolare alle tendenze che potrebbero influenzare la futura colonizzazione e sfruttamento di Marte.</p>\n\n<h3>Analisi del Contesto Storico</h3>\n<p>Il 2025 si configura come un anno di transizione e crescente incertezza a livello globale. La rivalit\u00e0 tra Stati Uniti e Cina continua a intensificarsi, manifestandosi in diversi ambiti, dalla competizione tecnologica per le <a href='https://formiche.net/2025/12/terre-rare-cina-europa-stati-uniti-minerali/'>terre rare</a> alla crescente militarizzazione, con <a href='https://formiche.net/2025/12/pechino-riempie-i-suoi-silos-e-alza-la-posta-sul-nucleare/'>Pechino</a> che espande il suo arsenale nucleare. L'influenza di figure politiche populiste, come evidenziato dalle azioni dell'ex presidente <a href='https://startmag.it/mondo/groenlandia-tutte-le-ultime-trumpate-di-trump/'>Trump</a>, continua a plasmare le relazioni internazionali, spesso in modo imprevedibile. La guerra in Ucraina persiste, con implicazioni economiche significative per la <a href='https://formiche.net/2025/12/russia-bruegel-economia-sanzioni-idrocarburi-resilienza-stagnazione-putin/'>Russia</a> e per l'Europa.</p>\n\n<h3>Sviluppi Tecnici/Strategici</h3>\n<p>Sul fronte tecnologico, si assiste a progressi significativi in diversi settori. In ambito spaziale, l'accordo tra <a href='https://formiche.net/2025/12/officina-stellare-leonardo-asi-satelliti-osservazione-della-terra-9-milioni/'>Officina Stellare e Leonardo</a> per lo sviluppo di satelliti di osservazione della Terra evidenzia l'importanza crescente dello spazio per la sicurezza e il monitoraggio ambientale. Nel settore sanitario, la ricerca scientifica continua a fare passi avanti nella diagnosi e nel trattamento di malattie come il <a href='https://www.insalutenews.it/in-salute/scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale/?utm_source=rss&utm_medium=rss&utm_campaign=scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale'>Parkinson</a>. Tuttavia, l'uso dell'intelligenza artificiale solleva anche preoccupazioni etiche, come dimostra il caso di <a href='https://phys.org/news/2025-12-instacart-ai-pricing-shoppers-prices.html'>Instacart</a> e dei prezzi differenziati.</p>\n\n<p>Dal punto di vista strategico, si osserva un aumento delle tensioni geopolitiche in diverse aree del mondo. Gli <a href='https://www.ilsole24ore.com/art/gli-usa-attaccano-venezuela-e-maduro-all-onu-scontro-diplomatico-russia-e-cina-AIQCkmY'>Stati Uniti</a> continuano a esercitare pressioni su regimi considerati ostili, come il Venezuela, mentre la Cina rafforza la sua presenza militare e economica a livello globale. La situazione in Europa rimane instabile, con la Francia che affronta difficolt\u00e0 nel bilancio statale <a href='https://www.ilsole24ore.com/art/francia-senza-bilancio-parlamento-approva-legge-d-emergenza-AIPoQpY'>Francia senza bilancio</a> e l'Unione Europea che deve affrontare sfide interne e esterne.</p>\n\n<h3>Conclusioni Prospettiche</h3>\n<p>Le tendenze osservate nel 2025 suggeriscono un futuro caratterizzato da una crescente competizione tra le grandi potenze, instabilit\u00e0 politica e progressi tecnologici. Per Marte Strategic Horizon, \u00e8 fondamentale monitorare attentamente questi sviluppi, valutando le implicazioni per la sicurezza, l'economia e la governance della futura colonia marziana. In particolare, \u00e8 cruciale diversificare le fonti di approvvigionamento di risorse critiche, sviluppare tecnologie autonome per la sopravvivenza su Marte e stabilire relazioni diplomatiche con diverse nazioni terrestri per garantire un sostegno continuo al progetto marziano. L'importanza di figure come <a href='https://formiche.net/2025/12/giancarlo-giorgetti-la-rivincita-della-prudenza-e-del-rigore-formica-dellanno-2025/'>Giancarlo Giorgetti</a> e la sua visione di prudenza e rigore sottolineano come scelte oculate possano mitigare i rischi e massimizzare le opportunit\u00e0 nel lungo periodo.</p>",
+        "content": "<h3>Introduzione</h3>\n<p>Questo studio analizza le dinamiche geopolitiche e le innovazioni tecnologiche emergenti che plasmeranno il contesto operativo delle future missioni spaziali, con particolare attenzione alle implicazioni per l'esplorazione di Marte. L'analisi considera fattori economici, politici, sociali e tecnologici, esaminando come le tensioni globali e i progressi scientifici possano influenzare le strategie e le priorit\u00e0 dell'esplorazione spaziale.</p>\n\n<h3>Analisi del Contesto Storico</h3>\n<p>Il panorama internazionale \u00e8 caratterizzato da una crescente competizione tra blocchi economici e politici. Le tensioni tra gli <a href='https://www.startmag.it/primo-piano/perche-e-sui-visti-il-nuovo-scazzo-fra-trump-e-lue/'>Stati Uniti e l'Unione Europea</a>, esemplificate dalle controversie sui visti, riflettono un pi\u00f9 ampio disallineamento in materia di politiche commerciali e sicurezza. Allo stesso tempo, l'ascesa economica della <a href='https://formiche.net/2025/12/cina-sussidi-auto-byd-mercato-xi-imprese-europa/'>Cina</a>, supportata da politiche di sussidio statale in settori strategici come l'automotive e la tecnologia, rappresenta una sfida per le economie occidentali. Queste dinamiche di potere influenzano direttamente la disponibilit\u00e0 di risorse e la definizione delle priorit\u00e0 nell'ambito della ricerca e dello sviluppo spaziale.</p>\n<p>Inoltre, il conflitto in Ucraina continua a rimodellare le relazioni internazionali e le alleanze strategiche. Il tentativo di alcuni paesi europei, come <a href='https://formiche.net/2025/12/francia-e-germania-riportano-la-russia-nel-sistema-energetico-europeo-il-caso-lingen/'>Francia e Germania, di reintegrare la Russia</a> nel sistema energetico europeo, nonostante le sanzioni, evidenzia la complessit\u00e0 delle interdipendenze globali e il potenziale per cambiamenti imprevisti nell'assetto geopolitico.</p>\n\n<h3>Sviluppi Tecnici/Strategici</h3>\n<p>Sul fronte tecnologico, si assiste a progressi significativi in diversi settori chiave. L'intelligenza artificiale (IA) sta rivoluzionando la progettazione di <a href='https://phys.org/news/2025-12-ai-based-blueprint-catalysts-materials.html'>catalizzatori</a>, aprendo nuove frontiere nella scienza dei materiali e nell'efficienza energetica, elementi cruciali per le missioni spaziali a lungo termine. Parallelamente, la ricerca continua a esplorare la possibilit\u00e0 di vita su altri corpi celesti, come <a href='https://phys.org/news/2025-12-saturn-icy-moon-enceladus-life.html'>Encelado</a>, la luna ghiacciata di Saturno, aumentando l'interesse scientifico e l'urgenza di sviluppare tecnologie avanzate per l'esplorazione planetaria.</p>\n<p>Nel campo della medicina, si registrano importanti progressi nella diagnosi e nel trattamento di malattie complesse. La scoperta di un <a href='https://www.insalutenews.it/in-salute/scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale/?utm_source=rss&utm_medium=rss&utm_campaign=scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale'>segnale nel sangue per il Parkinson</a> e l'applicazione di diete specifiche come <a href='https://www.insalutenews.it/in-salute/dieta-da-combattimento-come-farmaco-di-precisione-contro-il-cancro/?utm_source=rss&utm_medium=rss&utm_campaign=dieta-da-combattimento-come-farmaco-di-precisione-contro-il-cancro'>\u201cfarmaco di precisione\u201d contro il cancro</a> indicano un futuro in cui la medicina personalizzata potrebbe giocare un ruolo fondamentale nel garantire la salute degli astronauti durante le missioni di lunga durata nello spazio.</p>\n\n<h3>Conclusioni Prospettiche</h3>\n<p>Le sfide geopolitiche e i progressi tecnologici delineano un futuro complesso ma ricco di opportunit\u00e0 per l'esplorazione spaziale. La competizione globale richiede un approccio strategico e collaborativo, in cui la condivisione delle risorse e delle conoscenze diventa essenziale per superare le barriere economiche e politiche. Le innovazioni tecnologiche, in particolare nel campo dell'IA, della scienza dei materiali e della medicina, offrono strumenti potenti per affrontare le sfide tecniche e logistiche delle missioni spaziali a lungo termine. La capacit\u00e0 di adattarsi a un contesto in rapida evoluzione e di sfruttare le nuove tecnologie sar\u00e0 determinante per il successo dell'esplorazione di Marte e per la futura presenza umana nello spazio.</p>\n<p>Inoltre, \u00e8 fondamentale considerare l'importanza di coinvolgere le nuove generazioni nelle politiche pubbliche <a href='https://formiche.net/2025/12/giovani-agenda-politica-politiche-pubbliche/'>future</a>. Il loro contributo di idee e innovazioni potrebbe essere essenziale per plasmare un futuro pi\u00f9 sostenibile e prospero per l'umanit\u00e0, sia sulla Terra che nello spazio.</p>\n",
         "references": [
-            "Truffe: come riconoscerle e come difendersi | URL: https://www.startmag.it/innovazione/truffe-come-riconoscere-e-come-difendersi/",
-            "Limes, il giornale che volle trasformare la forza in scienza | URL: https://www.startmag.it/mondo/limes-il-giornale-che-volle-trasformare-la-forza-in-scienza/",
-            "Roche, tutti i guai tra crollo in borsa, dubbi degli analisti, cause legali e l\u2019ombra del ricatto sui prezzi | URL: https://www.startmag.it/economia/roche-tutti-i-guai-tra-crollo-in-borsa-dubbi-degli-analisti-cause-legali-e-lombra-del-ricatto-sui-prezzi/",
-            "Tutte le Big Pharma che si sono inchinate a Trump | URL: https://www.startmag.it/economia/tutte-le-big-pharma-che-si-sono-inchinate-a-trump/",
-            "Groenlandia, ecco le ultime trumpate di Trump | URL: https://startmag.it/mondo/groenlandia-tutte-le-ultime-trumpate-di-trump/",
-            "Pechino riempie i suoi silos e alza la posta sul nucleare | URL: https://formiche.net/2025/12/pechino-riempie-i-suoi-silos-e-alza-la-posta-sul-nucleare/",
-            "Usa sempre pi\u00f9 liberi dalla Cina sulle terre rare. Mentre l\u2019Europa\u2026 | URL: https://formiche.net/2025/12/terre-rare-cina-europa-stati-uniti-minerali/",
-            "Officina Stellare e Leonardo siglano un\u2019intesa da 9,2 milioni. Tutti i dettagli | URL: https://formiche.net/2025/12/officina-stellare-leonardo-asi-satelliti-osservazione-della-terra-9-milioni/",
-            "Giancarlo Giorgetti, la rivincita della prudenza e del rigore. Formica dell\u2019anno 2025 | URL: https://formiche.net/2025/12/giancarlo-giorgetti-la-rivincita-della-prudenza-e-del-rigore-formica-dellanno-2025/",
-            "Ecco perch\u00e9 la Russia sta per impantanarsi. Report Bruegel | URL: https://formiche.net/2025/12/russia-bruegel-economia-sanzioni-idrocarburi-resilienza-stagnazione-putin/",
-            "Should we smoke salmon using traditional techniques, or should we simply add the flavor? | URL: https://phys.org/news/2025-12-salmon-traditional-techniques-simply-flavor.html",
-            "Instacart ends AI pricing test that charged shoppers different prices for the same items | URL: https://phys.org/news/2025-12-instacart-ai-pricing-shoppers-prices.html",
-            "Is democracy always about truth? Why we may need to loosen our views to heal our divisions | URL: https://phys.org/news/2025-12-democracy-truth-loosen-views-divisions.html",
-            "It's been 25 years since America decided to save the Everglades: Where do we stand? | URL: https://phys.org/news/2025-12-years-america-everglades.html",
-            "Children face punishment because of unaffordable school uniforms, new poll reveals | URL: https://phys.org/news/2025-12-children-unaffordable-school-uniforms-poll.html",
+            "Barbara Berlusconi spegne i fuochi politici di Marina e Pier Silvio Berlusconi | URL: https://www.startmag.it/mondo/barbara-berlusconi-spegne-i-fuochi-politici-di-marina-e-pier-silvio-berlusconi/",
+            "Perch\u00e9 \u00e8 sui visti il nuovo scazzo fra Trump e l\u2019Ue | URL: https://www.startmag.it/primo-piano/perche-e-sui-visti-il-nuovo-scazzo-fra-trump-e-lue/",
+            "La Germania vuole disfarsi dell\u2019Ue? | URL: https://www.startmag.it/mondo/ue-germania/",
+            "Tutti i prodotti made in Italy finiti nel mirino della Cina | URL: https://www.startmag.it/economia/tutti-i-prodotti-made-in-italy-finiti-nel-mirino-della-cina/",
+            "Ecco come la macroeconomia condizioner\u00e0 la finanza | URL: https://www.startmag.it/economia/ecco-come-la-macroeconomia-condizionera-la-finanza/",
+            "I giovani al centro dell\u2019agenda politica, per un nuovo modello di politiche pubbliche | URL: https://formiche.net/2025/12/giovani-agenda-politica-politiche-pubbliche/",
+            "Perch\u00e9 sono a favore della Tobin tax. Scrive Pedrizzi | URL: https://formiche.net/2025/12/perche-sono-a-favore-della-tobin-tax-scrive-pedrizzi/",
+            "Dopo l\u2019auto, la tecnologia. La Cina pronta a dissotterrare i sussidi | URL: https://formiche.net/2025/12/cina-sussidi-auto-byd-mercato-xi-imprese-europa/",
+            "Francia e Germania riportano la Russia nel sistema energetico europeo? Il caso Lingen | URL: https://formiche.net/2025/12/francia-e-germania-riportano-la-russia-nel-sistema-energetico-europeo-il-caso-lingen/",
+            "Corazzate nucleari, armi laser e industria. Tutto sulla Golden Fleet Initiative | URL: https://formiche.net/2025/12/corazzate-nucleari-armi-laser-e-industria-tutto-sulla-golden-fleet-initiative/",
+            "Maryland climate commission calls for state action amid budget pressure | URL: https://phys.org/news/2025-12-maryland-climate-commission-state-action.html",
+            "Mechanism for twisted growth of plant organs discovered | URL: https://phys.org/news/2025-12-mechanism-growth.html",
+            "Saturn's icy moon Enceladus is an attractive target in the search for life\u2014new research | URL: https://phys.org/news/2025-12-saturn-icy-moon-enceladus-life.html",
+            "An AI-based blueprint for designing catalysts across materials | URL: https://phys.org/news/2025-12-ai-based-blueprint-catalysts-materials.html",
+            "California's plastic bag phaseout nears, but leftover bags remain unregulated | URL: https://phys.org/news/2025-12-california-plastic-bag-phaseout-nears.",
             "Dieta da combattimento come \u2018farmaco di precisione\u2019 contro il cancro | URL: https://www.insalutenews.it/in-salute/dieta-da-combattimento-come-farmaco-di-precisione-contro-il-cancro/?utm_source=rss&utm_medium=rss&utm_campaign=dieta-da-combattimento-come-farmaco-di-precisione-contro-il-cancro",
             "Salvato prima di nascere: rimossa cisti polmonare gigante con intervento in utero | URL: https://www.insalutenews.it/in-salute/salvato-prima-di-nascere-rimossa-cisti-polmonare-gigante-con-intervento-in-utero/?utm_source=rss&utm_medium=rss&utm_campaign=salvato-prima-di-nascere-rimossa-cisti-polmonare-gigante-con-intervento-in-utero",
             "GAPS in volo sull\u2019Antartide: Bergamo protagonista nella ricerca dell\u2019antimateria cosmica | URL: https://www.insalutenews.it/in-salute/gaps-in-volo-sullantartide-bergamo-protagonista-nella-ricerca-dellantimateria-cosmica/?utm_source=rss&utm_medium=rss&utm_campaign=gaps-in-volo-sullantartide-bergamo-protagonista-nella-ricerca-dellantimateria-cosmica",
             "Scoperto nel sangue il \u2018segnale\u2019 del Parkinson: una molecola rivela il danno neuronale | URL: https://www.insalutenews.it/in-salute/scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale/?utm_source=rss&utm_medium=rss&utm_campaign=scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale",
             "Endoscopia bariatrica, il Galliera protagonista delle nuove linee guida italiane | URL: https://www.insalutenews.it/in-salute/endoscopia-bariatrica-il-galliera-protagonista-delle-nuove-linee-guida-italiane/?utm_source=rss&utm_medium=rss&utm_campaign=endoscopia-bariatrica-il-galliera-protagonista-delle-nuove-linee-guida-italiane",
-            "Email by 'A' from 'Balmoral' asked Ghislaine Maxwell for 'inappropriate friends', Epstein files show | URL: https://www.bbc.com/news/articles/cm28g5exx09o?at_medium=RSS&at_campaign=rss",
-            "Trump trips, a fake video and 10 possible co-conspirators - Takeaways from new Epstein files | URL: https://www.bbc.com/news/articles/c5yj4yvx80do?at_medium=RSS&at_campaign=rss",
-            "Australia to deport British man charged with displaying Nazi symbols | URL: https://www.bbc.com/news/articles/cgke51rzpvro?at_medium=RSS&at_campaign=rss",
-            "US denies visas to ex-EU commissioner and others over social media rules | URL: https://www.bbc.com/news/articles/cp39kngz008o?at_medium=RSS&at_campaign=rss",
-            "Libya's army chief killed in air crash in Turkey | URL: https://www.bbc.com/news/articles/cyvgzyepdqno?at_medium=RSS&at_campaign=rss",
-            "Ucraina, Zelensky: \u00abUsa vogliono la pace\u00bb. Nuova autobomba a Mosca | URL: https://www.ilsole24ore.com/art/ucraina-zelensky-usa-vogliono-pace-nuova-autobomba-mosca-AIDL6zY",
-            "Francia senza bilancio, Parlamento approva legge d\u2019emergenza | URL: https://www.ilsole24ore.com/art/francia-senza-bilancio-parlamento-approva-legge-d-emergenza-AIPoQpY",
-            "Sanzioni Usa contro cinque personalit\u00e0 europee tra cui l\u2019ex commissario Ue Breton | URL: https://www.ilsole24ore.com/art/sanzioni-usa-contro-cinque-personalita-europee-cui-l-ex-commissario-ue-breton-AIFZlnY",
-            "Gli Usa attaccano il Venezuela e Maduro all\u2019Onu. Scontro diplomatico con Russia e Cina | URL: https://www.ilsole24ore.com/art/gli-usa-attaccano-venezuela-e-maduro-all-onu-scontro-diplomatico-russia-e-cina-AIQCkmY",
-            "Truppe a Chicago, no della Corte Suprema (ma Trump le manda a New Orleans) | URL: https://www.ilsole24ore.com/art/sconfitta-trump-corte-suprema-vieta-truppe-chicago-AIj3gkY"
+            "Zelensky moves towards demilitarised zones in latest peace plan for Ukraine | URL: https://www.bbc.com/news/articles/c9d9wg2pwl1o?at_medium=RSS&at_campaign=rss",
+            "Front-runner to be Bangladesh PM returns after 17 years in exile | URL: https://www.bbc.com/news/articles/crk733k1k1eo?at_medium=RSS&at_campaign=rss",
+            "Officials discover a million more documents potentially related to Epstein case | URL: https://www.bbc.com/news/articles/czdgz84dn35o?at_medium=RSS&at_campaign=rss",
+            "Trump-backed candidate wins in knife-edge Honduran election | URL: https://www.bbc.com/news/articles/cyvgz1jn368o?at_medium=RSS&at_campaign=rss",
+            "Sean 'Diddy' Combs files appeal asking for immediate prison release | URL: https://www.bbc.com/news/articles/c5yqe4j15lzo?at_medium=RSS&at_campaign=rss",
+            "Zelensky nel discorso di Natale augura a Putin di morire. Bombardieri russi sui mari Barents e Norvegia | URL: https://www.ilsole24ore.com/art/zelensky-discorso-natale-augura-putin-morire-bombardieri-russi-mari-barents-e-norvegia-AIBdPcZ",
+            "Caso Epstein: trovato un milione di documenti. Senatrice repubblicana sollecita la diffusione | URL: https://www.ilsole24ore.com/art/caso-epstein-trovato-milione-documenti-senatrice-repubblicana-sollecita-diffusione-AItdIOZ",
+            "Dal Digital Services Act al ban sui visti: come si \u00e8 arrivati al caso Breton | URL: https://www.ilsole24ore.com/art/dal-digital-services-act-ban-visti-come-si-e-arrivati-caso-breton-AIjsdIZ",
+            "Fonte Afp, \u00abesplosione in una moschea in Nigeria, almeno 7 morti\u00bb | URL: https://www.ilsole24ore.com/art/fonte-afp-esplosione-una-moschea-nigeria-almeno-7-morti-AIxqJMZ",
+            "Quattordici Paesi, compresa l\u2019Italia, condannano i nuovi insediamenti in Cisgiordania | URL: https://www.ilsole24ore.com/art/fase-due-bloccata-hamas-continui-attacchi-tel-aviv-israele-violano-tregua-AIuE2KZ"
         ]
     },
     "archive": [
+        {
+            "title": "Geopolitica Terrestre del 2025: Un'Analisi Strategica per Marte Strategic Horizon",
+            "author": "Marte Research Dept.",
+            "date": "24 Dec 2025",
+            "readTime": "12 min read",
+            "content": "<h3>Abstract</h3>\n<p>Questo documento analizza gli sviluppi geopolitici del 2025 sulla Terra, focalizzandosi sulle dinamiche di potere tra le principali nazioni e le implicazioni per la strategia a lungo termine di Marte Strategic Horizon. L'analisi considera gli aspetti economici, tecnologici, militari e sociali, con un'attenzione particolare alle tendenze che potrebbero influenzare la futura colonizzazione e sfruttamento di Marte.</p>\n\n<h3>Analisi del Contesto Storico</h3>\n<p>Il 2025 si configura come un anno di transizione e crescente incertezza a livello globale. La rivalit\u00e0 tra Stati Uniti e Cina continua a intensificarsi, manifestandosi in diversi ambiti, dalla competizione tecnologica per le <a href='https://formiche.net/2025/12/terre-rare-cina-europa-stati-uniti-minerali/'>terre rare</a> alla crescente militarizzazione, con <a href='https://formiche.net/2025/12/pechino-riempie-i-suoi-silos-e-alza-la-posta-sul-nucleare/'>Pechino</a> che espande il suo arsenale nucleare. L'influenza di figure politiche populiste, come evidenziato dalle azioni dell'ex presidente <a href='https://startmag.it/mondo/groenlandia-tutte-le-ultime-trumpate-di-trump/'>Trump</a>, continua a plasmare le relazioni internazionali, spesso in modo imprevedibile. La guerra in Ucraina persiste, con implicazioni economiche significative per la <a href='https://formiche.net/2025/12/russia-bruegel-economia-sanzioni-idrocarburi-resilienza-stagnazione-putin/'>Russia</a> e per l'Europa.</p>\n\n<h3>Sviluppi Tecnici/Strategici</h3>\n<p>Sul fronte tecnologico, si assiste a progressi significativi in diversi settori. In ambito spaziale, l'accordo tra <a href='https://formiche.net/2025/12/officina-stellare-leonardo-asi-satelliti-osservazione-della-terra-9-milioni/'>Officina Stellare e Leonardo</a> per lo sviluppo di satelliti di osservazione della Terra evidenzia l'importanza crescente dello spazio per la sicurezza e il monitoraggio ambientale. Nel settore sanitario, la ricerca scientifica continua a fare passi avanti nella diagnosi e nel trattamento di malattie come il <a href='https://www.insalutenews.it/in-salute/scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale/?utm_source=rss&utm_medium=rss&utm_campaign=scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale'>Parkinson</a>. Tuttavia, l'uso dell'intelligenza artificiale solleva anche preoccupazioni etiche, come dimostra il caso di <a href='https://phys.org/news/2025-12-instacart-ai-pricing-shoppers-prices.html'>Instacart</a> e dei prezzi differenziati.</p>\n\n<p>Dal punto di vista strategico, si osserva un aumento delle tensioni geopolitiche in diverse aree del mondo. Gli <a href='https://www.ilsole24ore.com/art/gli-usa-attaccano-venezuela-e-maduro-all-onu-scontro-diplomatico-russia-e-cina-AIQCkmY'>Stati Uniti</a> continuano a esercitare pressioni su regimi considerati ostili, come il Venezuela, mentre la Cina rafforza la sua presenza militare e economica a livello globale. La situazione in Europa rimane instabile, con la Francia che affronta difficolt\u00e0 nel bilancio statale <a href='https://www.ilsole24ore.com/art/francia-senza-bilancio-parlamento-approva-legge-d-emergenza-AIPoQpY'>Francia senza bilancio</a> e l'Unione Europea che deve affrontare sfide interne e esterne.</p>\n\n<h3>Conclusioni Prospettiche</h3>\n<p>Le tendenze osservate nel 2025 suggeriscono un futuro caratterizzato da una crescente competizione tra le grandi potenze, instabilit\u00e0 politica e progressi tecnologici. Per Marte Strategic Horizon, \u00e8 fondamentale monitorare attentamente questi sviluppi, valutando le implicazioni per la sicurezza, l'economia e la governance della futura colonia marziana. In particolare, \u00e8 cruciale diversificare le fonti di approvvigionamento di risorse critiche, sviluppare tecnologie autonome per la sopravvivenza su Marte e stabilire relazioni diplomatiche con diverse nazioni terrestri per garantire un sostegno continuo al progetto marziano. L'importanza di figure come <a href='https://formiche.net/2025/12/giancarlo-giorgetti-la-rivincita-della-prudenza-e-del-rigore-formica-dellanno-2025/'>Giancarlo Giorgetti</a> e la sua visione di prudenza e rigore sottolineano come scelte oculate possano mitigare i rischi e massimizzare le opportunit\u00e0 nel lungo periodo.</p>",
+            "references": [
+                "Truffe: come riconoscerle e come difendersi | URL: https://www.startmag.it/innovazione/truffe-come-riconoscere-e-come-difendersi/",
+                "Limes, il giornale che volle trasformare la forza in scienza | URL: https://www.startmag.it/mondo/limes-il-giornale-che-volle-trasformare-la-forza-in-scienza/",
+                "Roche, tutti i guai tra crollo in borsa, dubbi degli analisti, cause legali e l\u2019ombra del ricatto sui prezzi | URL: https://www.startmag.it/economia/roche-tutti-i-guai-tra-crollo-in-borsa-dubbi-degli-analisti-cause-legali-e-lombra-del-ricatto-sui-prezzi/",
+                "Tutte le Big Pharma che si sono inchinate a Trump | URL: https://www.startmag.it/economia/tutte-le-big-pharma-che-si-sono-inchinate-a-trump/",
+                "Groenlandia, ecco le ultime trumpate di Trump | URL: https://startmag.it/mondo/groenlandia-tutte-le-ultime-trumpate-di-trump/",
+                "Pechino riempie i suoi silos e alza la posta sul nucleare | URL: https://formiche.net/2025/12/pechino-riempie-i-suoi-silos-e-alza-la-posta-sul-nucleare/",
+                "Usa sempre pi\u00f9 liberi dalla Cina sulle terre rare. Mentre l\u2019Europa\u2026 | URL: https://formiche.net/2025/12/terre-rare-cina-europa-stati-uniti-minerali/",
+                "Officina Stellare e Leonardo siglano un\u2019intesa da 9,2 milioni. Tutti i dettagli | URL: https://formiche.net/2025/12/officina-stellare-leonardo-asi-satelliti-osservazione-della-terra-9-milioni/",
+                "Giancarlo Giorgetti, la rivincita della prudenza e del rigore. Formica dell\u2019anno 2025 | URL: https://formiche.net/2025/12/giancarlo-giorgetti-la-rivincita-della-prudenza-e-del-rigore-formica-dellanno-2025/",
+                "Ecco perch\u00e9 la Russia sta per impantanarsi. Report Bruegel | URL: https://formiche.net/2025/12/russia-bruegel-economia-sanzioni-idrocarburi-resilienza-stagnazione-putin/",
+                "Should we smoke salmon using traditional techniques, or should we simply add the flavor? | URL: https://phys.org/news/2025-12-salmon-traditional-techniques-simply-flavor.html",
+                "Instacart ends AI pricing test that charged shoppers different prices for the same items | URL: https://phys.org/news/2025-12-instacart-ai-pricing-shoppers-prices.html",
+                "Is democracy always about truth? Why we may need to loosen our views to heal our divisions | URL: https://phys.org/news/2025-12-democracy-truth-loosen-views-divisions.html",
+                "It's been 25 years since America decided to save the Everglades: Where do we stand? | URL: https://phys.org/news/2025-12-years-america-everglades.html",
+                "Children face punishment because of unaffordable school uniforms, new poll reveals | URL: https://phys.org/news/2025-12-children-unaffordable-school-uniforms-poll.html",
+                "Dieta da combattimento come \u2018farmaco di precisione\u2019 contro il cancro | URL: https://www.insalutenews.it/in-salute/dieta-da-combattimento-come-farmaco-di-precisione-contro-il-cancro/?utm_source=rss&utm_medium=rss&utm_campaign=dieta-da-combattimento-come-farmaco-di-precisione-contro-il-cancro",
+                "Salvato prima di nascere: rimossa cisti polmonare gigante con intervento in utero | URL: https://www.insalutenews.it/in-salute/salvato-prima-di-nascere-rimossa-cisti-polmonare-gigante-con-intervento-in-utero/?utm_source=rss&utm_medium=rss&utm_campaign=salvato-prima-di-nascere-rimossa-cisti-polmonare-gigante-con-intervento-in-utero",
+                "GAPS in volo sull\u2019Antartide: Bergamo protagonista nella ricerca dell\u2019antimateria cosmica | URL: https://www.insalutenews.it/in-salute/gaps-in-volo-sullantartide-bergamo-protagonista-nella-ricerca-dellantimateria-cosmica/?utm_source=rss&utm_medium=rss&utm_campaign=gaps-in-volo-sullantartide-bergamo-protagonista-nella-ricerca-dellantimateria-cosmica",
+                "Scoperto nel sangue il \u2018segnale\u2019 del Parkinson: una molecola rivela il danno neuronale | URL: https://www.insalutenews.it/in-salute/scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale/?utm_source=rss&utm_medium=rss&utm_campaign=scoperto-nel-sangue-il-segnale-del-parkinson-una-molecola-rivela-il-danno-neuronale",
+                "Endoscopia bariatrica, il Galliera protagonista delle nuove linee guida italiane | URL: https://www.insalutenews.it/in-salute/endoscopia-bariatrica-il-galliera-protagonista-delle-nuove-linee-guida-italiane/?utm_source=rss&utm_medium=rss&utm_campaign=endoscopia-bariatrica-il-galliera-protagonista-delle-nuove-linee-guida-italiane",
+                "Email by 'A' from 'Balmoral' asked Ghislaine Maxwell for 'inappropriate friends', Epstein files show | URL: https://www.bbc.com/news/articles/cm28g5exx09o?at_medium=RSS&at_campaign=rss",
+                "Trump trips, a fake video and 10 possible co-conspirators - Takeaways from new Epstein files | URL: https://www.bbc.com/news/articles/c5yj4yvx80do?at_medium=RSS&at_campaign=rss",
+                "Australia to deport British man charged with displaying Nazi symbols | URL: https://www.bbc.com/news/articles/cgke51rzpvro?at_medium=RSS&at_campaign=rss",
+                "US denies visas to ex-EU commissioner and others over social media rules | URL: https://www.bbc.com/news/articles/cp39kngz008o?at_medium=RSS&at_campaign=rss",
+                "Libya's army chief killed in air crash in Turkey | URL: https://www.bbc.com/news/articles/cyvgzyepdqno?at_medium=RSS&at_campaign=rss",
+                "Ucraina, Zelensky: \u00abUsa vogliono la pace\u00bb. Nuova autobomba a Mosca | URL: https://www.ilsole24ore.com/art/ucraina-zelensky-usa-vogliono-pace-nuova-autobomba-mosca-AIDL6zY",
+                "Francia senza bilancio, Parlamento approva legge d\u2019emergenza | URL: https://www.ilsole24ore.com/art/francia-senza-bilancio-parlamento-approva-legge-d-emergenza-AIPoQpY",
+                "Sanzioni Usa contro cinque personalit\u00e0 europee tra cui l\u2019ex commissario Ue Breton | URL: https://www.ilsole24ore.com/art/sanzioni-usa-contro-cinque-personalita-europee-cui-l-ex-commissario-ue-breton-AIFZlnY",
+                "Gli Usa attaccano il Venezuela e Maduro all\u2019Onu. Scontro diplomatico con Russia e Cina | URL: https://www.ilsole24ore.com/art/gli-usa-attaccano-venezuela-e-maduro-all-onu-scontro-diplomatico-russia-e-cina-AIQCkmY",
+                "Truppe a Chicago, no della Corte Suprema (ma Trump le manda a New Orleans) | URL: https://www.ilsole24ore.com/art/sconfitta-trump-corte-suprema-vieta-truppe-chicago-AIj3gkY"
+            ]
+        },
         {
             "title": "Geopolitica Terrestre e Implicazioni Strategiche per l'Esplorazione Marziana: Un'Analisi Prospettica",
             "author": "Marte Research Dept.",
@@ -808,5 +847,5 @@ const mshData = {
             ]
         }
     ],
-    "last_update": "24/12/2025 07:42"
+    "last_update": "25/12/2025 07:39"
 };
